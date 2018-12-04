@@ -18,6 +18,9 @@ if __name__ == "__main__":
 
     corpus = pd.read_csv(config.data, error_bad_lines=False, warn_bad_lines=False)
 
+    # Strip whitespace (including newlines)
+    corpus = corpus.apply(lambda i: i.replace('\n', '').strip())
+
     # Show which index in a DataFrame has NA, and drop
     index = np.where(corpus.isna().any(axis='columns'))[0]
     corpus = corpus.drop(index, axis='rows')
