@@ -21,7 +21,7 @@ if __name__ == "__main__":
 
     # tokenizing
     tokenizer = Mecab()
-    corpus['tokenization'] = [tokenizer.morphs(i) for i in corpus]
+    corpus['tokenization'] = [' '.join(tokenizer.morphs(i)) for i in corpus]
 
     # save
     corpus.to_csv('new_'+config.data, encoding='utf-8', index=False)
