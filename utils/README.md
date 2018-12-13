@@ -36,3 +36,18 @@ structure:
 You may also need to change the argument parameters in code.
 
 ### 3. Training
+```
+$ python train.py -h
+usage: train.py [-h] [-corpus_tk CORPUS_TK]
+                [-trained_word_vector TRAINED_WORD_VECTOR]
+                [-score_corpus SCORE_CORPUS]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -corpus_tk CORPUS_TK  Default=corpus.tk.txt
+  -trained_word_vector TRAINED_WORD_VECTOR
+                        Default=corpus.tk.vec.txt
+  -score_corpus SCORE_CORPUS
+                        Default=score_corpus.txt
+```
+You may also need to change the argument parameters in code.
