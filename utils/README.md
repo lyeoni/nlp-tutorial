@@ -6,10 +6,10 @@ $ ./preprocessing.sh
 ```
 ```
 structure:
-preprocessing.sh
-├── tokenization_ko.py
-├── build_vocab.py (optional)
-└── fasttext
+  preprocessing.sh
+  ├── tokenization_ko.py
+  ├── build_vocab.py (optional)
+  └── fasttext
 ```
 You may also need to change the argument parameters in code.
 
@@ -30,8 +30,8 @@ optional arguments:
 ```
 ```
 structure:
-data_loader.py
-└── read_word_pair.py
+  data_loader.py
+  └── read_word_pair.py
 ```
 You may also need to change the argument parameters in code.
 
