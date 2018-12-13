@@ -51,3 +51,9 @@ optional arguments:
                         Default=score_corpus.txt
 ```
 You may also need to change the argument parameters in code.
+
+```
+structure:
+  train.py
+  └── data_loader.py
+```
