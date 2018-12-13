@@ -4,6 +4,13 @@ Just run preprocessing.sh. It runs tokenization_ko.py, build_vocab.py, fasttext 
 ```
 $ ./preprocessing.sh
 ```
+```
+structure:
+  preprocessing.sh
+  ├── tokenization_ko.py
+  ├── build_vocab.py (optional)
+  └── fasttext
+```
 You may also need to change the argument parameters in code.
 
 ### 2. Make data loader
@@ -21,4 +28,11 @@ optional arguments:
   -score_corpus SCORE_CORPUS
                         Default=score_corpus.txt
 ```
+```
+structure:
+  data_loader.py
+  └── read_word_pair.py
+```
 You may also need to change the argument parameters in code.
+
+### 3. Training
