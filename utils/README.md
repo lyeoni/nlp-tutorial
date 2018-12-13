@@ -6,7 +6,7 @@ $ ./preprocessing.sh
 ```
 You may also need to change the argument parameters in code.
 
-### 2. Make data_loader
+### 2. Make data loader
 It returns train/test-set as well as embedding_matrix.
 ```
 $ python data_loader.py -h
