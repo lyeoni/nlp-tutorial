@@ -50,10 +50,9 @@ optional arguments:
   -score_corpus SCORE_CORPUS
                         Default=score_corpus.txt
 ```
-You may also need to change the argument parameters in code.
-
 ```
 structure:
   train.py
   └── data_loader.py
 ```
+You may also need to change the argument parameters in code.
