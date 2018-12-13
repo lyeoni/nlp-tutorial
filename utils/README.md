@@ -1,9 +1,10 @@
 ## Usage
 ### 1. Preprocessing corpus
-Run shell script. It runs tokenization_ko.py, build_vocab.py, fasttext in order.
+Just run preprocessing.sh. It runs tokenization_ko.py, build_vocab.py, fasttext in order.
 ```
 $ ./preprocessing.sh
 ```
+You may also need to change the argument parameters in code.
 
 ### 2. Make data_loader
 It returns train/test-set as well as embedding_matrix.
