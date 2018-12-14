@@ -26,6 +26,16 @@ def argparser():
                    default='score_corpus.txt',
                    help='Default=score_corpus.txt')
     
+    p.add_argument('-epoch',
+                   type=int,
+                   default=20,
+                   help='number of iteration to train model. Default=20')
+
+    p.add_argument('-batch_size',
+                   type=int,
+                   default=64,
+                   help='mini batch size for parallel inference. Default=64')
+    
     config = p.parse_args()
     
     return config
@@ -70,8 +80,9 @@ if __name__ == "__main__":
     
     # training
     hist = model.fit(x_train, y_train,
-                epochs=20, batch_size=64,
-                validation_data=(x_test, y_test), verbose=2)
+                     epochs = config.epoch,
+                     batch_size = config.batch_size,
+                     validation_data=(x_test, y_test), verbose=2)
     
     # evaluation: confusion matrix & roc curve
     pred = model.predict(x_test)
