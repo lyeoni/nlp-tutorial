@@ -40,7 +40,8 @@ You may also need to change the argument parameters in code.
 $ python train.py -h
 usage: train.py [-h] [-corpus_tk CORPUS_TK]
                 [-trained_word_vector TRAINED_WORD_VECTOR]
-                [-score_corpus SCORE_CORPUS]
+                [-score_corpus SCORE_CORPUS] [-epoch EPOCH]
+                [-batch_size BATCH_SIZE]
 
 optional arguments:
   -h, --help            show this help message and exit
@@ -49,6 +50,9 @@ optional arguments:
                         Default=corpus.tk.vec.txt
   -score_corpus SCORE_CORPUS
                         Default=score_corpus.txt
+  -epoch EPOCH          number of iteration to train model. Default=20
+  -batch_size BATCH_SIZE
+                        mini batch size for parallel inference. Default=64
 ```
 ```
 structure:
