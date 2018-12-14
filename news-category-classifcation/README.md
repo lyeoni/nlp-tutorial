@@ -21,3 +21,25 @@ Below table shows that the first 5 lines from the dataset provided by [Kaggle](h
 
 
 ## Usage
+### 1. Preprocessing corpus
+```
+structure:
+  preprocessing.sh
+  ├── tokenization_en.py
+      └── remove_emoji.py
+  └── fasttext
+```
+```
+$ python tokenization_en.py -h
+usage: tokenization_en.py [-h] -input INPUT -column COLUMN -output OUTPUT
+
+optional arguments:
+  -h, --help      show this help message and exit
+  -input INPUT    data file name to use
+  -column COLUMN  column name to use. headline or short_description
+  -output OUTPUT  data file name to write
+```
+example usage:
+```
+python tokenization_en.py -input News_Category_Dataset_v2.json -column short_description -output news.tk.txt
+```
