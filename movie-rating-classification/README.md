@@ -1,3 +1,12 @@
+# Movie Rating Classification
+This repo contains a simple source code for text-classification based on TextCNN. Corpus is movie review dataset in the Korean language. Most open sources are a bit difficult to study & make text-classification model for beginners. So, I hope that this repo can be a good solution for people who want to have their own text-classification model.
+
+## Data
+32,775 corpus(review)-score pairs.
+<p align="left">
+<img width="700" src="https://github.com/lyeoni/nlp-tutorial/blob/master/movie-rating-classification/images/corpus_sample.png">
+</p>
+
 ## Usage
 ### 1. Preprocessing corpus
 Just run preprocessing.sh. It runs tokenization_ko.py, build_vocab.py, fasttext in order.
@@ -36,6 +45,7 @@ structure:
 You may also need to change the argument parameters in code.
 
 ### 3. Training
+To visualize overall training process, I also provide ipython notebook version
 ```
 $ python train.py -h
 usage: train.py [-h] [-corpus_tk CORPUS_TK]
