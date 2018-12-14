@@ -1,11 +1,29 @@
-# Movie Rating Classification
+# News Category Classification
 This repo contains a simple source code for text-classification based on TextCNN. Corpus is movie review dataset in the Korean language. Most open sources are a bit difficult to study & make text-classification model for beginners. So, I hope that this repo can be a good solution for people who want to have their own text-classification model.
 
 ## Data
-32,775 corpus(review)-score pairs.
+This dataset contains around 200k news headlines from the year 2012 to 2018 obtained from HuffPost. Below table shows that the first 5 lines from the dataset provided by [Kaggle](https://www.kaggle.com/). You can download news category dataset [here](https://www.kaggle.com/rmisra/news-category-dataset).
+
 <p align="left">
-<img width="700" src="https://github.com/lyeoni/nlp-tutorial/blob/master/movie-rating-classification/images/corpus_sample.png">
+<img width="700" src="https://github.com/lyeoni/nlp-tutorial/blob/master/news-category-classifcation/images/data_sample.png">
 </p>
+
+Each json record contains following attributes:
+
+`category`: Category article belongs to
+
+`headline`: Headline of the article
+
+`authors`: Person authored the article
+
+`link`: Link to the post
+
+`short_description`: Short description of the article
+
+`date`: Date the article was published  
+
+
+
 
 ## Usage
 ### 1. Preprocessing corpus
