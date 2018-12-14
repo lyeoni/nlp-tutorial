@@ -45,7 +45,7 @@ structure:
 You may also need to change the argument parameters in code.
 
 ### 3. Training
-To visualize overall training process, I also provide ipython notebook version
+To visualize overall training process, I also provide ipython notebook version in [here](https://github.com/lyeoni/nlp-tutorial/blob/master/movie-rating-classification/ipython_notebook/train.ipynb)
 ```
 $ python train.py -h
 usage: train.py [-h] [-corpus_tk CORPUS_TK]
