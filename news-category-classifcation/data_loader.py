@@ -46,9 +46,9 @@ class DataLoader():
                  tokenized_corpus=None,
                  trained_word_vector=None,
                  label_corpus=None,
-                 max_word_num=None,
-                 min_corpus_len=None,
-                 max_corpus_len=None):
+                 max_word_num=50000,
+                 min_corpus_len=5,
+                 max_corpus_len=50):
         
         super(DataLoader, self).__init__()
         
