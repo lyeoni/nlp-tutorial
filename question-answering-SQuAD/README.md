@@ -1,45 +1,34 @@
-# News Category Classification
-This repo contains a simple source code for text-classification based on TextCNN. Corpus is news category dataset in English. Most open sources are a bit difficult to study & make text-classification model for beginners. So, I hope that this repo can be a good solution for people who want to have their own text-classification model.
+# Qusetion Answering system for SQUAD
+This repo contains a simple source code for building question-answering system for SQuAD.
 
 ## Data
-News category dataset contains around 200k news headlines from the year 2012 to 2018 obtained from HuffPost. You can download this dataset [here](https://www.kaggle.com/rmisra/news-category-dataset).
+Stanford Question Answering Dataset (SQuAD) is a reading comprehension dataset, consisting of questions posed by crowdworkers on a set of Wikipedia articles, where the answer to every question is a segment of text, or span, from the corresponding reading passage, or the question might be unanswerable.
+You can download this dataset [here](https://rajpurkar.github.io/SQuAD-explorer/).
 
-The dataset contains 202,372 records. Each json record contains following attributes:
+- `SQuAD 2.0`: combines the 100,000 questions in SQuAD 1.1 with over 50,000 new, unanswerable questions written adversarially by crowdworkers to look similar to answerable ones.
+- `SQuAD 1.1`: the previous version of the SQuAD dataset, contains 100,000+ question-answer pairs on 500+ articles.
 
-- `category`: Category article belongs to
-- `headline`: Headline of the article
-- `authors`: Person authored the article
-- `link`: Link to the post
-- `short_description`: Short description of the article
-- `date`: Date the article was published  
-
-Below table shows that the first 5 lines from the dataset provided by [Kaggle](https://www.kaggle.com/).
-
-<p align="left">
-<img width="700" src="https://github.com/lyeoni/nlp-tutorial/blob/master/news-category-classifcation/images/data_sample.png">
-</p>
+Here I used SQuAD 1.1. Each article contains following structure:
+```
+structure:
+  article (dict)
+  ├── title (str)
+  ├── paragraphs (dict)
+      ├── context (str)
+      └── qas (dict)        
+          ├── question (str)
+          ├── id (str)
+          └── answers (dict)
+              ├── answer_start (integer)
+              └── text (str)
+  ...
+  └── paragraphs n
+      ├── context
+      └── qas 
+```
 
 
 ## Usage
-### 1. Preprocessing corpus
-```
-structure:
-  preprocessing.sh
-  ├── tokenization_en.py
-      └── remove_emoji.py
-  └── fasttext
-```
-```
-$ python tokenization_en.py -h
-usage: tokenization_en.py [-h] -input INPUT -column COLUMN -output OUTPUT
 
-optional arguments:
-  -h, --help      show this help message and exit
-  -input INPUT    data file name to use
-  -column COLUMN  column name to use. headline or short_description
-  -output OUTPUT  data file name to write
-```
-example usage:
-```
-python tokenization_en.py -input News_Category_Dataset_v2.json -column short_description -output news.tk.txt
-```
+## Reference
+- [rajpurkar/SQuAD-explorer](https://github.com/rajpurkar/SQuAD-explorer)
