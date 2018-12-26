@@ -17,9 +17,9 @@ class DataLoader:
         '''
         structure:
         article > paragraphs > sub paragarph -- context
-                                                                     - q_a -- question
-                                                                               - answers -- text
-                                                                                                 - answer_start
+                                             -- q_a -- question
+                                                    -- answers -- text
+                                                               -- answer_start
         article = a pair of 'title', 'paragraphs'
         paragraphs = set of paragraphs
         sub_paragraph = a paragraph, that includes 'qas', 'context' as a key of dictionary
