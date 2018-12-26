@@ -5,7 +5,8 @@ import data_loader
 
 if __name__ == "__main__":
     loader = data_loader.DataLoader(sys.argv[1])
-    data = pd.DataFrame({'title': loader.title, 'context': loader.context, 'question':loader.question, 'answer_start':loader.answer_start, 'answer_end':loader.answer_end, 'answer_text':loader.answer_text})
+    data = pd.DataFrame({'title': loader.title, 'context': loader.context, 'question':loader.question,
+                        'answer_start':loader.answer_start, 'answer_end':loader.answer_end, 'answer_text':loader.answer_text})
     
     # make tokenizer
     tokenizer = MosesTokenizer()
