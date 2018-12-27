@@ -44,7 +44,8 @@ class DataGenerator():
 
     def get_vector(self, inputs, pretrained_corpus, max_word_num, max_sequence_len):
         loader = data_loader.DataLoader(inputs)
-        self.data = pd.DataFrame({'title': loader.title, 'context': loader.context, 'question':loader.question, 'answer_start':loader.answer_start, 'answer_end':loader.answer_end, 'answer_text':loader.answer_text})
+        self.data = pd.DataFrame({'title': loader.title, 'context': loader.context, 'question':loader.question,
+                                 'answer_start':loader.answer_start, 'answer_end':loader.answer_end, 'answer_text':loader.answer_text})
             
         self.tokenizer, self.vocabulary = self.create_vocab(pretrained_corpus, max_word_num)
                             
@@ -69,4 +70,3 @@ if __name__ == "__main__":
     max_sequence_len = [256, 32, 32]
 
     gen = DataGenerator(inputs, pretrained_corpus, max_word_num, max_sequence_len)
-    print(gen.question_vector.shape)
