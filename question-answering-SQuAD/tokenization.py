@@ -11,10 +11,10 @@ if __name__ == "__main__":
     # make tokenizer
     tokenizer = MosesTokenizer()
     
-    # tokenization
+    # tokenization for further word embedding
     for text_column in data.columns:
-        if text_column in ['context' , 'question', 'answer_text']:
-            # drop duplicated context, question, answer text
+        if text_column in ['context' , 'question']:
+            # drop duplicated context, question
             for line in data[text_column].drop_duplicates(): 
                 tokens = tokenizer.tokenize(line.replace('\n', '').strip(), escape=False)
                 sys.stdout.write(' '.join(tokens) +'\n')
