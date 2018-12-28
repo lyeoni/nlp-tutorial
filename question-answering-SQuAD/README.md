@@ -56,6 +56,21 @@ example:
 ```
 
 ## Usage
+### 1. Preprocessing corpus
+Just run preprocessing.sh. It creates corpus.tk.txt, corpus.tk.vec.txt
 
+To train your custom word embedding model instead of using the pre-trained model(wiki.en.bin), you need to use line 10 in preprocessing.sh rather than line 7.
+
+example usage:
+```
+$ ./preprocessing.sh
+```
+```
+structure:
+  preprocessing.sh
+  └── tokenization.py
+      └── data_loader.py
+  └── fasttext
+```
 ## Reference
 - [rajpurkar/SQuAD-explorer](https://github.com/rajpurkar/SQuAD-explorer)
