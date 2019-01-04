@@ -59,7 +59,9 @@ example:
 ### 1. Preprocessing corpus
 Just run preprocessing.sh. It creates corpus.tk.txt, corpus.tk.vec.txt
 
-To train your custom word embedding model instead of using the pre-trained model(wiki.en.bin), you need to use line 10 in preprocessing.sh rather than line 7.
+You can adopt the pre-trained word embedding model in the below of your choice. Here I used Glove embedding:
+- `Fasttext`: If you want to train your custom word embedding model instead of using the pre-trained model(wiki.en.bin), you need to use line 10 in preprocessing.sh rather than line 7.
+- `Glove`: 
 
 example usage:
 ```
@@ -72,5 +74,7 @@ structure:
       └── data_loader.py
   └── fasttext
 ```
+
 ## Reference
+- [Rahulrt7/Machine-comprehension-Keras](https://github.com/Rahulrt7/Machine-comprehension-Keras)
 - [rajpurkar/SQuAD-explorer](https://github.com/rajpurkar/SQuAD-explorer)
