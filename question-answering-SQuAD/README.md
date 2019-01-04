@@ -57,12 +57,12 @@ example:
 
 ## Usage
 ### 1. Preprocessing corpus
-Just run preprocessing.sh. It creates corpus.tk.txt, corpus.tk.vec.txt
+Just run preprocessing.sh. It creates corpus.tk.txt, corpus.tk.vec.txt (optional). corpus.tk.txt will be used to build vocabulary later.
 
-You can adopt the pre-trained word embedding model in the below of your choice. Here I used Glove embedding:
-- `Fasttext`: If you want to train your custom word embedding model instead of using the pre-trained model(wiki.en.bin), you need to use line 10 in preprocessing.sh rather than line 7.
-- `Glove`: 
-
+You can adopt the pre-trained word embedding model in the below of your choice. I tested both Glove and Fasttext, and used Glove embedding here.
+- `Glove(glove.6B.100d.txt)`:  trained on Wikipedia 2014 + Gigaword 5 (6B tokens, 400K vocab, uncased, 50d, 100d, 200d, & 300d vectors, 822 MB download). 
+- `Fasttext(wiki.en.bin or wiki.en.vec)`: trained on Wikipedia (2519370 vocab, 300d vectors).
+ 
 example usage:
 ```
 $ ./preprocessing.sh
@@ -72,9 +72,13 @@ structure:
   preprocessing.sh
   └── tokenization.py
       └── data_loader.py
-  └── fasttext
+  └── fasttext (optional)
 ```
 
 ## Reference
+### Word embeddings
+- [GloVe: Global Vectors for Word Representation](https://nlp.stanford.edu/projects/glove/)
+- [facebookresearch/fastText](https://github.com/facebookresearch/fastText)
+### MRC models
 - [Rahulrt7/Machine-comprehension-Keras](https://github.com/Rahulrt7/Machine-comprehension-Keras)
 - [rajpurkar/SQuAD-explorer](https://github.com/rajpurkar/SQuAD-explorer)
