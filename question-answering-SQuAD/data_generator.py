@@ -9,7 +9,9 @@ from keras.preprocessing.sequence import pad_sequences
 class DataGenerator():
     def __init__(self,
                  inputs=None,
-                 pretrained_corpus=None,
+                 tokenized_corpus=None,
+                 embedding_vectors=None,
+                 embedding_dim=None,
                  max_word_num=None,
                  max_sequence_len=None):
         
@@ -21,15 +23,33 @@ class DataGenerator():
         self.answer_token_index = None # [start_location, end_location]
         self.vocabulary = None
         self.tokenizer = None
+        self.embedding_matrix = None
+        self.embedding_dim = embedding_dim
         
-        self.context_vector, self.question_vector = self.get_vector(inputs, pretrained_corpus, max_word_num, max_sequence_len)
+        self.context_vector, self.question_vector = self.get_vector(inputs, tokenized_corpus, max_word_num, max_sequence_len)
         self.answer_token_index = self.char_to_token_loc_mapping()
-
+        self.embedding_matrix = self.get_embedding_matrix(embedding_vectors, embedding_dim)
+    
+    def read_word_pair(self, input):
+        t = {}
+        f = open(input, 'r')
+        
+        for line in f:
+            key_val = line.rstrip().rsplit(' ')
+            
+            if len(key_val[1:]) == 1: # to read vocabulary (key=word, value=index)
+                t[key_val[0]] = int(key_val[1])
+            else: # to read embedding vectors (key=word, value=embedding vector)
+                t[key_val[0]] = np.asarray(key_val[1:], dtype='float32')
+        f.close()
+        
+        return t
+    
     def create_vocab(self, inputs, maximum_word_num):
         '''
-        create vocabulary based on pre-trained corpus(previously used for fasttext)
+        create vocabulary based on tokenzied corpus
         '''
-        # make tokenizer. but just used for word indexer
+        # make tokenizer. But just used for word indexer
         tokenizer = Tokenizer(num_words = maximum_word_num+1, filters='', oov_token='UNK')
         
         # fit on input (tokenized) corpus
@@ -37,7 +57,7 @@ class DataGenerator():
         corpus = [line for line in f]
         tokenizer.fit_on_texts(corpus)
         
-        # create vocab
+        # create vocabulary
         tokenizer.word_index = {word:index for word, index in tokenizer.word_index.items() if index <= maximum_word_num}
         vocabulary = tokenizer.word_index
         
@@ -85,11 +105,11 @@ class DataGenerator():
             
         return list(zip(answer_start_token_idx_list, answer_end_token_idx_list))
 
-    def get_vector(self, inputs, pretrained_corpus, max_word_num, max_sequence_len):
+    def get_vector(self, inputs, tokenized_corpus, max_word_num, max_sequence_len):
         loader = data_loader.DataLoader(inputs)
         self.data = pd.DataFrame({'title': loader.title, 'context': loader.context, 'question':loader.question, 'answer_start':loader.answer_start, 'answer_end':loader.answer_end, 'answer_text':loader.answer_text})
             
-        self.tokenizer, self.vocabulary = self.create_vocab(pretrained_corpus, max_word_num)
+        self.tokenizer, self.vocabulary = self.create_vocab(tokenized_corpus, max_word_num)
                             
         # tokenization & add tokens, token indexes to columns
         nltk_tokenizer = MosesTokenizer()
@@ -105,10 +125,27 @@ class DataGenerator():
 
         return vectors
 
+    def get_embedding_matrix(self, embedding_vectors, embedding_dim):
+        trained_wv = self.read_word_pair(embedding_vectors) # read (pre)trained embedding word vectors
+        print('number of trained word vector: {}'.format(len(trained_wv)))
+    
+        embedding_matrix = np.zeros((len(self.vocabulary)+1, embedding_dim)) # Glove: (-1, 100)
+        for word, idx in self.vocabulary.items():
+            embedding_wv = trained_wv.get(word)
+            if embedding_wv is not None:
+                embedding_matrix[idx] = embedding_wv
+            # else:
+            # print(word, idx, embedding_wv)
+        print('embedding matrix shape: {}'.format(embedding_matrix.shape))
+
+        return embedding_matrix
+
 if __name__ == "__main__":
     inputs = 'data/train-v1.1.json'
-    pretrained_corpus = 'corpus.tk.txt'
+    tokenized_corpus = 'corpus.tk.txt'
+    embedding_vectors = '/Users/hoyeonlee/glove.6B/glove.6B.100d.txt'
+    embedding_dim = 100
     max_word_num = 100000
-    max_sequence_len = [256, 32]
+    max_sequence_len = [300, 30]
 
-    gen = DataGenerator(inputs, pretrained_corpus, max_word_num, max_sequence_len)
+    gen = DataGenerator(inputs, tokenized_corpus, embedding_vectors, embedding_dim, max_word_num, max_sequence_len)
