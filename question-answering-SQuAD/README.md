@@ -57,7 +57,7 @@ example:
 
 ## Usage
 ### 1. Preprocessing corpus
-Just run preprocessing.sh. It creates corpus.tk.txt, corpus.tk.vec.txt (optional). corpus.tk.txt will be used to build vocabulary later.
+First, just run preprocessing.sh. It creates tokenized corpus 'corpus.tk.txt', and it will be used as the input to data_generator.py later (especially, to create vocabulary).
 
 You can adopt the pre-trained word embedding model in the below of your choice. I tested both Glove and Fasttext, and used Glove embedding here.
 - `Glove(glove.6B.100d.txt)`:  trained on Wikipedia 2014 + Gigaword 5 (6B tokens, 400K vocab, uncased, 50d, 100d, 200d, & 300d vectors, 822 MB download). 
@@ -74,6 +74,9 @@ structure:
       └── data_loader.py
   └── fasttext (optional)
 ```
+
+Second, when you create DataGenerator instance in data_generator.py,
+it will create vocabulary, context-question vectors, and embedding matrix used for MRC model training in order.
 
 ## Reference
 ### Word embeddings
