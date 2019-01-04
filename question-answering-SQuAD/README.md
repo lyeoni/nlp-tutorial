@@ -78,6 +78,18 @@ structure:
 Second, when you create DataGenerator instance in data_generator.py,
 it will create vocabulary, context-question vectors, and embedding matrix used for MRC model training in order.
 
+example usage:
+```
+>>> gen = DataGenerator(inputs = 'data/train-v1.1.json',
+                             tokenized_corpus = 'corpus.tk.txt',
+                             embedding_vectors = '/Users/hoyeonlee/glove.6B/glove.6B.100d.txt',
+                             embedding_dim = 100,
+                             max_word_num = 100000,
+                             max_sequence_len = [300, 30] # [context, question])
+```
+
+### 2. Training
+
 ## Reference
 ### Word embeddings
 - [GloVe: Global Vectors for Word Representation](https://nlp.stanford.edu/projects/glove/)
