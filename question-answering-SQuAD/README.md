@@ -5,8 +5,8 @@ This repo contains a simple source code for building question-answering system f
 Stanford Question Answering Dataset (SQuAD) is a reading comprehension dataset, consisting of questions posed by crowdworkers on a set of Wikipedia articles, where the answer to every question is a segment of text, or span, from the corresponding reading passage, or the question might be unanswerable.
 You can download this dataset [here](https://rajpurkar.github.io/SQuAD-explorer/).
 
-- `SQuAD 2.0`: combines the 100,000 questions in SQuAD 1.1 with over 50,000 new, unanswerable questions written adversarially by crowdworkers to look similar to answerable ones.
 - `SQuAD 1.1`: the previous version of the SQuAD dataset, contains 100,000+ question-answer pairs on 500+ articles.
+- `SQuAD 2.0`: combines the 100,000 questions in SQuAD 1.1 with over 50,000 new, unanswerable questions written adversarially by crowdworkers to look similar to answerable ones.
 
 Here I used SQuAD 1.1. Each article contains following structure:
 ```
@@ -26,7 +26,7 @@ structure:
       ├── context
       └── qas 
 ```
-example:
+sample:
 ```
 'title': 'University_of_Notre_Dame'
 'paragraphs': [{
@@ -57,43 +57,46 @@ example:
 
 ## Usage
 ### 1. Preprocessing corpus
-First, just run preprocessing.sh. It creates tokenized corpus 'corpus.tk.txt', and it will be used as the input to data_generator.py later (especially, to create vocabulary).
+First, prepare data. Donwload SQuAD data, GloVe and nltk corpus.
 
 You can adopt the pre-trained word embedding model in the below of your choice. I tested both Glove and Fasttext, and used Glove embedding here.
 - `Glove(glove.6B.100d.txt)`:  trained on Wikipedia 2014 + Gigaword 5 (6B tokens, 400K vocab, uncased, 50d, 100d, 200d, & 300d vectors, 822 MB download). 
 - `Fasttext(wiki.en.bin or wiki.en.vec)`: trained on Wikipedia (2519370 vocab, 300d vectors).
- 
-example usage:
-```
-$ ./preprocessing.sh
-```
-```
-structure:
-  preprocessing.sh
-  └── tokenization.py
-      └── data_loader.py
-  └── fasttext (optional)
-```
-
-Second, when you create DataGenerator instance in data_generator.py,
-it will create vocabulary, context-question vectors, and embedding matrix used for MRC model training in order.
 
 example usage:
 ```
->>> gen = DataGenerator(inputs = 'data/train-v1.1.json',
-                             tokenized_corpus = 'corpus.tk.txt',
-                             embedding_vectors = '/Users/hoyeonlee/glove.6B/glove.6B.100d.txt',
-                             embedding_dim = 100,
-                             max_word_num = 100000,
-                             max_sequence_len = [300, 30] # [context, question])
+chmod +x download_squad.sh; ./download_squad.sh
+chmod +x download_glove.sh; ./download_glove.sh
+pip install nltk==3.2.5
+$ ipython
+>>> import nltk
+>>> nltk.download()
 ```
 
-### 2. Training
+Second, Preprocess SQuAD dataset (along with GloVe vectors) and save them in current working directory:
+It will create vocabulary, context-question vectors, and embedding matrix used for MRC model training in order.
+```
+python preprocessing.py -h
+usage: preprocessing.py [-h] [-mode MODE] [-glove_vec_size GLOVE_VEC_SIZE]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -mode MODE            select train or dev
+  -glove_vec_size GLOVE_VEC_SIZE
+                        embedding vector size
+```
+
+example usage:
+```
+python preprocessing.py -mode train -glove_vec_size 100
+```
+
 
 ## Reference
 ### Word embeddings
 - [GloVe: Global Vectors for Word Representation](https://nlp.stanford.edu/projects/glove/)
 - [facebookresearch/fastText](https://github.com/facebookresearch/fastText)
 ### MRC models
+- [allenai/bi-att-flow](https://github.com/allenai/bi-att-flow)
 - [Rahulrt7/Machine-comprehension-Keras](https://github.com/Rahulrt7/Machine-comprehension-Keras)
 - [rajpurkar/SQuAD-explorer](https://github.com/rajpurkar/SQuAD-explorer)
