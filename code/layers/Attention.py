@@ -1,6 +1,6 @@
 import torch
 
-# refered to https://github.com/kh-kim/nlp_with_pytorch/blob/master/neural-machine-translation/attention.md
+# refer to https://github.com/kh-kim/nlp_with_pytorch/blob/master/neural-machine-translation/attention.md
 
 class Attention(nn.Module):
     def __init__(self, hidden_size):
