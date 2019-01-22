@@ -6,7 +6,7 @@ from torch.nn.utils.rnn import pad_packed_sequence
 '''
 refer to:
     - https://towardsdatascience.com/taming-lstms-variable-sized-mini-batches-and-why-pytorch-is-good-for-your-health-61d35642972e
-    - https://github.com/kh-kim/nlp_with_pytorch/blob/master/neural-machine-translation/attention.md
+    - https://github.com/kh-kim/nlp_with_pytorch/blob/master/neural-machine-translation/seq2seq.md
 '''
 
 class Encoder(nn.Module):
