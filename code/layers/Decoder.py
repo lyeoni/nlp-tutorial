@@ -34,7 +34,7 @@ class Decoder(nn.Module):
         # Input feeding trcik - conactenate 'current embedding token' with 'hidden-state of previous time-step'
         x = torch.cat([emb_t, h_t_1_tilde], dim=-1)
         
-        # Unlike encoder, decoder must take an inpur for sequentially.
+        # Unlike encoder, decoder must take an input for sequentially.
         y, h = self.rnn(x, h_t_1)
         
         return y, h
