@@ -87,7 +87,7 @@ class Seq2Seq(nn.Module):
         emb_src = self.emb_src(x)
         # |emb_src| = (batch_size, length, word_vec_dim)
 
-        # The last hidden statew of the encoder would be a initial hidden state of decoder.
+        # The last hidden state of the encoder would be a initial hidden state of decoder.
         h_src, h_0_tgt = self.encoder((emb_src, x_length))
         # |h_src| = (batch_size, length, hidden_size)
         # |h_0_tgt| = (n_layers*2, batch_size, hidden_size/2)

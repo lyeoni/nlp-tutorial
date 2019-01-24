@@ -7,7 +7,6 @@ refer to:
     - https://github.com/kh-kim/nlp_with_pytorch/blob/master/neural-machine-translation/seq2seq.mdhttps://github.com/kh-kim/simple-nmt/blob/master/simple_nmt/seq2seq.py
 '''
 
-
 class Decoder(nn.Module):
     def __init__(self, word_vec_dim, hidden_size, n_layers=4, dropout_p=.2):
         super(Decoder, self).__init__()
