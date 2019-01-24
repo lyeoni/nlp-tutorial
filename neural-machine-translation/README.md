@@ -27,11 +27,26 @@ We are also going to use an `Attention Mechanism` in our decoder to help it to p
 
 ## Training
 
-### Teacher Forcing
+### Auto-regressive and Teacher Forcing
 The training method of sequence-to-sequence network is different from the way of inference. The difference between training and inference is fundamentally due to the property **auto-regressive**.
-- Auto-regressive: infers (or predicts) the present value by reffering to its own values in the past.
-Teacher forcing is the concept of **using the real target outputs as each next input, instead of using the decoer's guess as the next input**. Using teacher forcing 
 
+#### Auto-regressive
+`Auto-regressive`: infers (or predicts) the present value by reffering to its own values in the past. As shown below, the current time-step output value *y_t* is determined by both the encoder's input sentence (or sequence) *X* and the previous time-step output *(y_1,...y_t-1)*.
+<p align="center">
+<img src="https://latex.codecogs.com/gif.latex?\dpi{100}&space;\fn_cm&space;y_{i}&space;=&space;argmax_{y}P(y|X,&space;y_{<i})\;&space;where\;&space;y_{0}&space;=&space;SOS\;&space;token" title="y_{i} = argmax_{y}P(y|X, y_{<i})\; where\; y_{0} = SOS\; token" />
+</p>
+If our decoder makes false prediction in the past, it can lead to a larger false prediction. (e.g. incorrect sentence structure or length)
+
+#### Teacher Forcing
+So we train using a method called Teacher Forcing, which is the concept of using the real target outputs as each next input, instead of using the decoer's guess as the next input.
+- `In training mode`, seq2seq network considers that we already know all answers (= the outputs of the last time-step).
+- `In inference mode`, seq2seq network takes the input from the output of the last time-step.
+<p align="center">
+<img src="https://latex.codecogs.com/gif.latex?\dpi{100}&space;\fn_cm&space;\hat{y}&space;=&space;argmax_{y}P(y|X,&space;y_{<t};\theta)\;&space;where\;&space;X&space;=&space;{x_{1},...,x_{n}}\;&space;and\;&space;Y=&space;{y_{0},...,y_{n}}" title="\hat{y} = argmax_{y}P(y|X, y_{<t};\theta)\; where\; X = {x_{1},...,x_{n}}\; and\; Y= {y_{0},...,y_{n}}" />
+</p>
+<p align="center">
+<img width="600" src="https://github.com/lyeoni/nlp-tutorial/blob/master/neural-machine-translation/images/teacher-forcing.png" />
+</p>
 
 ## References
 
