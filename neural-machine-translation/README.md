@@ -25,8 +25,6 @@ This last output is sometimes called the context vector as it encodes context fr
 
 We are also going to use an `Attention Mechanism` in our decoder to help it to pay attention to certain parts of the input when generating the output.
 
-## Training
-
 ### Auto-regressive and Teacher Forcing
 The training method of sequence-to-sequence network is different from the way of inference. The difference between training and inference is fundamentally due to the property **auto-regressive**.
 
@@ -47,6 +45,17 @@ So we train using a method called Teacher Forcing, which is the concept of using
 <p align="center">
 <img width="600" src="https://github.com/lyeoni/nlp-tutorial/blob/master/neural-machine-translation/images/teacher-forcing.png" />
 </p>
+
+### Attention
+If only the context vector is passed between the encoder and decoder, that single vector carries the burden of encoding the entire sentence.
+Attention allows the decoder network to "focus" on a different part of the encoder's output for every step of the decoder's own outputs.
+
+First, we calculate a set of attention weights. These will be multiplied by the encoder output vecotrs to create a weighted combination. The result should contain information about that specific part of the input sequence, and thus help the decoder choose the right output words.
+
+Calculating the attention weights is done with another feed-forward layer, using the `decoder's input` and `hidden state` as inputs. Because there are sentences of all sizes in the training data, to actually create and train this layer, we have to choose a maximum sentence length (input length, for encoder outputs) that it can apply to. Sentences of the maximum length will use all the attention weights, while shorter sentences will only use the first few.
+
+## Usage
+
 
 ## References
 
