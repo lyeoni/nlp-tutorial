@@ -56,6 +56,27 @@ Calculating the attention weights is done with another feed-forward layer, using
 
 ## Usage
 
+## Evaluation
+
+|MODEL||BLEU|
+|:-----|:-----:|
+|Basic(Simple Seq2Seq)|57.09|
+|Basic+LSTM|?|
+
+Below table shows the results from various models in French-English translation task.
+
+|French|Basic|Basic+LSTM|
+|:-----|:------|:------|:------|
+|va!|go.|go out!||
+|je me suis mise a avoir chaud.|i got hot.|i am sorry to.||
+|je le suppose.|i guess so.|i ll . it.||
+|sois creatif!|be creative.|be careful.||
+|j ai les foies.|i m chicken.|i m the ..||
+|travaille lentement!|work slowly.|stop on.||
+|il me faut partir.|i have to go.|i need to go.||
+|videz votre verre maintenant!|now drink up.|get out of your now.||
+|ai je du talent?|am i talented?|did i have any?||
+|je me sens seul.|i feel lonely.|i feel alone.||
 
 ## References
 
