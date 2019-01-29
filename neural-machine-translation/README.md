@@ -58,25 +58,33 @@ Calculating the attention weights is done with another feed-forward layer, using
 
 ## Evaluation
 
-|MODEL||BLEU|
-|:-----|:-----:|
+- `training-set`
+  - 130,143 sentence pairs.
+  - Counted words: 20,391(french), 12,362(english)
+- `test-set`
+  - 13,014 sentence pairs.
+
+Below table shows the BLEU from various models in French-English translation task.
+
+|MODEL|BLEU|
+|:-----:|:-----:|
 |Basic(Simple Seq2Seq)|57.09|
 |Basic+LSTM|?|
 
 Below table shows the results from various models in French-English translation task.
 
-|French|Basic|Basic+LSTM|
-|:-----|:------|:------|:------|
-|va!|go.|go out!||
-|je me suis mise a avoir chaud.|i got hot.|i am sorry to.||
-|je le suppose.|i guess so.|i ll . it.||
-|sois creatif!|be creative.|be careful.||
-|j ai les foies.|i m chicken.|i m the ..||
-|travaille lentement!|work slowly.|stop on.||
-|il me faut partir.|i have to go.|i need to go.||
-|videz votre verre maintenant!|now drink up.|get out of your now.||
-|ai je du talent?|am i talented?|did i have any?||
-|je me sens seul.|i feel lonely.|i feel alone.||
+|Target|Basic|
+|:------|:------|
+|go.|go out!|
+|i got hot.|i am sorry to.|
+|i guess so.|i'll . it.|
+|be creative.|be careful.|
+|i'm chicken.|i'm the ..|
+|work slowly.|stop on.|
+|i have to go.|i need to go.|
+|now drink up.|get out of your now.|
+|am i talented?|did i have any?|
+|i feel lonely.|i feel alone.|
 
 ## References
 
