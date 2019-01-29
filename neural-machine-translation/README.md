@@ -60,7 +60,7 @@ Calculating the attention weights is done with another feed-forward layer, using
 
 - `training-set`
   - 130,143 sentence pairs.
-  - Counted words: 20,391(french), 12,362(english)
+  - Counted words: 20,391 (french), 12,362 (english)
 - `test-set`
   - 13,014 sentence pairs.
 
@@ -68,26 +68,26 @@ Below table shows the BLEU from various models in French-English translation tas
 
 |MODEL|BLEU|
 |:-----:|:-----:|
-|Basic(Simple Seq2Seq)|57.09|
-|Basic+LSTM|?|
+|Base(Simple Seq2Seq)|57.09|
+|Base+Bi-LSTM|?|
 
 Below table shows the results from various models in French-English translation task.
 
-|Target|Basic|
-|:------|:------|
-|go.|go out!|
-|i got hot.|i am sorry to.|
-|i guess so.|i'll . it.|
-|be creative.|be careful.|
-|i'm chicken.|i'm the ..|
-|work slowly.|stop on.|
-|i have to go.|i need to go.|
-|now drink up.|get out of your now.|
-|am i talented?|did i have any?|
-|i feel lonely.|i feel alone.|
+|Target|Base|Bi-LSTM|
+|:------|:------|:------|
+|go.|go out!||
+|i got hot.|i am sorry to.||
+|i guess so.|i'll . it.||
+|be creative.|be careful.||
+|i'm chicken.|i'm the ..||
+|work slowly.|stop on.||
+|i have to go.|i need to go.||
+|now drink up.|get out of your now.||
+|am i talented?|did i have any?||
+|i feel lonely.|i feel alone.||
 
 ## References
-
+- [kh-kim](https://github.com/kh-kim/simple-nmt)
 - [spro/practical-pytorch](https://github.com/spro/practical-pytorch)
 - [spro/practical-pytorch-Translation with a Sequence to Sequence Network and Attention](https://pytorch.org/tutorials/intermediate/seq2seq_translation_tutorial.html#the-seq2seq-model)
  
