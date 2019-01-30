@@ -4,6 +4,20 @@ import torch.nn.functional as F
 
 class Encoder(nn.Module):
     def __init__(self, input_size, hidden_size):
+        '''
+        When the GRU is Bi-directional, num_directions should be 2, else it should be 1.
+            Inputs: input, h_0
+            Outputs: output, h_n
+
+            - |input| = features of the input sequence.
+                      = (seq_len, bathc_size, input_size)
+            - |h_0| = initial hidden state for each element in the batch.
+                    = (num_layers*num_directions, batch_size, hidden_size)
+            - |output| = output features h_t from the last layer of the RNN, for each t.
+                       = (seq_len, batch_size, num_directions*hidden_size)
+            - |h_n| = hidden state for t=seq_len.
+                    = (num_layers*num_directions, batch_size, hidden_size)
+        '''
         super(Encoder, self).__init__()
         
         self.hidden_size = hidden_size

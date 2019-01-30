@@ -53,7 +53,6 @@ def evaluateRandomly(encoder, decoder, pairs, n=10):
     random.shuffle(pairs)
     for i in range(n):
         pair = pairs[i]
-        # pair = pairs[i*500] # For evaluation
         output_words = evaluate(encoder, decoder, pair[0])
         output_sentence = ' '.join(output_words)
 

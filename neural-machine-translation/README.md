@@ -92,7 +92,7 @@ Below table shows the BLEU from various models in French-English translation tas
 Below table shows the results from various models in French-English translation task.
 
 |Target|Base|Reverse|
-|:-----:|:-----:|:-----:|
+|:------|:------|:------|
 |go.|go out!||
 |i got hot.|i am sorry to.||
 |i guess so.|i'll . it.||
