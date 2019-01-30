@@ -9,11 +9,17 @@ A seq2seq network(model), or Encoder-Decoder network, is a model consisting of t
 <img width="700" src="https://github.com/lyeoni/nlp-tutorial/blob/master/neural-machine-translation/images/seq2seq.png">
 </p>
 
-Unlike sequence prediction with a single RNN , where every input corresponds to an output, the seq2seq model frees us from sequence length and order, which makes it ideal for translation between two languages.
+Unlike sequence prediction with a single RNN, where every input corresponds to an output, the seq2seq model frees us from sequence length and order, which makes it ideal for translation between two languages.
 
 Consider a pair of sentences "Je ne suis pas le chat noir" and "I am not the black cat". Most of the words in the input sentence have a direct translation in the output sentence, but are in slightly different orders. Because of the language construction, there is also one more word in the input sentence. It would be difficult to produce a correct translation directly from the sequence of input words.
 
 With a seq2seq model, the encoder creates a single vector which, in the ideal case, encodes the "meaning" of the input sequence into a single vector - a single point in some N dimensional space of sentences.
+
+That is, to find model parameters that maximize the probability of returning target sentence Y by receiving source sentence X. And we can find the model parameters(theta) that maximize P(Y|X,theta) using Maximum Likelihood Estimation(MLE). The formula for seq2seq model is as follows.
+<p align="center">
+<img src="https://latex.codecogs.com/gif.latex?\dpi{100}&space;\fn_cm&space;\theta&space;^{*}&space;\approx&space;argmaxP(Y|X;\theta)&space;\;&space;where&space;\;&space;X&space;=&space;\left&space;\{&space;x_{1},&space;x_{2},&space;...,&space;x_{n}&space;\right&space;\},&space;Y&space;=&space;\left&space;\{y_{1},&space;y_{2},&space;...,&space;y_{n}&space;\right&space;\}" title="\theta ^{*} \approx argmaxP(Y|X;\theta) \; where \; X = \left \{ x_{1}, x_{2}, ..., x_{n} \right \}, Y = \left \{y_{1}, y_{2}, ..., y_{n} \right \}" />
+</p>
+
 
 ### Encoder
 The encoder of seq2seq network is a RNN that outputs some value for every word from the input sentence. For every input word, the encoder outputs a `(context) vector` and `hidden state`. The last hidden state of the encoder would be a initial hidden state of decoder.
@@ -58,23 +64,35 @@ Calculating the attention weights is done with another feed-forward layer, using
 
 ## Evaluation
 
+### Evaluation Overview
+
+#### Dataset
 - `training-set`
   - 130,143 sentence pairs.
   - Counted words: 20,391 (french), 12,362 (english)
 - `test-set`
   - 13,014 sentence pairs.
 
+#### Models
+- Baseline(base): Simple Sequence to Sequence model
+- Reverse: Apply Bi-directional LSTM to encoder part
+- Word Embeddings: Apply Glove word embedding
+
+### Extrinsic Evaluation
+
 Below table shows the BLEU from various models in French-English translation task.
 
 |MODEL|BLEU|
 |:-----:|:-----:|
-|Base(Simple Seq2Seq)|57.09|
-|Base+Bi-LSTM|?|
+|Base|57.09|
+|Reverse|?|
+
+### Intrinsic Evaluation
 
 Below table shows the results from various models in French-English translation task.
 
-|Target|Base|Bi-LSTM|
-|:------|:------|:------|
+|Target|Base|Reverse|
+|:-----:|:-----:|:-----:|
 |go.|go out!||
 |i got hot.|i am sorry to.||
 |i guess so.|i'll . it.||
@@ -87,7 +105,8 @@ Below table shows the results from various models in French-English translation 
 |i feel lonely.|i feel alone.||
 
 ## References
-- [kh-kim](https://github.com/kh-kim/simple-nmt)
+- [Loung et al.2015](https://arxiv.org/pdf/1508.04025.pdf) Effective Approaches to Attention-based Neural Machine Translation
+- [kh-kim/simple-nmt](https://github.com/kh-kim/simple-nmt)
 - [spro/practical-pytorch](https://github.com/spro/practical-pytorch)
 - [spro/practical-pytorch-Translation with a Sequence to Sequence Network and Attention](https://pytorch.org/tutorials/intermediate/seq2seq_translation_tutorial.html#the-seq2seq-model)
  

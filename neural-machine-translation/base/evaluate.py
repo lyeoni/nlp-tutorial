@@ -51,16 +51,14 @@ def evaluateRandomly(encoder, decoder, pairs, n=10):
     cc = SmoothingFunction()
     scores = []
     random.shuffle(pairs)
-    print(n)
     for i in range(n):
         pair = pairs[i]
         # pair = pairs[i*500] # For evaluation
         output_words = evaluate(encoder, decoder, pair[0])
         output_sentence = ' '.join(output_words)
 
-        # print('From(source):\t{}\n To(answer):\t{}'.format(pair[0], pair[1])) 
-        # print('To(predict):\t{}'.format(output_sentence), end='\n\n')
-        # print('|{}|{}|{}|'.format(pair[0], pair[1], ' '.join(output_words[:-1]))) # For evaluation
+        print('From(source):\t{}\n To(answer):\t{}'.format(pair[0], pair[1])) 
+        print('To(predict):\t{}'.format(output_sentence), end='\n\n')
         
         # for nltk.bleu
         ref = pair[1].split()

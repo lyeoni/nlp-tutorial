@@ -143,9 +143,9 @@ def trainiters(encoder, decoder, n_iters, print_every=5000, plot_every=1000, lea
         
         showPlot(plot_losses)
     
-    plt.savefig('basic-loss-plot')
-    torch.save(encoder.state_dict(), 'basic-encoder.pth')
-    torch.save(decoder.state_dict(), 'basic-decoder.pth')
+    plt.savefig('base-loss')
+    torch.save(encoder.state_dict(), 'encoder.pth')
+    torch.save(decoder.state_dict(), 'decoder.pth')
 
 if __name__ == "__main__":
     hidden_size = 256
@@ -153,7 +153,6 @@ if __name__ == "__main__":
     teacher_forcing_ratio = 0.5
 
     input_lang, output_lang, pairs = loader.prepareData('eng', 'fra', True)
-    # print(random.choice(pairs))
 
     encoder = seq2seq.Encoder(input_lang.n_words, hidden_size).to(device)
     decoder = seq2seq.Decoder(hidden_size, output_lang.n_words).to(device)

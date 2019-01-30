@@ -125,15 +125,15 @@ def train(input_tensor, target_tensor, encoder, decoder, encoder_optimizer, deco
     return loss.item() / target_length
 
 
-def trainiters(encoder, decoder, n_iters, print_every=5000, plot_every=1000, learning_rate=0.01):
+def trainiters(encoder, decoder, n_iters, print_every=1000, plot_every=1000, learning_rate=0.01):
     start = time.time()
     plot_losses = []
     print_loss_total, plot_loss_total = 0, 0
 
     training_pairs = [tensorsFromPair(random.choice(pairs)) for i in range(n_iters)]
     # |training_pairs| = (n_iters, len(pairs), sentence_length)
-    encoder_optimizer = optim.Adam(encoder.parameters())
-    decoder_optimizer = optim.Adam(decoder.parameters())
+    encoder_optimizer = optim.SGD(encoder.parameters(), lr=learning_rate)
+    decoder_optimizer = optim.SGD(decoder.parameters(), lr=learning_rate)
     criterion = nn.NLLLoss()
 
     for iter in range(1, n_iters+1):
@@ -163,9 +163,9 @@ def trainiters(encoder, decoder, n_iters, print_every=5000, plot_every=1000, lea
         
         showPlot(plot_losses)
     
-    plt.savefig('loss-plot')
-    torch.save(encoder.state_dict(), 'basic-encoder.pth')
-    torch.save(decoder.state_dict(), 'basic-decoder.pth')
+    plt.savefig('reverse-loss')
+    torch.save(encoder.state_dict(), 'encoder.pth')
+    torch.save(decoder.state_dict(), 'decoder.pth')
 
 if __name__ == "__main__":
     hidden_size = 256
@@ -173,7 +173,6 @@ if __name__ == "__main__":
     teacher_forcing_ratio = 0.5
 
     input_lang, output_lang, pairs = loader.prepareData('eng', 'fra', True)
-    print(random.choice(pairs))
 
     encoder = seq2seq.Encoder(input_lang.n_words, hidden_size).to(device)
     decoder = seq2seq.Decoder(hidden_size, output_lang.n_words).to(device)
