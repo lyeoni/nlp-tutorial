@@ -81,31 +81,35 @@ Calculating the attention weights is done with another feed-forward layer, using
 ### Extrinsic Evaluation
 
 Below table shows the BLEU from various models in French-English translation task.
+cf. Our dataset includes a small amount of sentences that is relatively short(maximum length is 15 words, including ending punctuation),
+so it is recommended that the BLEU be considered as a reference only because it is excssively higher than the other experiments.
 
 |MODEL|BLEU|
 |:-----:|:-----:|
-|Base|57.09|
-|Reverse|?|
+|Base-GRU|57.09|
+|Base-LSTM|?|
+|Reverse|59.4|
 
 ### Intrinsic Evaluation
 
 Below table shows the results from various models in French-English translation task.
 
-|Target|Base|Reverse|
-|:------|:------|:------|
-|go.|go out!||
-|i got hot.|i am sorry to.||
-|i guess so.|i'll . it.||
-|be creative.|be careful.||
-|i'm chicken.|i'm the ..||
-|work slowly.|stop on.||
-|i have to go.|i need to go.||
-|now drink up.|get out of your now.||
-|am i talented?|did i have any?||
-|i feel lonely.|i feel alone.||
+|Target|Base-GRU|Base-LSTM|Reverse|
+|:------|:------|:------|:------|
+|go.|go out!||come back.|
+|i got hot.|i am sorry to.||i have to ..|
+|i guess so.|i'll . it.||i'm the it.|
+|be creative.|be careful.||stop!|
+|i'm chicken.|i'm the ..||i got my.|
+|work slowly.|stop on.||get it.|
+|i have to go.|i need to go.||i need to go.|
+|now drink up.|get out of your now.||let's your your.|
+|am i talented?|did i have any?||am i have some?|
+|i feel lonely.|i feel alone.||i feel alone.|
 
 ## References
-- [Loung et al.2015](https://arxiv.org/pdf/1508.04025.pdf) Effective Approaches to Attention-based Neural Machine Translation
+- [[Loung et al.2015](https://arxiv.org/pdf/1508.04025.pdf)] Effective Approaches to Attention-based Neural Machine Translation
+- [카카오 AI리포트 - 신경망 번역 모델의 진화 과정](https://brunch.co.kr/@kakao-it/155)
 - [kh-kim/simple-nmt](https://github.com/kh-kim/simple-nmt)
 - [spro/practical-pytorch](https://github.com/spro/practical-pytorch)
 - [spro/practical-pytorch-Translation with a Sequence to Sequence Network and Attention](https://pytorch.org/tutorials/intermediate/seq2seq_translation_tutorial.html#the-seq2seq-model)

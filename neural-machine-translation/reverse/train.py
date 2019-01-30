@@ -77,12 +77,14 @@ def train(input_tensor, target_tensor, encoder, decoder, encoder_optimizer, deco
     target_length = target_tensor.size(0)
     # |input_length|, |target_length| = (sentence_length)
 
+    encoder_hidden = (encoder.initHidden().to(device), encoder.initHidden().to(device))
+    # |encoder_hidden[0]|, |encoder_hidden[1]| = (2, 1, hidden_size/2)
     encoder_outputs = torch.zeros(max_length, encoder.hidden_size, device=device)
     # |encoder_outputs| = (max_length, hidden_size)
 
     loss = 0
     for ei in range(input_length):
-        encoder_output, encoder_hidden = encoder(input_tensor[ei])
+        encoder_output, encoder_hidden = encoder(input_tensor[ei], encoder_hidden)
         # |encoder_output| = (1, 1, hidden_size)
         # |encoder_hidden[0]|, |encoder_hidden[1]| = (2, 1, hidden_size/2)
         encoder_outputs[ei] = encoder_output[0, 0]
