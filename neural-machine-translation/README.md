@@ -81,14 +81,15 @@ Calculating the attention weights is done with another feed-forward layer, using
 ### Extrinsic Evaluation
 
 Below table shows the BLEU from various models in French-English translation task.
+
 cf. Our dataset includes a small amount of sentences that is relatively short(maximum length is 15 words, including ending punctuation),
 so it is recommended that the BLEU be considered as a reference only because it is excssively higher than the other experiments.
 
 |MODEL|BLEU|
-|:-----:|:-----:|
+|:------|:-----:|
 |Base-GRU|57.09|
 |Base-LSTM|?|
-|Reverse|59.4|
+|Reverse|59.40|
 
 ### Intrinsic Evaluation
 
@@ -109,8 +110,8 @@ Below table shows the results from various models in French-English translation 
 
 ## References
 - [[Loung et al.2015](https://arxiv.org/pdf/1508.04025.pdf)] Effective Approaches to Attention-based Neural Machine Translation
-- [카카오 AI리포트 - 신경망 번역 모델의 진화 과정](https://brunch.co.kr/@kakao-it/155)
+- [[카카오 AI리포트](https://brunch.co.kr/@kakao-it/155)] 신경망 번역 모델의 진화 과정
 - [kh-kim/simple-nmt](https://github.com/kh-kim/simple-nmt)
 - [spro/practical-pytorch](https://github.com/spro/practical-pytorch)
-- [spro/practical-pytorch-Translation with a Sequence to Sequence Network and Attention](https://pytorch.org/tutorials/intermediate/seq2seq_translation_tutorial.html#the-seq2seq-model)
- 
+- [spro/practical-pytorch](https://pytorch.org/tutorials/intermediate/seq2seq_translation_tutorial.html#the-seq2seq-model) Translation with a Sequence to Sequence Network and Attention
+
