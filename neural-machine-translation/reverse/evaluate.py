@@ -13,11 +13,13 @@ def evaluate(encoder, decoder, sentence, max_length=loader.MAX_LENGTH):
         # |input_tensor| = (sentence_length, 1)
         input_length = input_tensor.size(0)
 
+        encoder_hidden = (encoder.initHidden().to(device), encoder.initHidden().to(device))
+        # |encoder_hidden[0]|, |encoder_hidden[1]| = (2, 1, hidden_size/2)
         encoder_outputs = torch.zeros(max_length, encoder.hidden_size, device=device)
         # |encoder_outputs| = (max_length, hidden_size)
 
         for ei in range(input_length):
-            encoder_output, encoder_hidden = encoder(input_tensor[ei])
+            encoder_output, encoder_hidden = encoder(input_tensor[ei], encoder_hidden)
             # |encoder_output| = (1, 1, hidden_size)
             # |encoder_hidden[0]|, |encoder_hidden[1]| = (2, 1, hidden_size/2)
             encoder_outputs[ei] += encoder_output[0, 0]
@@ -49,17 +51,14 @@ def evaluateRandomly(encoder, decoder, pairs, n=10):
     cc = SmoothingFunction()
     scores = []
     random.shuffle(pairs)
-    print(n)
     for i in range(n):
-        # pair = pairs[i]
-        pair = pairs[i*500] # For evaluation
+        pair = pairs[i]
         output_words = evaluate(encoder, decoder, pair[0])
         output_sentence = ' '.join(output_words)
 
-        #print('From(source):\t{}\n To(answer):\t{}'.format(pair[0], pair[1])) 
-        #print('To(predict):\t{}'.format(output_sentence), end='\n\n')
-        print('|{}|{}|{}|'.format(pair[0], pair[1], ' '.join(output_words[:-1]))) # For evaluation
-        
+        print('From(source):\t{}\n To(answer):\t{}'.format(pair[0], pair[1])) 
+        print('To(predict):\t{}'.format(output_sentence), end='\n\n')
+
         # for nltk.bleu
         ref = pair[1].split()
         hyp = output_words[:-1]
@@ -86,5 +85,4 @@ if __name__ == "__main__":
     decoder.load_state_dict(torch.load('decoder.pth'))
     decoder.eval()
 
-    # evaluateRandomly(encoder, decoder, pairs, int(len(pairs)*0.1))
-    evaluateRandomly(encoder, decoder, pairs, 10)
+    evaluateRandomly(encoder, decoder, pairs, int(len(pairs)*0.1))

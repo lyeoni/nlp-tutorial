@@ -141,7 +141,7 @@ def trainiters(encoder, decoder, n_iters, print_every=5000, plot_every=1000, lea
             plot_losses.append(plot_loss_avg)
             plot_loss_total = 0
         
-        showPlot(plot_losses)
+    showPlot(plot_losses)
     
     plt.savefig('base-loss')
     torch.save(encoder.state_dict(), 'encoder.pth')

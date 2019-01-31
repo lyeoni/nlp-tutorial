@@ -127,7 +127,7 @@ def train(input_tensor, target_tensor, encoder, decoder, encoder_optimizer, deco
     return loss.item() / target_length
 
 
-def trainiters(encoder, decoder, n_iters, print_every=1000, plot_every=1000, learning_rate=0.01):
+def trainiters(encoder, decoder, n_iters, print_every=5000, plot_every=1000, learning_rate=0.01):
     start = time.time()
     plot_losses = []
     print_loss_total, plot_loss_total = 0, 0
@@ -163,7 +163,7 @@ def trainiters(encoder, decoder, n_iters, print_every=1000, plot_every=1000, lea
             plot_losses.append(plot_loss_avg)
             plot_loss_total = 0
         
-        showPlot(plot_losses)
+    showPlot(plot_losses)
     
     plt.savefig('reverse-loss')
     torch.save(encoder.state_dict(), 'encoder.pth')
