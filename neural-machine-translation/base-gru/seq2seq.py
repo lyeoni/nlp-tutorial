@@ -60,6 +60,3 @@ class Decoder(nn.Module):
         # |output| = (1, output_lang.n_words)
         return output, hidden
 
-    def initHidden(self):
-        return torch.zeros(1, 1,self.hidden_size)
-
