@@ -88,7 +88,7 @@ so it is recommended that the BLEU be considered as a reference only because it 
 |MODEL|BLEU|
 |:------|:-----:|
 |Base-GRU|57.09|
-|Base-LSTM|?|
+|Base-LSTM|59.08|
 |Reverse|59.40|
 
 ### Intrinsic Evaluation
@@ -97,21 +97,21 @@ Below table shows the results from various models in French-English translation 
 
 |Target|Base-GRU|Base-LSTM|Reverse|
 |:------|:------|:------|:------|
-|go.|go out!||come back.|
-|i got hot.|i am sorry to.||i have to ..|
-|i guess so.|i'll . it.||i'm the it.|
-|be creative.|be careful.||stop!|
-|i'm chicken.|i'm the ..||i got my.|
-|work slowly.|stop on.||get it.|
-|i have to go.|i need to go.||i need to go.|
-|now drink up.|get out of your now.||let's your your.|
-|am i talented?|did i have any?||am i have some?|
-|i feel lonely.|i feel alone.||i feel alone.|
+|Go.|Go out!|Let's!|Come back.|
+|I got hot.|I am sorry to.|I've got a good.|I have to ..|
+|I guess so.|I'll . it.|I'll the it.|I'm the it.|
+|Be creative.|Be careful.|Be careful.|Stop!|
+|I'm chicken.|I'm the ..|I've them.|I got my.|
+|Work slowly.|Stop on.|Get out of|Get it.|
+|I have to go.|I need to go.|I need to.|I need to go.|
+|Now drink up.|Get out of your now.|Get your your your|Let's your your.|
+|Am i talented?|Did i have any?|Did i have?|Am i have some?|
+|I feel lonely.|I feel alone.|I feel feel.|I feel alone.|
 
 ## References
 - [[Loung et al.2015](https://arxiv.org/pdf/1508.04025.pdf)] Effective Approaches to Attention-based Neural Machine Translation
 - [[카카오 AI리포트](https://brunch.co.kr/@kakao-it/155)] 신경망 번역 모델의 진화 과정
-- [kh-kim/simple-nmt](https://github.com/kh-kim/simple-nmt)
-- [spro/practical-pytorch](https://github.com/spro/practical-pytorch)
+- [kh-kim/simple-nmt](https://github.com/kh-kim/simple-nmt) Simple Neural Machine Translation (Simple-NMT)
+- [spro/practical-pytorch](https://github.com/spro/practical-pytorch) Practical PyTorch
 - [spro/practical-pytorch](https://pytorch.org/tutorials/intermediate/seq2seq_translation_tutorial.html#the-seq2seq-model) Translation with a Sequence to Sequence Network and Attention
 
