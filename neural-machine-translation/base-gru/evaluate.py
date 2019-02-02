@@ -80,9 +80,9 @@ if __name__ == "__main__":
     encoder = seq2seq.Encoder(input_lang.n_words, hidden_size).to(device)
     decoder = seq2seq.Decoder(hidden_size, output_lang.n_words).to(device)
 
-    encoder.load_state_dict(torch.load('basic-encoder.pth'))
+    encoder.load_state_dict(torch.load('encoder.pth'))
     encoder.eval()
-    decoder.load_state_dict(torch.load('basic-decoder.pth'))
+    decoder.load_state_dict(torch.load('decoder.pth'))
     decoder.eval()
 
     evaluateRandomly(encoder, decoder, pairs, int(len(pairs)*0.1))

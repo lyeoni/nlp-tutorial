@@ -111,7 +111,7 @@ Below table shows the results from various models in French-English translation 
 ## References
 - [[Loung et al.2015](https://arxiv.org/pdf/1508.04025.pdf)] Effective Approaches to Attention-based Neural Machine Translation
 - [[카카오 AI리포트](https://brunch.co.kr/@kakao-it/155)] 신경망 번역 모델의 진화 과정
-- [kh-kim/simple-nmt](https://github.com/kh-kim/simple-nmt) Simple Neural Machine Translation (Simple-NMT)
-- [spro/practical-pytorch](https://github.com/spro/practical-pytorch) Practical PyTorch
-- [spro/practical-pytorch](https://pytorch.org/tutorials/intermediate/seq2seq_translation_tutorial.html#the-seq2seq-model) Translation with a Sequence to Sequence Network and Attention
+- [[kh-kim/simple-nmt](https://github.com/kh-kim/simple-nmt)] Simple Neural Machine Translation (Simple-NMT)
+- [[spro/practical-pytorch](https://github.com/spro/practical-pytorch)] Practical PyTorch
+- [[spro/practical-pytorch](https://pytorch.org/tutorials/intermediate/seq2seq_translation_tutorial.html#the-seq2seq-model)] Translation with a Sequence to Sequence Network and Attention
 
