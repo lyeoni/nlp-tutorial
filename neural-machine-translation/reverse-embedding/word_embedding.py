@@ -13,7 +13,7 @@ def word2vec(trained_vector_path, vector_size):
 
     return word2vec_dict
 
-def initSpeiclToken(vector_size, seed):
+def initSpecialToken(vector_size, seed):
     np.random.seed(seed)
     return np.random.rand(vector_size)
 
@@ -21,8 +21,8 @@ def get_embedding_matrix(word2index, trained_vector_path, vector_size):
     trained_word_vec = word2vec(trained_vector_path, vector_size) # pre-trained embedding word vectors
     # print('number of trained word vector: {}:{}'.format(trained_vector_path, len(trained_word_vec)))
 
-    embedding_matrix = np.zeros((len(word2index)+3, vector_size)) # SOS, EOS, UNK
-    # |embedding_matrix| = (n_words+3, vector_size)
+    embedding_matrix = np.zeros((len(word2index), vector_size))
+    # |embedding_matrix| = (n_words, vector_size)
 
     for word, idx in word2index.items():
         word_vec = trained_word_vec.get(word)

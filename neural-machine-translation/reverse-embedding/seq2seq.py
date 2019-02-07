@@ -25,7 +25,8 @@ class Encoder(nn.Module):
         super(Encoder, self).__init__()
         
         self.hidden_size = hidden_size
-        self.embedding = nn.Embedding.from_pretrained(torch.from_numpy(embedding_matrix)) 
+        self.embedding = nn.Embedding(input_size, hidden_size)
+        self.embedding.weight.data.copy_(torch.from_numpy(embedding_matrix))
         # |input_size| = (input_lang.n_words)
         self.lstm = nn.LSTM(hidden_size,
                             int(hidden_size/2),
@@ -36,7 +37,7 @@ class Encoder(nn.Module):
         # |hidden| = (2, 1, hidden_size/2)
         embedded = self.embedding(input).view(1,1,-1)
         output = embedded
-        print('2',output.size(), hidden[0].size())
+        #print('2',output.size(), hidden[0].size())
         # |output| = (1, 1, hidden_size)
         output, hidden = self.lstm(output, hidden)
         # |output| = (1, 1, hidden_size)
@@ -51,7 +52,8 @@ class Decoder(nn.Module):
         super(Decoder, self).__init__()
         
         self.hidden_size = hidden_size
-        self.embedding = nn.Embedding.from_pretrained(torch.from_numpy(embedding_matrix))
+        self.embedding = nn.Embedding(output_size, hidden_size)
+        self.embedding.weight.data.copy_(torch.from_numpy(embedding_matrix))
         # |output_size| = (output_lang.n_words)
         self.lstm = nn.LSTM(hidden_size, hidden_size)
         self.out = nn.Linear(hidden_size, output_size)

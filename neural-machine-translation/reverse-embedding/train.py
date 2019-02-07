@@ -85,7 +85,7 @@ def train(input_tensor, target_tensor, encoder, decoder, encoder_optimizer, deco
     loss = 0
     for ei in range(input_length):
         encoder_output, encoder_hidden = encoder(input_tensor[ei], encoder_hidden)
-        print('1', encoder_output.size(), encoder_hidden.size())
+        #print('1', encoder_output.size(), encoder_hidden.size())
         # |encoder_output| = (1, 1, hidden_size)
         # |encoder_hidden[0]|, |encoder_hidden[1]| = (2, 1, hidden_size/2)
         encoder_outputs[ei] = encoder_output[0, 0]
@@ -176,11 +176,10 @@ if __name__ == "__main__":
     teacher_forcing_ratio = 0.5
 
     input_lang, output_lang, pairs = loader.prepareData('eng', 'fra', True)
-
-    trained_vector_paths = ('cc.en.300.vec', 'cc.fr.300.vec')
-    input_emb_matrix, output_emb_matrix = loader.prepareEmbMatrix(trained_vector_paths, 300, input_lang, output_lang, True)
+    
+    input_emb_matrix, output_emb_matrix= np.load('input_emb_matrix.npy'), np.load('output_emb_matrix.npy')
     print('Embedding-matrix shape: {}, {}'.format(input_emb_matrix.shape, output_emb_matrix.shape))
-
+    
     encoder = seq2seq.Encoder(input_lang.n_words, hidden_size, input_emb_matrix).to(device)
     decoder = seq2seq.Decoder(hidden_size, output_lang.n_words, output_emb_matrix).to(device)
 

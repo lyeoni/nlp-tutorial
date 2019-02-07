@@ -1,6 +1,7 @@
 import unicodedata
 import re
 import random
+import numpy as np
 import word_embedding as embed
 
 SOS_token, EOS_token = 0, 1
@@ -12,7 +13,7 @@ class Lang:
         self.word2index = {'SOS': 0, 'EOS': 1} # vocabulary
         self.word2count = {}
         self.index2word = {0: 'SOS', 1: 'EOS'}
-        self.n_words = 2 # EOS, SOS
+        self.n_words = 2 # SOS, EOS
 
     def addSentence(self, sentence):
         for word in sentence.split(' '):
@@ -91,8 +92,8 @@ def prepareEmbMatrix(trained_vector_paths, vector_size, input_lang, output_lang,
         output_emb_matrix = embed.get_embedding_matrix(output_lang.word2index,
                                                     trained_vector_paths[1], vector_size)
 
-    SOS_token_vec = embed.initSpeiclToken(vector_size, 0) # SOS
-    EOS_token_vec = embed.initSpeiclToken(vector_size, 0) # EOS
+    SOS_token_vec = embed.initSpecialToken(vector_size, 0) # SOS
+    EOS_token_vec = embed.initSpecialToken(vector_size, 0) # EOS
     for idx, tvec in enumerate((SOS_token_vec, EOS_token_vec)):
         input_emb_matrix[idx] = tvec
         output_emb_matrix[idx] = tvec
@@ -108,7 +109,12 @@ if __name__ == "__main__":
     '''
     input_lang, output_lang, pairs = prepareData('eng', 'fra', True)
     print(random.choice(pairs))
-
+    print(input_lang.n_words, output_lang.n_words)
     trained_vector_paths = ('cc.en.300.vec', 'cc.fr.300.vec')
-    input_emb_matrix, output_emb_matrix = prepareEmbMatrix(trained_vector_paths, 300, True)
+    input_emb_matrix, output_emb_matrix = prepareEmbMatrix(trained_vector_paths, 300, input_lang, output_lang, True)
     print('Embedding-matrix shape: {}, {}'.format(input_emb_matrix.shape, output_emb_matrix.shape))
+    
+    np.save('input_emb_matrix', input_emb_matrix)
+    np.save('output_emb_matrix', output_emb_matrix)
+
+    
