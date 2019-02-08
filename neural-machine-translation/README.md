@@ -76,7 +76,7 @@ Calculating the attention weights is done with another feed-forward layer, using
 #### Models
 - Baseline(base): Simple Sequence to Sequence model
 - Reverse: Apply Bi-directional LSTM to encoder part
-- Word Embeddings: Apply Glove word embedding
+- Word Embeddings: Apply Fasttext word embedding (300D)
 
 ### Extrinsic Evaluation
 
@@ -90,23 +90,25 @@ so it is recommended that the BLEU be considered as a reference only because it 
 |Base-GRU|57.09|
 |Base-LSTM|59.08|
 |Reverse|59.40|
+|Reverse + Embeddings|44.63|
+|Reverse + Embeddings + Attention||
 
 ### Intrinsic Evaluation
 
 Below table shows the results from various models in French-English translation task.
 
-|Target|Base-GRU|Base-LSTM|Reverse|
-|:------|:------|:------|:------|
-|Go.|Go out!|Let's!|Come back.|
-|I got hot.|I am sorry to.|I've got a good.|I have to ..|
-|I guess so.|I'll . it.|I'll the it.|I'm the it.|
-|Be creative.|Be careful.|Be careful.|Stop!|
-|I'm chicken.|I'm the ..|I've them.|I got my.|
-|Work slowly.|Stop on.|Get out of|Get it.|
-|I have to go.|I need to go.|I need to.|I need to go.|
-|Now drink up.|Get out of your now.|Get your your your|Let's your your.|
-|Am i talented?|Did i have any?|Did i have?|Am i have some?|
-|I feel lonely.|I feel alone.|I feel feel.|I feel alone.|
+|Target|Base-GRU|Base-LSTM|Reverse|Reverse + Embeddings|
+|:------|:------|:------|:------|:------|
+|Go.|Go out!|Let's!|Come back.|Go.|
+|I got hot.|I am sorry to.|I've got a good.|I have to ..|I got warm warm.|
+|I guess so.|I'll . it.|I'll the it.|I'm the it.|I'm being.|
+|Be creative.|Be careful.|Be careful.|Stop!|Be creative.|
+|I'm chicken.|I'm the ..|I've them.|I got my.|I'm out.|
+|Work slowly.|Stop on.|Get out of|Get it.|Work slowly|
+|I have to go.|I need to go.|I need to.|I need to go.|I must go.|
+|Now drink up.|Get out of your now.|Get your your your|Let's your your.|Now drink up now.|
+|Am i talented?|Did i have any?|Did i have?|Am i have some?|Did i have?|
+|I feel lonely.|I feel alone.|I feel feel.|I feel alone.|I feel lonely.|
 
 ## References
 - [[Loung et al.2015](https://arxiv.org/pdf/1508.04025.pdf)] Effective Approaches to Attention-based Neural Machine Translation
