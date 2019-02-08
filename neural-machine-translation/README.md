@@ -74,9 +74,11 @@ Calculating the attention weights is done with another feed-forward layer, using
   - 13,014 sentence pairs.
 
 #### Models
+The model was trained with NVIDA Tesla K80, and the number of epochs was 7 (i.e. ~ 10 hours).
+
 - Baseline(base): Simple Sequence to Sequence model
 - Reverse: Apply Bi-directional LSTM to encoder part
-- Word Embeddings: Apply Fasttext word embedding (300D)
+- Embeddings: Apply Fasttext word embedding (300D)
 
 ### Extrinsic Evaluation
 
@@ -104,7 +106,7 @@ Below table shows the results from various models in French-English translation 
 |I guess so.|I'll . it.|I'll the it.|I'm the it.|I'm being.|
 |Be creative.|Be careful.|Be careful.|Stop!|Be creative.|
 |I'm chicken.|I'm the ..|I've them.|I got my.|I'm out.|
-|Work slowly.|Stop on.|Get out of|Get it.|Work slowly|
+|Work slowly.|Stop on.|Get out of|Get it.|Work slowly.|
 |I have to go.|I need to go.|I need to.|I need to go.|I must go.|
 |Now drink up.|Get out of your now.|Get your your your|Let's your your.|Now drink up now.|
 |Am i talented?|Did i have any?|Did i have?|Am i have some?|Did i have?|

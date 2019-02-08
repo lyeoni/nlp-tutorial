@@ -22,12 +22,12 @@ class Encoder(nn.Module):
             - |c_n| = cell state for t = seq_len.
                     = (num_layers*num_directions, batch_size, hidden_size)
         '''
+        # |input_size| = (input_lang.n_words)
         super(Encoder, self).__init__()
         
         self.hidden_size = hidden_size
         self.embedding = nn.Embedding(input_size, hidden_size)
         self.embedding.weight.data.copy_(torch.from_numpy(embedding_matrix))
-        # |input_size| = (input_lang.n_words)
         self.lstm = nn.LSTM(hidden_size,
                             int(hidden_size/2),
                             bidirectional=True)
@@ -37,7 +37,6 @@ class Encoder(nn.Module):
         # |hidden| = (2, 1, hidden_size/2)
         embedded = self.embedding(input).view(1,1,-1)
         output = embedded
-        #print('2',output.size(), hidden[0].size())
         # |output| = (1, 1, hidden_size)
         output, hidden = self.lstm(output, hidden)
         # |output| = (1, 1, hidden_size)
@@ -49,12 +48,12 @@ class Encoder(nn.Module):
 
 class Decoder(nn.Module):
     def __init__(self, hidden_size, output_size, embedding_matrix):
+        # |output_size| = (output_lang.n_words)
         super(Decoder, self).__init__()
         
         self.hidden_size = hidden_size
         self.embedding = nn.Embedding(output_size, hidden_size)
         self.embedding.weight.data.copy_(torch.from_numpy(embedding_matrix))
-        # |output_size| = (output_lang.n_words)
         self.lstm = nn.LSTM(hidden_size, hidden_size)
         self.out = nn.Linear(hidden_size, output_size)
         self.softmax = nn.LogSoftmax(dim=1)
