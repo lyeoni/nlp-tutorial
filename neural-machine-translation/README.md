@@ -101,16 +101,16 @@ Below table shows the results from various models in French-English translation 
 
 |Target|Base-GRU|Base-LSTM|Reverse|Reverse + Embeddings|
 |:------|:------|:------|:------|:------|
-|Go.|Go out!|Let's!|Go.|Go.|
-|I got hot.|I am sorry to.|I've got a good.|I got hot.|I got warm warm.|
-|I guess so.|I'll . it.|I'll the it.|I'll do it.|I'm being.|
-|Be creative.|Be careful.|Be careful.|Be merciful.|Be creative.|
-|I'm chicken.|I'm the ..|I've them.|I have them.|I'm out.|
-|Work slowly.|Stop on.|Get out of|Work slowly.|Work slowly.|
-|I have to go.|I need to go.|I need to.|I have to go.|I must go.|
-|Now drink up.|Get out of your now.|Get your your your|Now drink up your glass.|Now drink up now.|
-|Am i talented?|Did i have any?|Did i have?|Did i have a?|Did i have?|
-|I feel lonely.|I feel alone.|I feel feel.|I feel lonely.|I feel lonely.|
+|Go.|Go out!|Go..|Go.|Go.|
+|I got hot.|I am sorry to.|I got hot.|I got hot.|I got warm warm.|
+|I guess so.|I'll . it.|I'm doing it.|I'll do it.|I'm being.|
+|Be creative.|Be careful.|Be creative.|Be merciful.|Be creative.|
+|I'm chicken.|I'm the ..|I'm upstairs.|I have them.|I'm out.|
+|Work slowly.|Stop on.|Feel works.|Work slowly.|Work slowly.|
+|I have to go.|I need to go.|I must leave.|I have to go.|I must go.|
+|Now drink up.|Get out of your now.|Now drink up now.|Now drink up your glass.|Now drink up now.|
+|Am i talented?|Did i have any?|Am i ok?|Did i have a?|Did i have?|
+|I feel lonely.|I feel alone.|I feel lonely.|I feel lonely.|I feel lonely.|
 
 ## References
 - [[Loung et al.2015](https://arxiv.org/pdf/1508.04025.pdf)] Effective Approaches to Attention-based Neural Machine Translation
