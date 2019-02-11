@@ -165,13 +165,13 @@ def trainiters(encoder, decoder, n_iters, print_every=5000, plot_every=1000, lea
         
     showPlot(plot_losses)
     
-    plt.savefig('reverse-loss')
+    plt.savefig('reverse-embeddings-loss')
     torch.save(encoder.state_dict(), 'encoder.pth')
     torch.save(decoder.state_dict(), 'decoder.pth')
 
 if __name__ == "__main__":
     hidden_size = 300
-    n_iters = 75000
+    n_iters = 910000
     teacher_forcing_ratio = 0.5
 
     input_lang, output_lang, pairs = loader.prepareData('eng', 'fra', True)

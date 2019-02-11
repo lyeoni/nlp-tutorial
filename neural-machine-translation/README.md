@@ -89,28 +89,28 @@ so it is recommended that the BLEU be considered as a reference only because it 
 
 |MODEL|BLEU|
 |:------|:-----:|
-|Base-GRU|57.09|
-|Base-LSTM|59.08|
-|Reverse|34.11|
-|Reverse + Embeddings|44.63|
+|Base-GRU|60.48|
+|Base-LSTM|66.62|
+|Reverse|66.12|
+|Reverse + Embeddings|69.61|
 |Reverse + Embeddings + Attention||
 
 ### Intrinsic Evaluation
 
 Below table shows the results from various models in French-English translation task.
 
-|Target|Base-GRU|Base-LSTM|Reverse|Reverse + Embeddings|
-|:------|:------|:------|:------|:------|
-|Go.|Go out!|Go..|Go.|Go.|
-|I got hot.|I am sorry to.|I got hot.|I got hot.|I got warm warm.|
-|I guess so.|I'll . it.|I'm doing it.|I'll do it.|I'm being.|
-|Be creative.|Be careful.|Be creative.|Be merciful.|Be creative.|
-|I'm chicken.|I'm the ..|I'm upstairs.|I have them.|I'm out.|
-|Work slowly.|Stop on.|Feel works.|Work slowly.|Work slowly.|
-|I have to go.|I need to go.|I must leave.|I have to go.|I must go.|
-|Now drink up.|Get out of your now.|Now drink up now.|Now drink up your glass.|Now drink up now.|
-|Am i talented?|Did i have any?|Am i ok?|Did i have a?|Did i have?|
-|I feel lonely.|I feel alone.|I feel lonely.|I feel lonely.|I feel lonely.|
+|Target|Base-GRU|Base-LSTM|Reverse|Reverse + Embeddings|Reverse + Embeddings + Attention|
+|:------|:------|:------|:------|:------|:------|
+|Go.|Go to|Go..|Go.|Go.||
+|I have to go.|I must go.|I must leave.|I have to go.|I must go.||
+|Calm down son.|Get it to my son.|Get my son.|Lie down.|Hold to my son.||
+|I can't feel it.|I don't buy that.|I can't do it.|I don't deserve it.|I can't stand that.||
+|How're you doing?|How are you doing?|How are you going?|How are you going?|how're you doing?||
+|Do you want to go?|Do you want to go there|Do you want to go?|Do you want to go?|Do you want to go?||
+|Where's your coat?|Where's your coat?|where's your coat?|Where's your coat?|Where's your coat?||
+|That isn't complex.|This isn't all.|it's not complicated.|It's not complicated.|It's not complicated.||
+|I pretended to work.|I pretended to work.|I work from work.|I've been working to work.|I pretended to work.||
+|Come back in an hour.|Get an hour in a.|Get back into a hour.|come on a a!|Come back in an hour.||
 
 ## References
 - [[Loung et al.2015](https://arxiv.org/pdf/1508.04025.pdf)] Effective Approaches to Attention-based Neural Machine Translation

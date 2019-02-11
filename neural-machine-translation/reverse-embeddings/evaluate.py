@@ -89,4 +89,4 @@ if __name__ == "__main__":
     decoder.load_state_dict(torch.load('decoder.pth'))
     decoder.eval()
 
-    evaluateRandomly(encoder, decoder, pairs, 10)
+    evaluateRandomly(encoder, decoder, pairs, int(len(pairs)*0.3))
