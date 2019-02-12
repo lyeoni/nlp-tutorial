@@ -93,7 +93,7 @@ so it is recommended that the BLEU be considered as a reference only because it 
 |Base-LSTM|66.62|
 |Reverse|66.12|
 |Reverse + Embeddings|69.61|
-|Reverse + Embeddings + Attention||
+|Reverse + Embeddings + Attention|74.47|
 
 ### Intrinsic Evaluation
 
@@ -101,16 +101,16 @@ Below table shows the results from various models in French-English translation 
 
 |Target|Base-GRU|Base-LSTM|Reverse|Reverse + Embeddings|Reverse + Embeddings + Attention|
 |:------|:------|:------|:------|:------|:------|
-|Go.|Go to|Go..|Go.|Go.||
-|I have to go.|I must go.|I must leave.|I have to go.|I must go.||
-|Calm down son.|Get it to my son.|Get my son.|Lie down.|Hold to my son.||
-|I can't feel it.|I don't buy that.|I can't do it.|I don't deserve it.|I can't stand that.||
-|How're you doing?|How are you doing?|How are you going?|How are you going?|how're you doing?||
-|Do you want to go?|Do you want to go there|Do you want to go?|Do you want to go?|Do you want to go?||
-|Where's your coat?|Where's your coat?|where's your coat?|Where's your coat?|Where's your coat?||
-|That isn't complex.|This isn't all.|it's not complicated.|It's not complicated.|It's not complicated.||
-|I pretended to work.|I pretended to work.|I work from work.|I've been working to work.|I pretended to work.||
-|Come back in an hour.|Get an hour in a.|Get back into a hour.|come on a a!|Come back in an hour.||
+|Go.|Go to|Go..|Go.|Go.|Go.|
+|I have to go.|I must go.|I must leave.|I have to go.|I must go.|I need to go.|
+|Calm down son.|Get it to my son.|Get my son.|Lie down.|Hold to my son.|Let's son my son.|
+|I can't feel it.|I don't buy that.|I can't do it.|I don't deserve it.|I can't stand that.|I can't feel it.|
+|How're you doing?|How are you doing?|How are you going?|How are you going?|How're you doing?|How are you?|
+|Do you want to go?|Do you want to go there|Do you want to go?|Do you want to go?|Do you want to go?|Do you want to go?|
+|Where's your coat?|Where's your coat?|where's your coat?|Where's your coat?|Where's your coat?|Where's your coat?|
+|That isn't complex.|This isn't all.|It's not complicated.|It's not complicated.|It's not complicated.|It's not complex.|
+|I pretended to work.|I pretended to work.|I work from work.|I've been working to work.|I pretended to work.|I pretended to work.|
+|Come back in an hour.|Get an hour in a.|Get back into a hour.|come on a a!|Come back in an hour.|Come back an hour.|
 
 ## References
 - [[Loung et al.2015](https://arxiv.org/pdf/1508.04025.pdf)] Effective Approaches to Attention-based Neural Machine Translation
