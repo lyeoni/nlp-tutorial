@@ -71,14 +71,15 @@ Calculating the attention weights is done with another feed-forward layer, using
   - 130,143 sentence pairs.
   - Counted words: 20,391 (french), 12,362 (english)
 - `test-set`
-  - 13,014 sentence pairs.
+  - 39,042 sentence pairs.
 
 #### Models
 The model was trained with NVIDA Tesla K80, and the number of epochs was 7 (i.e. ~ 10 hours).
 
 - Baseline(base): Simple Sequence to Sequence model
-- Reverse: Apply Bi-directional LSTM to encoder part
-- Embeddings: Apply Fasttext word embedding (300D)
+- Reverse: Apply Bi-directional LSTM to the encoder part
+- Embeddings: Apply Fasttext word embeddings (300D)
+- Attention: Apply attention mechanisms to the decoder part
 
 ### Extrinsic Evaluation
 

@@ -52,9 +52,9 @@ def evaluate(encoder, decoder, sentence, max_length=loader.MAX_LENGTH):
 def evaluateRandomly(encoder, decoder, pairs, n=10):
     cc = SmoothingFunction()
     scores = []
-    # random.shuffle(pairs)
+    random.shuffle(pairs)
     for i in range(n):
-        pair = pairs[i*500]
+        pair = pairs[i]
         output_words = evaluate(encoder, decoder, pair[0])
         output_sentence = ' '.join(output_words)
 
@@ -89,5 +89,5 @@ if __name__ == "__main__":
     encoder.eval()
     decoder.load_state_dict(torch.load('decoder.pth'))
     decoder.eval()
-
-    evaluateRandomly(encoder, decoder, pairs, 10)
+    
+    evaluateRandomly(encoder, decoder, pairs, int(len(pairs)*0.3))
