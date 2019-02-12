@@ -91,10 +91,10 @@ so it is recommended that the BLEU be considered as a reference only because it 
 |MODEL|BLEU|
 |:------|:-----:|
 |Base-GRU|60.48|
-|Base-LSTM|66.62|
-|Reverse|66.12|
-|Reverse + Embeddings|69.61|
-|Reverse + Embeddings + Attention|74.47|
+|Base-LSTM|66.12 (+*5.64*)|
+|Reverse|66.62 (+*0.5*)|
+|Reverse + Embeddings|69.61 (+*2.99*)|
+|Reverse + Embeddings + Attention|74.47 (+*4.86*)|
 
 ### Intrinsic Evaluation
 
