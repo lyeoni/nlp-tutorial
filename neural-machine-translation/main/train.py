@@ -117,15 +117,18 @@ def train(input_tensor, target_tensor, encoder, decoder, encoder_optimizer, deco
     loss = 0
     for ei in range(input_length):
         encoder_output, encoder_hidden = encoder(input_tensor[ei], encoder_hidden)
-        # |encoder_output| = (batch_size, sequence_length, num_directions*hidden_size)
-        # |encoder_hidden[0]|, |encoder_hidden[1]| = (num_layers*num_directions, batch_size, hidden_size/2)
+        # |encoder_output| = (batch_size, sequence_length, num_directions*(hidden_size/2))
+        # |encoder_hidden| = (2, num_layers*num_directions, batch_size, hidden_size/2)
+        # 2: respectively, hidden state and cell state.
         encoder_outputs[ei] = encoder_output[0, 0]
 
     decoder_input = torch.tensor([[loader.SOS_token]]).to(device)
-    decoder_hidden = merge_encoder_hiddens(encoder_hidden)
     # |decoder_input| = (1, 1)
-    # |decoder_hidden| = (2, num_layers, batch_size, hidden_size) # 2: respectively, hidden state and cell state
-    
+    decoder_hidden = merge_encoder_hiddens(encoder_hidden)
+    # |decoder_hidden|= (2, num_layers*num_directions, batch_size, hidden_size)
+    # 2: respectively, hidden state and cell state
+    # Here, the lstm layer in decoder is uni-directional.
+
     use_teacher_forcing = True if random.random() < teacher_forcing_ratio else False
     if use_teacher_forcing:
         # Teacher forcing: feed the target as the next input.
@@ -133,7 +136,9 @@ def train(input_tensor, target_tensor, encoder, decoder, encoder_optimizer, deco
             decoder_output, decoder_hidden, decoder_attention = decoder(decoder_input,
                                                                          decoder_hidden, encoder_outputs)
             # |decoder_output| = (sequence_length, output_lang.n_words)
-            # |decoder_hidden| = (2, num_layers, batch_size, hidden_size) # 2: respectively, hidden state and cell state
+            # |decoder_hidden| = (2, num_layers, batch_size, hidden_size)
+            # 2: respectively, hidden state and cell state.
+            # Here, the lstm layer in decoder is uni-directional.
             # |decoder_attention| = (sequence_length, max_length)
             
             loss += criterion(decoder_output, target_tensor[di])
@@ -145,7 +150,9 @@ def train(input_tensor, target_tensor, encoder, decoder, encoder_optimizer, deco
             decoder_output, decoder_hidden, decoder_attention = decoder(decoder_input,
                                                                          decoder_hidden, encoder_outputs)
             # |decoder_output| = (sequence_length, output_lang.n_words)
-            # |decoder_hidden| = (2, num_layers, batch_size, hidden_size) # 2: respectively, hidden state and cell state
+            # |decoder_hidden| = (2, num_layers, batch_size, hidden_size)
+            # 2: respectively, hidden state and cell state.
+            # Here, the lstm layer in decoder is uni-directional.
             # |decoder_attention| = (sequence_length, max_length)
             
             topv, topi = decoder_output.topk(1) # top-1 value, index
@@ -175,7 +182,7 @@ def trainiters(pairs, encoder, decoder, n_iters,
     train_pairs *= n_iters//len(train_pairs)
     train_pairs += [random.choice(train_pairs) for i in range(n_iters%len(train_pairs))]
     train_pairs = [tensorsFromPair(pair) for pair in train_pairs]
-    # |train_pairs| = (n_iters, 2, sentence_length) # eng, fra
+    # |train_pairs| = (n_iters, 2, sentence_length, 1) # eng, fra
 
     encoder_optimizer = optim.SGD(encoder.parameters(), lr= learning_rate)
     decoder_optimizer = optim.SGD(decoder.parameters(), lr= learning_rate)
