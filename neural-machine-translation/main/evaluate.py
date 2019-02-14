@@ -5,7 +5,7 @@ import torch
 import dataLoader as loader
 import seq2seq
 import train
-from nltk.translate.bleu_score import sentence_bleu
+from nltk.translate.bleu_score import SmoothingFunction, sentence_bleu
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -59,15 +59,14 @@ def evaluate(sentence, encoder, decoder, max_length=loader.MAX_LENGTH):
 
 def evaluateiters(pairs, encoder, decoder, train_pairs_seed=0):
     start = time.time()
+    cc = SmoothingFunction()
     train_pairs, test_pairs = train_test_split(pairs, test_size=0.15, random_state=train_pairs_seed)
     # |test_pairs| = (n_pairs, 2, sentence_length, 1) # eng, fra
-
+    
     scores = []
-    for pi, pair in enumerate(train_pairs):
-        # if pi == int(len(pairs)*0.3):
-        #     break
+    for pi, pair in enumerate(test_pairs):
     # for i in range(10):
-    #     pair = pairs[i*3000]
+        # pair = train_pairs[-i]
         output_words = evaluate(pair[0], encoder, decoder)
         output_sentence = ' '.join(output_words)
 
@@ -78,10 +77,9 @@ def evaluateiters(pairs, encoder, decoder, train_pairs_seed=0):
         # for nltk.bleu
         ref = pair[1].split()
         hyp = output_words
-        scores.append(sentence_bleu([ref], hyp) * 100.)
+        scores.append(sentence_bleu([ref], hyp, smoothing_function=cc.method3) * 100.)
         
-    print('BLEU: {:.4}'.format(sum(scores)/len(train_pairs)))
-    # print('BLEU: {:.4}'.format(sum(scores)/int(len(pairs)*0.3)))
+    print('BLEU: {:.4}'.format(sum(scores)/len(test_pairs)))
 
 if __name__ == "__main__":
     '''
@@ -102,20 +100,20 @@ if __name__ == "__main__":
                               embedding_size = embedding_size,
                               hidden_size = hidden_size,
                               embedding_matrix = input_emb_matrix,
-                              n_layers = 2,
+                              n_layers = 3,
                               dropout_p = .1
                               ).to(device)
     decoder = seq2seq.AttnDecoder(output_size = output_lang.n_words,
                                   embedding_size = embedding_size,
                                   hidden_size = hidden_size,
                                   embedding_matrix = output_emb_matrix,
-                                  n_layers = 2,
+                                  n_layers = 3,
                                   dropout_p =.1
                                   ).to(device)
 
-    encoder.load_state_dict(torch.load('encoder-n_layers2-hidden300.pth'))
+    encoder.load_state_dict(torch.load('encoder-n_layers3-hidden300.pth'))
     encoder.eval()
-    decoder.load_state_dict(torch.load('decoder-n_layers2-hidden300.pth'))
+    decoder.load_state_dict(torch.load('decoder-n_layers3-hidden300.pth'))
     decoder.eval()
 
     evaluateiters(pairs, encoder, decoder)
