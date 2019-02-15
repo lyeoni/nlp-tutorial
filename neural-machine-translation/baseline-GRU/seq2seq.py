@@ -53,7 +53,7 @@ class GRUDecoder(nn.Module):
         self.embedding_size = embedding_size
         self.hidden_size = hidden_size
 
-        # LAYERS
+        # layers
         self.embedding = nn.Embedding(output_size, embedding_size)
         self.gru = nn.GRU(embedding_size, hidden_size,
                           bidirectional=False,

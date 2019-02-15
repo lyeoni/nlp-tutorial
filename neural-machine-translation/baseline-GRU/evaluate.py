@@ -66,7 +66,6 @@ def evaluate(sentence, encoder, decoder, max_length=loader.MAX_LENGTH):
             decoder_output, decoder_hidden = decoder(decoder_input, decoder_hidden)
             # |decoder_output| = (sequence_length, output_lang.n_words)
             # |decoder_hidden| = (num_layers*num_directions, batch_size, hidden_size)
-            # Here, the layer in decoder is uni-directional.
             
             topv, topi = decoder_output.data.topk(1) # top-1 value, index
             # |topv|, |topi| = (1, 1)

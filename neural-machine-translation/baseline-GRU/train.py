@@ -102,7 +102,6 @@ def train(input_tensor, target_tensor, encoder, decoder, encoder_optimizer, deco
             decoder_output, decoder_hidden = decoder(decoder_input, decoder_hidden)
             # |decoder_output| = (sequence_length, output_lang.n_words)
             # |decoder_hidden| = (num_layers*num_directions, batch_size, hidden_size)
-            # Here, the layer in decoder is uni-directional.
             
             loss += criterion(decoder_output, target_tensor[di])
             decoder_input = target_tensor[di] # teacher forcing
@@ -113,7 +112,6 @@ def train(input_tensor, target_tensor, encoder, decoder, encoder_optimizer, deco
             decoder_output, decoder_hidden = decoder(decoder_input, decoder_hidden)
             # |decoder_output| = (sequence_length, output_lang.n_words)
             # |decoder_hidden| = (num_layers*num_directions, batch_size, hidden_size)
-            # Here, the layer in decoder is uni-directional.
             
             topv, topi = decoder_output.topk(1) # top-1 value, index
             # |topv|, |topi| = (1, 1)
@@ -175,7 +173,7 @@ def trainiters(pairs, encoder, decoder, n_iters,
 
     showPlot(plot_losses)
 
-    plt.savefig('baseline-loss')
+    plt.savefig('baseline-gru-loss')
     torch.save(encoder.state_dict(), 'encoder.pth')
     torch.save(decoder.state_dict(), 'decoder.pth')
 
