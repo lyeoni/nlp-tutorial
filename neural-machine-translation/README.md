@@ -68,10 +68,10 @@ Calculating the attention weights is done with another feed-forward layer, using
 
 #### Dataset
 - `training-set`
-  - 130,143 sentence pairs.
+  - 110,621 sentence pairs.
   - Counted words: 20,391 (french), 12,362 (english)
 - `test-set`
-  - 39,042 sentence pairs.
+  - 19,522 sentence pairs.
 
 #### Models
 The model was trained with NVIDA Tesla K80, and the number of epochs was 7 (i.e. ~ 10 hours).
@@ -88,13 +88,31 @@ Below table shows the BLEU from various models in French-English translation tas
 cf. Our dataset includes a small amount of sentences that is relatively short(maximum length is 15 words, including ending punctuation),
 so it is recommended that the BLEU be considered as a reference only because it is excssively higher than the other experiments.
 
-|MODEL|BLEU|
-|:------|:-----:|
-|Base-GRU|60.48|
-|Base-LSTM|66.12 (+*5.64*)|
-|Reverse|66.62 (+*0.5*)|
-|Reverse + Embeddings|69.61 (+*2.99*)|
-|Reverse + Embeddings + Attention|74.47 (+*4.86*)|
+**Baseline Models**
+
+|MODEL|BLEU (train)|BLEU (test)|
+|:------|:-----:|:-----:|
+|Base-GRU|||
+|Base-LSTM|||
+|Reverse|||
+|Reverse + Embeddings|||
+|Reverse + Embeddings + Attention|65.57|46.70|
+
+
+**Advanced Models**
+
+|MODEL|BLEU (train)|BLEU (test)|
+|:------|:-----:|:-----:|
+|*Ours* --- NMT (Reverse + Embeddings + Attention)|65.57|46.70|
+|*Change the number of layers*||
+|*Ours* --- NMT (n_layers=2)|63.85|49.80|
+|*Ours* --- NMT (n_layers=3)|61.36|49.09|
+|*Change the hidden size*||
+|*Ours* --- NMT (n_layers=2, hidden_size=600)|69.37|51.37|
+|*Change the teacher forcing ratio*||
+|*Ours* --- NMT (n_layers=2, hidden_size=600, teacher_forcing_ratio=.75)|72.90|54.06|
+|*Ours* --- NMT (n_layers=2, hidden_size=600, teacher_forcing_ratio=1)|73.11|53.48|
+|*Ours* --- NMT (n_layers=2, hidden_size=600, teacher_forcing_ratio=1, epochs=10)|79.69|55.31|
 
 ### Intrinsic Evaluation
 

@@ -100,20 +100,20 @@ if __name__ == "__main__":
                               embedding_size = embedding_size,
                               hidden_size = hidden_size,
                               embedding_matrix = input_emb_matrix,
-                              n_layers = 3,
+                              n_layers = 2,
                               dropout_p = .1
                               ).to(device)
     decoder = seq2seq.AttnDecoder(output_size = output_lang.n_words,
                                   embedding_size = embedding_size,
                                   hidden_size = hidden_size,
                                   embedding_matrix = output_emb_matrix,
-                                  n_layers = 3,
+                                  n_layers = 2,
                                   dropout_p =.1
                                   ).to(device)
 
-    encoder.load_state_dict(torch.load('encoder-n_layers3-hidden300.pth'))
+    encoder.load_state_dict(torch.load('encoder-n_layers2-hidden300.pth'))
     encoder.eval()
-    decoder.load_state_dict(torch.load('decoder-n_layers3-hidden300.pth'))
+    decoder.load_state_dict(torch.load('decoder-n_layers2-hidden300.pth'))
     decoder.eval()
 
     evaluateiters(pairs, encoder, decoder)
