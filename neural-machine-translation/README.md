@@ -6,7 +6,7 @@ As you already know, a Recurrent Neural Network, or RNN, is a network that opera
 A seq2seq network(model), or Encoder-Decoder network, is a model consisting of two RNNs called the encoder and decoder. The encoder reads an input sequence and outputs a single vector, and the decoder reads that vector to produce an output sequence.
 
 <p align="left">
-<img width="700" src="https://github.com/lyeoni/nlp-tutorial/blob/master/neural-machine-translation/images/seq2seq.png">
+<img width="700" src="https://github.com/lyeoni/nlp-tutorial/blob/master/neural-machine-translation/images/readme/seq2seq.png">
 </p>
 
 Unlike sequence prediction with a single RNN, where every input corresponds to an output, the seq2seq model frees us from sequence length and order, which makes it ideal for translation between two languages.
@@ -49,7 +49,7 @@ So we train using a method called Teacher Forcing, which is the concept of using
 <img src="https://latex.codecogs.com/gif.latex?\dpi{100}&space;\fn_cm&space;\hat{y}&space;=&space;argmax_{y}P(y|X,&space;y_{<t};\theta)\;&space;where\;&space;X&space;=&space;{x_{1},...,x_{n}}\;&space;and\;&space;Y=&space;{y_{0},...,y_{n}}" title="\hat{y} = argmax_{y}P(y|X, y_{<t};\theta)\; where\; X = {x_{1},...,x_{n}}\; and\; Y= {y_{0},...,y_{n}}" />
 </p>
 <p align="center">
-<img width="600" src="https://github.com/lyeoni/nlp-tutorial/blob/master/neural-machine-translation/images/teacher-forcing.png" />
+<img width="600" src="https://github.com/lyeoni/nlp-tutorial/blob/master/neural-machine-translation/images/readme/teacher-forcing.png" />
 </p>
 
 ### Attention
@@ -98,18 +98,17 @@ so it is recommended that the BLEU be considered as a reference only because it 
 |Reverse + Embeddings|||
 |Reverse + Embeddings + Attention|65.57|46.70|
 
-
 **Advanced Models**
 
 |MODEL|BLEU (train)|BLEU (test)|
 |:------|:-----:|:-----:|
 |*Ours* --- NMT (Reverse + Embeddings + Attention)|65.57|46.70|
-|*Change the number of layers*||
+|**_Change the number of layers_**||
 |*Ours* --- NMT (n_layers=2)|63.85|49.80|
 |*Ours* --- NMT (n_layers=3)|61.36|49.09|
-|*Change the hidden size*||
+|**_Change the hidden size_**||
 |*Ours* --- NMT (n_layers=2, hidden_size=600)|69.37|51.37|
-|*Change the teacher forcing ratio*||
+|**_Change the teacher forcing ratio_**||
 |*Ours* --- NMT (n_layers=2, hidden_size=600, teacher_forcing_ratio=.75)|72.90|54.06|
 |*Ours* --- NMT (n_layers=2, hidden_size=600, teacher_forcing_ratio=1)|73.11|53.48|
 |*Ours* --- NMT (n_layers=2, hidden_size=600, teacher_forcing_ratio=1, epochs=10)|79.69|55.31|

@@ -1,3 +1,4 @@
+import argparse
 import time
 import numpy as np
 from sklearn.model_selection import train_test_split
@@ -8,6 +9,45 @@ import train
 from nltk.translate.bleu_score import SmoothingFunction, sentence_bleu
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+def argparser():
+    p = argparse.ArgumentParser()
+
+    p.add_argument('--encoder',
+                    required=True,
+                    help='Encoder file path to load trained_encoder\'s learned parameters.')
+
+    p.add_argument('--decoder',
+                    required=True,
+                    help='Decoder file path to load trained_decoder\'s learned parameters.')
+
+    p.add_argument('--embedding_size',
+                    type=int,
+                    default=300,
+                    help='Word embedding vector dimension size. Default=300')
+
+    p.add_argument('--hidden_size',
+                    type=int,
+                    default=600,
+                    help='Hidden size of LSTM. Default=600')
+
+    p.add_argument('--n_layers',
+                    type=int,
+                    default=2,
+                    help='Number of layers. Default=2')
+    
+    p.add_argument('--dropout_p',
+                    type=float,
+                    default=.1,
+                    help='Dropout ratio. Default=.1')
+
+    config = p.parse_args()
+    return config
+
+def translate(pair, output):
+    print('Source:\t{}\nAnswer:\t{}'.format(pair[0], pair[1])) 
+    print('Translate: {}'.format(output), end='\n\n')
+    # print('{}|{}'.format(pair[1], output))
 
 def evaluate(sentence, encoder, decoder, max_length=loader.MAX_LENGTH):
     with torch.no_grad():
@@ -62,18 +102,15 @@ def evaluateiters(pairs, encoder, decoder, train_pairs_seed=0):
     cc = SmoothingFunction()
     train_pairs, test_pairs = train_test_split(pairs, test_size=0.15, random_state=train_pairs_seed)
     # |test_pairs| = (n_pairs, 2, sentence_length, 1) # eng, fra
-    
+
     scores = []
     for pi, pair in enumerate(test_pairs):
-    # for i in range(10):
-        # pair = train_pairs[-i]
         output_words = evaluate(pair[0], encoder, decoder)
         output_sentence = ' '.join(output_words)
 
-        # print('From(source):\t{}\n To(answer):\t{}'.format(pair[0], pair[1])) 
-        # print('To(predict):\t{}'.format(output_sentence), end='\n\n')
-        # print('{}|{}'.format(pair[1], output_sentence))
-
+        # for print
+        translate(pair, output_sentence)
+        
         # for nltk.bleu
         ref = pair[1].split()
         hyp = output_words
@@ -88,8 +125,7 @@ if __name__ == "__main__":
     Every time it predicts a word, we add it to the output string,
     and if it predicts the EOS token we stop there.
     '''
-    embedding_size = 300
-    hidden_size = 300
+    config = argparser()
 
     input_lang, output_lang, pairs = loader.prepareData('eng', 'fra', True)
     
@@ -97,23 +133,24 @@ if __name__ == "__main__":
     print('Embedding-matrix shape: {}, {}'.format(input_emb_matrix.shape, output_emb_matrix.shape))
 
     encoder = seq2seq.Encoder(input_size = input_lang.n_words,
-                              embedding_size = embedding_size,
-                              hidden_size = hidden_size,
+                              embedding_size = config.embedding_size,
+                              hidden_size = config.hidden_size,
                               embedding_matrix = input_emb_matrix,
-                              n_layers = 2,
-                              dropout_p = .1
+                              n_layers = config.n_layers,
+                              dropout_p = config.dropout_p
                               ).to(device)
+
     decoder = seq2seq.AttnDecoder(output_size = output_lang.n_words,
-                                  embedding_size = embedding_size,
-                                  hidden_size = hidden_size,
+                                  embedding_size = config.embedding_size,
+                                  hidden_size = config.hidden_size,
                                   embedding_matrix = output_emb_matrix,
-                                  n_layers = 2,
-                                  dropout_p =.1
+                                  n_layers = config.n_layers,
+                                  dropout_p =config.dropout_p
                                   ).to(device)
 
-    encoder.load_state_dict(torch.load('encoder-n_layers2-hidden300.pth'))
+    encoder.load_state_dict(torch.load(config.encoder))
     encoder.eval()
-    decoder.load_state_dict(torch.load('decoder-n_layers2-hidden300.pth'))
+    decoder.load_state_dict(torch.load(config.decoder))
     decoder.eval()
 
     evaluateiters(pairs, encoder, decoder)

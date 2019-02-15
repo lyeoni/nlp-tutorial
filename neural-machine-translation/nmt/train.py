@@ -26,22 +26,22 @@ def argparser():
     p.add_argument('--embedding_size',
                     type=int,
                     default=300,
-                    help='Word embedding vector dimension size. Default=512')
+                    help='Word embedding vector dimension size. Default=300')
 
     p.add_argument('--hidden_size',
                     type=int,
-                    default=512,
-                    help='Hidden size of LSTM. Default=512')
+                    default=600,
+                    help='Hidden size of LSTM. Default=600')
     
     p.add_argument('--teacher_forcing_ratio',
                     type=float,
-                    default=.5,
-                    help='Teacher forcing ratio. Default=.5')
+                    default=1,
+                    help='Teacher forcing ratio. Default=1')
     
     p.add_argument('--n_layers',
                     type=int,
-                    default=3,
-                    help='Number of layers. Default=3')
+                    default=2,
+                    help='Number of layers. Default=2')
     
     p.add_argument('--dropout_p',
                     type=float,
@@ -215,7 +215,7 @@ def trainiters(pairs, encoder, decoder, n_iters,
 
     showPlot(plot_losses)
 
-    plt.savefig('main-loss')
+    plt.savefig('nmt-loss')
     torch.save(encoder.state_dict(), 'encoder.pth')
     torch.save(decoder.state_dict(), 'decoder.pth')
 
