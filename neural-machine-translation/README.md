@@ -92,11 +92,11 @@ so it is recommended that the BLEU be considered as a reference only because it 
 
 |MODEL|BLEU (train)|BLEU (test)|
 |:------|:-----:|:-----:|
-|Base-GRU|||
-|Base-LSTM|||
-|Reverse|||
-|Reverse + Embeddings|||
-|Reverse + Embeddings + Attention|65.57|46.70|
+|*Baseline* --- GRU|38.01|30.56|
+|*Baseline* --- LSTM|53.66|39.30|
+|*Baseline* --- Reverse|52.21|38.41|
+|*Baseline* --- Reverse + Embeddings|||
+|*Baseline* --- Reverse + Embeddings + Attention|65.57|46.70|
 
 **Advanced Models**
 
