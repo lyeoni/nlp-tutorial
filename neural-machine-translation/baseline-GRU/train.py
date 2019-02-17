@@ -173,7 +173,7 @@ def trainiters(pairs, encoder, decoder, n_iters,
 
     showPlot(plot_losses)
 
-    plt.savefig('baseline-gru-loss')
+    plt.savefig('baseline-GRU-loss')
     torch.save(encoder.state_dict(), 'encoder.pth')
     torch.save(decoder.state_dict(), 'decoder.pth')
 

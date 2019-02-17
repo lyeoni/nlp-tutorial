@@ -177,7 +177,7 @@ def trainiters(pairs, encoder, decoder, n_iters,
 
     showPlot(plot_losses)
 
-    plt.savefig('baseline-lstm-loss')
+    plt.savefig('baseline-LSTM-loss')
     torch.save(encoder.state_dict(), 'encoder.pth')
     torch.save(decoder.state_dict(), 'decoder.pth')
 
