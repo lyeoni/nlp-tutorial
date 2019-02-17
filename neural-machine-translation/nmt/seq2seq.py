@@ -25,7 +25,7 @@ class Encoder(nn.Module):
 
     def forward(self, input, hidden):
         # |input| = (1)
-        # |hidden[0]|, |hidden[1]| = (num_layers*num_directions, batch_size, hidden_size)
+        # |hidden[0]|, |hidden[1]| = (num_layers*num_directions, batch_size, hidden_size/2)
         embedded = self.embedding(input).view(1, 1, -1)
         output = embedded
         # |output| = (1, 1, embedding_size)
