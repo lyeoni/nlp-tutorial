@@ -62,6 +62,70 @@ Calculating the attention weights is done with another feed-forward layer, using
 
 ## Usage
 
+### 1. Preprocessing
+
+example usage:
+```
+$ python dataLoader.py
+```
+
+### 2. Train
+
+```
+$ python train.py -h
+usage: train.py [-h] --n_iters N_ITERS [--embedding_size EMBEDDING_SIZE]
+                [--hidden_size HIDDEN_SIZE]
+                [--teacher_forcing_ratio TEACHER_FORCING_RATIO]
+                [--n_layers N_LAYERS] [--dropout_p DROPOUT_P]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --n_iters N_ITERS     Number of iterations to train
+  --embedding_size EMBEDDING_SIZE
+                        Word embedding vector dimension size. Default=300
+  --hidden_size HIDDEN_SIZE
+                        Hidden size of LSTM. Default=600
+  --teacher_forcing_ratio TEACHER_FORCING_RATIO
+                        Teacher forcing ratio. Default=1
+  --n_layers N_LAYERS   Number of layers. Default=2
+  --dropout_p DROPOUT_P
+                        Dropout ratio. Default=.1
+```
+
+example usage:
+```
+$ python train.py --n_iters 910000 --embedding_size 300 --hidden_size 600 --teacher_forcing_ratio 1 --n_layers 2 --dropout_p .1
+```
+You may need to change the argument parameters.
+
+### 3. Evaluation
+```
+$ python evaluate.py -h
+usage: evaluate.py [-h] --encoder ENCODER --decoder DECODER
+                   [--embedding_size EMBEDDING_SIZE]
+                   [--hidden_size HIDDEN_SIZE] [--n_layers N_LAYERS]
+                   [--dropout_p DROPOUT_P]
+optional arguments:
+  -h, --help            show this help message and exit
+  --encoder ENCODER     Encoder file path to load trained_encoder's learned
+                        parameters.
+  --decoder DECODER     Decoder file path to load trained_decoder's learned
+                        parameters.
+  --embedding_size EMBEDDING_SIZE
+                        Word embedding vector dimension size. Default=300
+  --hidden_size HIDDEN_SIZE
+                        Hidden size of LSTM. Default=600
+  --n_layers N_LAYERS   Number of layers. Default=2
+  --dropout_p DROPOUT_P
+                        Dropout ratio. Default=.1
+```
+
+example usage:
+```
+$ python evaluate.py --encoder trained_model_parameters/encoder-n_layers2-hidden600-tf1-epochs10.pth --decoder trained_model_parameters/decoder-n_layers2-hidden600-tf1-epochs10.pth
+```
+You may need to change the argument parameters.
+
 ## Evaluation
 
 ### Evaluation Overview
@@ -116,18 +180,18 @@ so it is recommended that the BLEU be considered as a reference only because it 
 
 Below table shows the results from various models in French-English translation task.
 
-|Target|Base-GRU|Base-LSTM|NMT|
-|:------|:------|:------|:------|
-|I have done it already.|I've done it.|I did it already.|I already did that.|
-|You don't have to stay to the end.|You don't have to stay to the end.|You don't have to stay in the end of here.|You don't have to stay until the end.|
-|I am looking forward to hearing from you soon.|I've turned i ve be heard.|I can't of from from from..|I look forward to hearing from you.|
-|We must be cautious.|We must to be careful.|We must be cautious.|We have to be cautious.|
-|I was blinded by the light.|I was careless by the light.|I was out by the light.|I was blind in light.|
-|I had a weird dream last night.|I had a strange dream last night.|I had a dream dream last night.|I had a strange dream last night.|
-|She allowed him to go alone.|She allowed him to go.|She allowed him alone to go alone.|She allowed him to go there alone.|
-|Who sent you?|Who sent you?|Who sent you?|Who sent you?|
-|The boy remained silent.|The boy remained silent.|The boy remained silent.|The boy stayed silent.|
-|She is very beautiful.|She is very beautiful.|She's very beautiful.|She's very pretty.|
+|Target|GRU|LSTM|Reverse|NMT|
+|------|------|------|------|------|
+|I have done it already.|I've done it.|I did it already.|I already did it.|I already did that.|
+|You don't have to stay to the end.|You don't have to stay to the end.|You don't have to stay in the end of here.|you don't seem to to stay up.|You don't have to stay until the end.|
+|I am looking forward to hearing from you soon.|I've turned i ve be heard.|I can't of from from from..|I'm glad to to from from|I look forward to hearing from you.|
+|We must be cautious.|We must to be careful.|We must be cautious.|We need to be cautious.|We have to be cautious.|
+|I was blinded by the light.|I was careless by the light.|I was out by the light.|I was light on the light.|I was blind in light.|
+|I had a weird dream last night.|I had a strange dream last night.|I had a dream dream last night.|I had a weird last night last.|I had a strange dream last night.|
+|She allowed him to go alone.|She allowed him to go.|She allowed him alone to go alone.|She herself him by herself to go there.|She allowed him to go there alone.|
+|Who sent you?|Who sent you?|Who sent you?|Who sent you??|Who sent you?|
+|The boy remained silent.|The boy remained silent.|The boy remained silent.|The boy went swimming.|The boy stayed silent.|
+|She is very beautiful.|She is very beautiful.|She's very beautiful.|She is very beautiful.|She's very pretty.|
 
 ## References
 - [[Loung et al.2015](https://arxiv.org/pdf/1508.04025.pdf)] Effective Approaches to Attention-based Neural Machine Translation
