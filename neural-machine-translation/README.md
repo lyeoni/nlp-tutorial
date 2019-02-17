@@ -96,13 +96,12 @@ so it is recommended that the BLEU be considered as a reference only because it 
 |*Baseline* --- LSTM|53.66|39.30|
 |*Baseline* --- Reverse|52.21|38.41|
 |*Baseline* --- Reverse + Embeddings|||
-|*Baseline* --- Reverse + Embeddings + Attention|65.57|46.70|
 
 **Advanced Models**
 
 |MODEL|BLEU (train)|BLEU (test)|
 |:------|:-----:|:-----:|
-|*Ours* --- NMT (Reverse + Embeddings + Attention)|65.57|46.70|
+|*Ours* --- NMT: Reverse + Embeddings + Attention|65.57|46.70|
 |**_Change the number of layers_**||
 |*Ours* --- NMT (n_layers=2)|63.85|49.80|
 |*Ours* --- NMT (n_layers=3)|61.36|49.09|
