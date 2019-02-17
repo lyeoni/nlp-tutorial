@@ -116,18 +116,18 @@ so it is recommended that the BLEU be considered as a reference only because it 
 
 Below table shows the results from various models in French-English translation task.
 
-|Target|Base-GRU|Base-LSTM|Reverse|Reverse + Embeddings|Reverse + Embeddings + Attention|
-|:------|:------|:------|:------|:------|:------|
-|Go.|Go to|Go..|Go.|Go.|Go.|
-|I have to go.|I must go.|I must leave.|I have to go.|I must go.|I need to go.|
-|Calm down son.|Get it to my son.|Get my son.|Lie down.|Hold to my son.|Let's son my son.|
-|I can't feel it.|I don't buy that.|I can't do it.|I don't deserve it.|I can't stand that.|I can't feel it.|
-|How're you doing?|How are you doing?|How are you going?|How are you going?|How're you doing?|How are you?|
-|Do you want to go?|Do you want to go there|Do you want to go?|Do you want to go?|Do you want to go?|Do you want to go?|
-|Where's your coat?|Where's your coat?|where's your coat?|Where's your coat?|Where's your coat?|Where's your coat?|
-|That isn't complex.|This isn't all.|It's not complicated.|It's not complicated.|It's not complicated.|It's not complex.|
-|I pretended to work.|I pretended to work.|I work from work.|I've been working to work.|I pretended to work.|I pretended to work.|
-|Come back in an hour.|Get an hour in a.|Get back into a hour.|come on a a!|Come back in an hour.|Come back an hour.|
+|Target|Base-GRU|Base-LSTM|NMT|
+|:------|:------|:------|:------|
+|I have done it already.|I've done it.|I did it already.|I already did that.|
+|You don't have to stay to the end.|You don't have to stay to the end.|You don't have to stay in the end of here.|You don't have to stay until the end.|
+|I am looking forward to hearing from you soon.|I've turned i ve be heard.|I can't of from from from..|I look forward to hearing from you.|
+|We must be cautious.|We must to be careful.|We must be cautious.|We have to be cautious.|
+|I was blinded by the light.|I was careless by the light.|I was out by the light.|I was blind in light.|
+|I had a weird dream last night.|I had a strange dream last night.|I had a dream dream last night.|I had a strange dream last night.|
+|She allowed him to go alone.|She allowed him to go.|She allowed him alone to go alone.|She allowed him to go there alone.|
+|Who sent you?|Who sent you?|Who sent you?|Who sent you?|
+|The boy remained silent.|The boy remained silent.|The boy remained silent.|The boy stayed silent.|
+|She is very beautiful.|She is very beautiful.|She's very beautiful.|She's very pretty.|
 
 ## References
 - [[Loung et al.2015](https://arxiv.org/pdf/1508.04025.pdf)] Effective Approaches to Attention-based Neural Machine Translation
