@@ -1,5 +1,6 @@
 # Neural Machine Translation
-Translation with a sequence-to-sequence (seq2seq) network and attention.
+This repository provides a simple PyTorch implementation of Neural Machine Translation, along with 
+an intrinsic/extrinsic comparison of various sequence-to-sequence (seq2seq) models in translation. 
 
 ## Model Overview
 As you already know, a Recurrent Neural Network, or RNN, is a network that operates on a sequence and uses its own output as input for subsequent steps.
@@ -58,19 +59,34 @@ Attention allows the decoder network to "focus" on a different part of the encod
 
 First, we calculate a set of attention weights. These will be multiplied by the encoder output vecotrs to create a weighted combination. The result should contain information about that specific part of the input sequence, and thus help the decoder choose the right output words.
 
-Calculating the attention weights is done with another feed-forward layer, using the `decoder's input` and `hidden state` as inputs. Because there are sentences of all sizes in the training data, to actually create and train this layer, we have to choose a maximum sentence length (input length, for encoder outputs) that it can apply to. Sentences of the maximum length will use all the attention weights, while shorter sentences will only use the first few.
+Calculating the attention weights is done with a bach matrix-matrix products of matrices stored in the `decoder's output` and `encoder's outpus`. Because there are sentences of all sizes in the training data, to actually create and train this layer, we have to choose a maximum sentence length (input length, for encoder outputs) that it can apply to. Sentences of the maximum length will use all the attention weights, while shorter sentences will only use the first few.
+
+Below video in [Jay Alammar's blog post](http://jalammar.github.io/visualizing-neural-machine-translation-mechanics-of-seq2seq-models-with-attention/) shows how the attention mechanism enables the decoder to focus on the relevant parts of the input sequence.
+
+<center>
+<iframe width="700" height="350" src="http://jalammar.github.io/images/attention_process.mp4" frameborder="0"></iframe>
+</center>
 
 ## Usage
 
 ### 1. Preprocessing
+
+The data for this translation task is a set of many thousands of French to English translation pairs. You can see `eng-fra.txt` in the data directory.
+To load/normalize text, run the dataLoader script below.
 
 example usage:
 ```
 $ python dataLoader.py
 ```
 
-### 2. Train
+If you run the model adopting pre-trained word-embeddings in the `nmt` directory, you should also run the download_fasttext script below.
 
+```
+chmod +x download_fasttext.sh
+./download_fasttext.sh
+```
+
+### 2. Training
 ```
 $ python train.py -h
 usage: train.py [-h] --n_iters N_ITERS [--embedding_size EMBEDDING_SIZE]
@@ -138,9 +154,9 @@ You may need to change the argument parameters.
   - 19,522 sentence pairs.
 
 #### Models
-The model was trained with NVIDA Tesla K80, and the number of epochs was 7 (i.e. ~ 10 hours).
+The models were trained with NVIDA Tesla K80, and the number of epochs was 7 (i.e. ~ 10 hours).
 
-- Baseline(base): Simple Sequence to Sequence model
+- GRU/LSTM: Simple sequence-to-sequence model based on GRU/LSTM Recurrent netwrok, respectively.
 - Reverse: Apply Bi-directional LSTM to the encoder part
 - Embeddings: Apply Fasttext word embeddings (300D)
 - Attention: Apply attention mechanisms to the decoder part
@@ -150,7 +166,7 @@ The model was trained with NVIDA Tesla K80, and the number of epochs was 7 (i.e.
 Below table shows the BLEU from various models in French-English translation task.
 
 cf. Our dataset includes a small amount of sentences that is relatively short(maximum length is 15 words, including ending punctuation),
-so it is recommended that the BLEU be considered as a reference only because it is excssively higher than the other experiments.
+so it is recommended that the BLEU be considered as a reference only because it is *excssively higher* than the other experiments.
 
 **Baseline Models**
 
@@ -159,7 +175,7 @@ so it is recommended that the BLEU be considered as a reference only because it 
 |*Baseline* --- GRU|38.01|30.56|
 |*Baseline* --- LSTM|53.66|39.30|
 |*Baseline* --- Reverse|52.21|38.41|
-|*Baseline* --- Reverse + Embeddings|||
+|*Baseline* --- Reverse + Embeddings|55.35|42.76|
 
 **Advanced Models**
 
@@ -180,22 +196,25 @@ so it is recommended that the BLEU be considered as a reference only because it 
 
 Below table shows the results from various models in French-English translation task.
 
-|Target|GRU|LSTM|Reverse|NMT|
-|------|------|------|------|------|
-|I have done it already.|I've done it.|I did it already.|I already did it.|I already did that.|
-|You don't have to stay to the end.|You don't have to stay to the end.|You don't have to stay in the end of here.|you don't seem to to stay up.|You don't have to stay until the end.|
-|I am looking forward to hearing from you soon.|I've turned i ve be heard.|I can't of from from from..|I'm glad to to from from|I look forward to hearing from you.|
-|We must be cautious.|We must to be careful.|We must be cautious.|We need to be cautious.|We have to be cautious.|
-|I was blinded by the light.|I was careless by the light.|I was out by the light.|I was light on the light.|I was blind in light.|
-|I had a weird dream last night.|I had a strange dream last night.|I had a dream dream last night.|I had a weird last night last.|I had a strange dream last night.|
-|She allowed him to go alone.|She allowed him to go.|She allowed him alone to go alone.|She herself him by herself to go there.|She allowed him to go there alone.|
-|Who sent you?|Who sent you?|Who sent you?|Who sent you??|Who sent you?|
-|The boy remained silent.|The boy remained silent.|The boy remained silent.|The boy went swimming.|The boy stayed silent.|
-|She is very beautiful.|She is very beautiful.|She's very beautiful.|She is very beautiful.|She's very pretty.|
+|Target|GRU|LSTM|Reverse|Reverse+Embeddings|NMT|
+|------|------|------|------|------|------|
+|I have done it already.|I've done it.|I did it already.|I already did it.|I've already done it.|I already did that.|
+|You don't have to stay to the end.|You don't have to stay to the end.|You don't have to stay in the end of here.|you don't seem to to stay up.|You don't have to get until the end.|You don't have to stay until the end.|
+|I am looking forward to hearing from you soon.|I've turned i ve be heard.|I can't of from from from..|I'm glad to to from from|I can't wait to from your new news.|I look forward to hearing from you.|
+|We must be cautious.|We must to be careful.|We must be cautious.|We need to be cautious.|We must to be cautious.|We have to be cautious.|
+|I was blinded by the light.|I was careless by the light.|I was out by the light.|I was light on the light.|I was blind in the light.|I was blind in light.|
+|I had a weird dream last night.|I had a strange dream last night.|I had a dream dream last night.|I had a weird last night last.|I had a strange dream last night.|I had a strange dream last night.|
+|She allowed him to go alone.|She allowed him to go.|She allowed him alone to go alone.|She herself him by herself to go there.|She allowed him to go there by himself.|She allowed him to go there alone.|
+|Who sent you?|Who sent you?|Who sent you?|Who sent you??|Who sent you?|Who sent you?|
+|The boy remained silent.|The boy remained silent.|The boy remained silent.|The boy went swimming.|The boy remained silent.|The boy stayed silent.|
+|She is very beautiful.|She is very beautiful.|She's very beautiful.|She is very beautiful.|She is very beautiful.|She's very pretty.|
+
+## Acknowledgment
+This work was mainly supported by NEOWIZ AI Research Lab. I would like to thank all the NEOWIZ researchers, especially Sungkyu Oh, for the initial support and feedback.
 
 ## References
 - [[Loung et al.2015](https://arxiv.org/pdf/1508.04025.pdf)] Effective Approaches to Attention-based Neural Machine Translation
-- [[카카오 AI리포트](https://brunch.co.kr/@kakao-it/155)] 신경망 번역 모델의 진화 과정
+- [[Jay Alammar](http://jalammar.github.io/visualizing-neural-machine-translation-mechanics-of-seq2seq-models-with-attention/)] Visualizing A Neural Machine Translation Model (Mechanics of Seq2seq Models With Attention)
 - [[kh-kim/simple-nmt](https://github.com/kh-kim/simple-nmt)] Simple Neural Machine Translation (Simple-NMT)
 - [[spro/practical-pytorch](https://github.com/spro/practical-pytorch)] Practical PyTorch
 - [[spro/practical-pytorch](https://pytorch.org/tutorials/intermediate/seq2seq_translation_tutorial.html#the-seq2seq-model)] Translation with a Sequence to Sequence Network and Attention
