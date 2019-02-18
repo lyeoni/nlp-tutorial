@@ -61,11 +61,9 @@ First, we calculate a set of attention weights. These will be multiplied by the 
 
 Calculating the attention weights is done with a bach matrix-matrix products of matrices stored in the `decoder's output` and `encoder's outpus`. Because there are sentences of all sizes in the training data, to actually create and train this layer, we have to choose a maximum sentence length (input length, for encoder outputs) that it can apply to. Sentences of the maximum length will use all the attention weights, while shorter sentences will only use the first few.
 
-Below video in [Jay Alammar's blog post](http://jalammar.github.io/visualizing-neural-machine-translation-mechanics-of-seq2seq-models-with-attention/) shows how the attention mechanism enables the decoder to focus on the relevant parts of the input sequence.
+Below image is in [Jay Alammar's blog post](http://jalammar.github.io/visualizing-neural-machine-translation-mechanics-of-seq2seq-models-with-attention/), and well visualize how the attention mechanism enables the decoder to focus on the relevant parts of the input sequence.
 
-<p align="center">
-<img width="600" src="http://jalammar.github.io/images/attention.png" />
-</p>
+[<img src="http://jalammar.github.io/images/attention.png">](http://jalammar.github.io/visualizing-neural-machine-translation-mechanics-of-seq2seq-models-with-attention/)
 
 ## Usage
 
