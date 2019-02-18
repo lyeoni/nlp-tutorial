@@ -63,7 +63,7 @@ Calculating the attention weights is done with a bach matrix-matrix products of 
 
 Below image is in [Jay Alammar's blog post](http://jalammar.github.io/visualizing-neural-machine-translation-mechanics-of-seq2seq-models-with-attention/), and well visualize how the attention mechanism enables the decoder to focus on the relevant parts of the input sequence.
 
-[<img src="http://jalammar.github.io/images/attention.png">](http://jalammar.github.io/visualizing-neural-machine-translation-mechanics-of-seq2seq-models-with-attention/)
+[<p align="center"><img width= 700 src="http://jalammar.github.io/images/attention.png"></p>](http://jalammar.github.io/visualizing-neural-machine-translation-mechanics-of-seq2seq-models-with-attention/)  
 
 ## Usage
 
@@ -206,6 +206,25 @@ Below table shows the results from various models in French-English translation 
 |Who sent you?|Who sent you?|Who sent you?|Who sent you??|Who sent you?|Who sent you?|
 |The boy remained silent.|The boy remained silent.|The boy remained silent.|The boy went swimming.|The boy remained silent.|The boy stayed silent.|
 |She is very beautiful.|She is very beautiful.|She's very beautiful.|She is very beautiful.|She is very beautiful.|She's very pretty.|
+
+### Visualizing Attention
+
+<p align="center">
+<img src="images/sample-attention/sample-attn-1.png" height="300px">
+<img src="images/sample-attention/sample-attn-2.png" height="300px">
+  
+<img src="images/sample-attention/sample-attn-3.png" height="300px">
+<img src="images/sample-attention/sample-attn-4.png" height="300px">
+
+<img src="images/sample-attention/sample-attn-5.png" height="300px">
+<img src="images/sample-attention/sample-attn-6.png" height="300px">
+
+<img src="images/sample-attention/sample-attn-7.png" height="300px">
+<img src="images/sample-attention/sample-attn-8.png" height="300px">
+
+<img src="images/sample-attention/sample-attn-9.png" height="300px">
+<img src="images/sample-attention/sample-attn-10.png" height="300px">
+</p>
 
 ## Acknowledgment
 This work was mainly supported by NEOWIZ AI Research Lab. I would like to thank all the NEOWIZ researchers, especially Sungkyu Oh, for the initial support and feedback.
