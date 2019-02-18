@@ -63,9 +63,9 @@ Calculating the attention weights is done with a bach matrix-matrix products of 
 
 Below video in [Jay Alammar's blog post](http://jalammar.github.io/visualizing-neural-machine-translation-mechanics-of-seq2seq-models-with-attention/) shows how the attention mechanism enables the decoder to focus on the relevant parts of the input sequence.
 
-<center>
-<iframe width="700" height="350" src="http://jalammar.github.io/images/attention_process.mp4" frameborder="0"></iframe>
-</center>
+<p align="center">
+<img width="600" src="http://jalammar.github.io/images/attention.png" />
+</p>
 
 ## Usage
 
@@ -196,7 +196,7 @@ so it is recommended that the BLEU be considered as a reference only because it 
 
 Below table shows the results from various models in French-English translation task.
 
-|Target|GRU|LSTM|Reverse|Reverse+Embeddings|NMT|
+|Target|GRU|LSTM|Reverse|Reverse<br>+Embeddings|NMT|
 |------|------|------|------|------|------|
 |I have done it already.|I've done it.|I did it already.|I already did it.|I've already done it.|I already did that.|
 |You don't have to stay to the end.|You don't have to stay to the end.|You don't have to stay in the end of here.|you don't seem to to stay up.|You don't have to get until the end.|You don't have to stay until the end.|
