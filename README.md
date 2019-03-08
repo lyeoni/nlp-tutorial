@@ -19,6 +19,6 @@ A step-by-step tutorial on how to implement and adapt to the simple real-word NL
 <br>**_Keyword_:** TextCNN, Sentiment analysis
 
 - [Question Matching](https://github.com/lyeoni/nlp-tutorial/tree/master/question-matching): This repo provides a simple PyTorch implementation of Question matching. Here we use the corpus from _Stack Exchange_ in English to build embeddings for entire questions. Using those embeddings, we find similar questions for a given question, and show the corresponding answers to those I found.
-<br>**_Keyword_:** TF-IDF, Question matching
+<br>**_Keyword_:** Tokenization, TF-IDF, Question matching
 
 - [Question Answering for SQuAD](https://github.com/lyeoni/nlp-tutorial/tree/master/question-answering-SQuAD) (working)

@@ -40,6 +40,18 @@ Consider that there are two documents as follows:
 |is|0|1/8|log(2/1) = 0.3|0|0.04|
 |indeed|0|1/8|log(2/1) = 0.3|0|0.04|
 
+## Usage
+
+### 1. Preprocessing
+
+Because the data from Stack Exchange is saved to xml, we first install `beautifulsoup4` and `lxml parser`. You can easily install by running following commands.
+```
+$ pip install beautifulsoup4
+$ pip install lxml
+```
+
+
+
 ## References
 - [[DOsinga/deep_learning_cookbook](https://github.com/DOsinga/deep_learning_cookbook/blob/master/06.1%20Question%20matching.ipynb)] 06.1 Question matching
 - [[Minsuk Heo](https://www.youtube.com/watch?v=meEchvkdB1U)] [딥러닝 자연어처리] TF-IDF
