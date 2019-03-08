@@ -43,7 +43,7 @@ class Tokenizer:
         for paragraph in self.input:
             for sentence in paragraph.splitlines():
                 sentence = self.normalizeString(sentence)
-                for word in sentence.split(' '): # tokenizing
+                for word in sentence.split(' '): # tokenization
                     if word not in self.word2index:
                         self.word2index[word] = self.n_words
                         self.index2word[self.n_words] = word
@@ -79,7 +79,7 @@ def cleaning(input, drop):
     return input
 
 def compute_tf_idf(input):
-    tokenizer = Tokenizer(input.body+input.title)
+    tokenizer = Tokenizer(pd.concat([input.title, input.body]))
     tokenizer.build_vocab()
     
     # Compute TF-IDF 
@@ -114,11 +114,14 @@ def preprocessing(input, clean_drop=False):
                                                   embedding_path = 'data/{}'.format(GLOVE),
                                                   embedding_dim = 100)
     
-    return input, tokenizer, word_emb_matrix, tfidf_matrix
+    return input, word_emb_matrix, tfidf_matrix, tokenizer
 
 if __name__=='__main__':
     config = argparser()
 
     data = loader.to_dataframe('data/'+config.filename)
-    input, tokenizer, word_emb_matirx, tfidf_matrix = preprocessing(input = data,
-                                                                    clean_drop = False)
+    data, word_emb_matirx, tfidf_matrix, tokenizer = preprocessing(input = data,
+                                                                   clean_drop = False)
+    # |data| = (n_pairs, n_columns) = (91517, 5)
+    # |word_emb_matrix| = (tokenizer.n_words, 100)
+    # |tfidf_matrix| = (tokenizer.n_words, 1)
