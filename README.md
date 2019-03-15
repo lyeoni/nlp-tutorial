@@ -12,13 +12,13 @@ A step-by-step tutorial on how to implement and adapt to the simple real-word NL
 - [Neural Machine Translation](https://github.com/lyeoni/nlp-tutorial/tree/master/neural-machine-translation): This repo provides a simple PyTorch implementation of Neural Machine Translation, along with an intrinsic/extrinsic comparison of various sequence-to-sequence (seq2seq) models in translation.
 <br>**_Keyword_:** sequence to seqeunce network(seq2seq), Attention, Auto-regressive, Teacher-forcing
 
+- [Question-Answer Matching](https://github.com/lyeoni/nlp-tutorial/tree/master/question-matching): This repo provides a simple PyTorch implementation of Question-Answer matching. Here we use the corpus from _Stack Exchange_ in English to build embeddings for entire questions. Using those embeddings, we find similar questions for a given question, and show the corresponding answers to those I found.
+<br>**_Keyword_:** Recurrent network on variable-length sequences, TF-IDF, Text classification
+
 - [News Category Classification](https://github.com/lyeoni/nlp-tutorial/tree/master/news-category-classifcation): This repo contains a simple source code for text-classification based on TextCNN. Corpus is _Huffpost_ news category dataset in English. Most open sources are a bit difficult to study & make text-classification model for beginners. So, I hope that this repo can be a good solution for people who want to have their own text-classification model.
-<br>**_Keyword_:** TextCNN, Category classification
+<br>**_Keyword_:** TextCNN, Text classification, Text cateogrization
 
 - [Movie Rating Classification (Korean NLP)](https://github.com/lyeoni/nlp-tutorial/tree/master/movie-rating-classification): This repo contains a simple source code for text-classification based on TextCNN. Corpus is _movie review_ dataset in the Korean language. Most open sources are a bit difficult to study & make text-classification model for beginners. So, I hope that this repo can be a good solution for people who want to have their own text-classification model.
-<br>**_Keyword_:** TextCNN, Sentiment analysis
-
-- [Question Matching](https://github.com/lyeoni/nlp-tutorial/tree/master/question-matching): This repo provides a simple PyTorch implementation of Question matching. Here we use the corpus from _Stack Exchange_ in English to build embeddings for entire questions. Using those embeddings, we find similar questions for a given question, and show the corresponding answers to those I found.
-<br>**_Keyword_:** Tokenization, TF-IDF, Question matching
+<br>**_Keyword_:** TextCNN, Text classification, Sentiment analysis
 
 - [Question Answering for SQuAD](https://github.com/lyeoni/nlp-tutorial/tree/master/question-answering-SQuAD) (working)
