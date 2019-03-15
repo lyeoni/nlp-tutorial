@@ -1,7 +1,28 @@
-# Question Matching
+# Question Answer Matching
 This repository provides a simple PyTorch implementation of Question matching. Here we use the corpus from Stack Exchange in English to build embeddings for entire questions. Using those embeddings, we find similar questions for a given question, and show the corresponding answers to those I found.
 
 ## Model Overview
+
+### LSTM with variable-length seqeucnes
+To feed the variable-length sequences to recurrent network such as GRU, LSTM in PyTorch, we need to follow below step. 
+
+`padding -> pack sequence -> recurrent network -> unpack sequence`
+
+And to pack/unpack the sequence easily, PyTorch provides us with two useful methods: `pack_padded_sequence`, `pad_packed_sequence`.
+
+- `pack_padded_sequence`: *Packs a tensor containing padded_sequences of variable length*. The sequences should be sorted by length in a decreasing order, i.e. `input[:,0]` should be the longest sequence, and `input[:,-1]` the shortest one.
+  - Input: a tensor of size `T x B x *`, where `T` is the length of the longest sequence(equal to first element of list containing sequence length), `B` is the patch size, and `*` is any number of dimensions (including 0). If `batch_first` argument is True, the input is expected in `B x T x *` format.
+  - Returns: `PackedSequence` object.
+
+[<p align="center"><img width= 500 src="https://cdn-images-1.medium.com/max/800/1*XmYVloKMe17nwf747z_CPQ.jpeg"></p>](https://medium.com/@sunwoopark/show-attend-and-tell-with-pytorch-e45b1600a749)
+
+- `pad_packed_sequence`: *Pads a packed batch of variable length sequences*. It's an inverse operation to `pack_padded_sequence`. 
+  - Input: `PackedSequence` object.
+  - Returns: Tuple of tensor containing the padded sequence, and a tensor containing the list of lengths of each sequence in the batch. The returned tensor's data will be of size `T x B x *`, where `T` is the length of the longest sequence and `B` is the batch size. If `batch_first` argument is True, the data will be transposed into `B x T x *` format. Batch elements will be ordered decreasingly by their length.
+
+
+- `PackedSequence`: Holds the `data` and list of `batch_sizes` of a packed sequence. All RNN moduels accept packed sequences as inputs. The data tensor contains packed seqeunce, and the batch_sizes tensor contains integers holding information about the batch size at each seqeunce step.
+  - For instance, given data 'abc' and 'x', the PackedSequence would contain 'axbc' with batch_sizes=[2,1,1].
 
 ### TF-IDF (Term-Frequency - Inverse Documnet Frequency)
 The _TF-IDF_ is usually used to find how relevant a term is in a document, and the _TF-IDF_ value is the product of two statistics, _Term-Frequency (TF) and Inverse Documnet Frequency (IDF)._ 
@@ -50,9 +71,11 @@ $ pip install beautifulsoup4
 $ pip install lxml
 ```
 
-
-
 ## References
+- [[Himanshu](https://medium.com/@sonicboom8/sentiment-analysis-with-variable-length-sequences-in-pytorch-6241635ae130)] Sentiment Analysis with Variable length sequences in Pytorch
+- [[William Falcon](https://towardsdatascience.com/taming-lstms-variable-sized-mini-batches-and-why-pytorch-is-good-for-your-health-61d35642972e)] Taming LSTMs: Variable-sized mini-batches and why PyTorch is good for your health
+- [[PyTorch](https://pytorch.org/docs/stable/nn.html#torch.nn.utils.rnn.pack_padded_sequence)] PyTorch official document - package reference - torch.nn
+- [[Sunwoo Park](https://medium.com/@sunwoopark/show-attend-and-tell-with-pytorch-e45b1600a749)] Show, Attend, and Tell with Pytorch
 - [[DOsinga/deep_learning_cookbook](https://github.com/DOsinga/deep_learning_cookbook/blob/master/06.1%20Question%20matching.ipynb)] 06.1 Question matching
 - [[Minsuk Heo](https://www.youtube.com/watch?v=meEchvkdB1U)] [딥러닝 자연어처리] TF-IDF
 
