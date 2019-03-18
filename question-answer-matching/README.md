@@ -20,7 +20,6 @@ And to pack/unpack the sequence easily, PyTorch provides us with two useful meth
   - Input: `PackedSequence` object.
   - Returns: Tuple of tensor containing the padded sequence, and a tensor containing the list of lengths of each sequence in the batch. The returned tensor's data will be of size `T x B x *`, where `T` is the length of the longest sequence and `B` is the batch size. If `batch_first` argument is True, the data will be transposed into `B x T x *` format. Batch elements will be ordered decreasingly by their length.
 
-
 - `PackedSequence`: Holds the `data` and list of `batch_sizes` of a packed sequence. All RNN moduels accept packed sequences as inputs. The data tensor contains packed seqeunce, and the batch_sizes tensor contains integers holding information about the batch size at each seqeunce step.
   - For instance, given data 'abc' and 'x', the PackedSequence would contain 'axbc' with batch_sizes=[2,1,1].
 
@@ -70,6 +69,13 @@ Because the data from Stack Exchange is saved to xml, we first install `beautifu
 $ pip install beautifulsoup4
 $ pip install lxml
 ```
+<p align="center">
+<img src="https://github.com/lyeoni/nlp-tutorial/tree/master/question-answer-matching/data/images/result-dataloader.png" />
+</p>
+
+<p align="center">
+<img src="https://github.com/lyeoni/nlp-tutorial/tree/master/question-answer-matching/data/images/result-preprocessing.png" />
+</p>
 
 ## References
 - [[Himanshu](https://medium.com/@sonicboom8/sentiment-analysis-with-variable-length-sequences-in-pytorch-6241635ae130)] Sentiment Analysis with Variable length sequences in Pytorch
