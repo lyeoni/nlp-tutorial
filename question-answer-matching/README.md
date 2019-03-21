@@ -70,7 +70,7 @@ To represent a sentence, here we used CBoW.
 - Generalizable to bag-of-n-grams
   - N-gram: a phrase of N tokens
 
-<p align="center"><img width= 500 src="https://github.com/lyeoni/nlp-tutorial/blob/master/question-answer-matching/data/images/cbow"></p>
+<p align="center"><img width= 700 src="https://github.com/lyeoni/nlp-tutorial/blob/master/question-answer-matching/data/images/cbow.png"></p>
 
 CBOW is extremely effective in text classification. for instance, if there are many positive words, the review is likely positive.
 
