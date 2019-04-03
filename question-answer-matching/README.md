@@ -72,7 +72,7 @@ To represent a sentence, here we used CBoW.
 
 <p align="center"><img width= 700 src="https://github.com/lyeoni/nlp-tutorial/blob/master/question-answer-matching/data/images/cbow.png"></p>
 
-CBOW is extremely effective in text classification. for instance, if there are many positive words, the review is likely positive.
+CBoW is extremely effective in text classification. for instance, if there are many positive words, the review is likely positive.
 
 ## Usage
 
@@ -119,11 +119,10 @@ Below table shows that the first 5 lines of preprocessing results. We can see th
 ### 3. Training
 
 ```
-$ python train.py -h
 usage: train.py [-h] [--filename FILENAME] [--clean_drop CLEAN_DROP]
                 [--epochs EPOCHS] [--batch_size BATCH_SIZE]
                 [--learning_rate LEARNING_RATE] [--hidden_size HIDDEN_SIZE]
-                [--n_layers N_LAYERS]
+                [--n_layers N_LAYERS] [--dropout_p DROPOUT_P]
 
 optional arguments:
   -h, --help            show this help message and exit
@@ -132,18 +131,19 @@ optional arguments:
                         Drop if either title or body column is NaN
   --epochs EPOCHS       Number of epochs to train. Default=7
   --batch_size BATCH_SIZE
-                        Mini batch size for gradient descent. Default=32
+                        Mini batch size for gradient descent. Default=2
   --learning_rate LEARNING_RATE
-                        Learning rate. Default=0.01
+                        Learning rate. Default=.001
   --hidden_size HIDDEN_SIZE
                         Hidden size of LSTM. Default=64
   --n_layers N_LAYERS   Number of layers. Default=1
-
+  --dropout_p DROPOUT_P
+                        Dropout ratio. Default=.1
 ```
 
 example usage:
 ```
-$ python train.py --epochs 7 --batch_size 32 --learning_rate .01 --hidden_size 64 --n_layers 1
+$ python train.py --epochs 15 --batch_size 2 --learning_rate .001 --hidden_size 64 --n_layers 1 --dropout_p .1
 ```
 You may need to change the argument parameters.
 

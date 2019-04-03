@@ -13,7 +13,7 @@ A step-by-step tutorial on how to implement and adapt to the simple real-word NL
 <br>**_Keyword_:** sequence to seqeunce network(seq2seq), Attention, Auto-regressive, Teacher-forcing
 
 - [Question-Answer Matching](https://github.com/lyeoni/nlp-tutorial/tree/master/question-answer-matching): This repo provides a simple PyTorch implementation of Question-Answer matching. Here we use the corpus from _Stack Exchange_ in English to build embeddings for entire questions. Using those embeddings, we find similar questions for a given question, and show the corresponding answers to those I found.
-<br>**_Keyword_:** LSTM with variable-length seqeucnes, TF-IDF, Text classification
+<br>**_Keyword_:** TF-IDF, LSTM with variable-length seqeucnes, CBoW, Text classification
 
 - [News Category Classification](https://github.com/lyeoni/nlp-tutorial/tree/master/news-category-classifcation): This repo contains a simple source code for text-classification based on TextCNN. Corpus is _Huffpost_ news category dataset in English. Most open sources are a bit difficult to study & make text-classification model for beginners. So, I hope that this repo can be a good solution for people who want to have their own text-classification model.
 <br>**_Keyword_:** TextCNN, Text classification, Text cateogrization

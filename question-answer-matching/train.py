@@ -31,7 +31,7 @@ def argparser():
                     type=int,
                     default=2,
                     help='Mini batch size for gradient descent. Default=2')    
-    
+                    
     p.add_argument('--learning_rate',
                     type=float,
                     default=.001,
@@ -39,13 +39,18 @@ def argparser():
 
     p.add_argument('--hidden_size',
                     type=int,
-                    default=128,
-                    help='Hidden size of LSTM. Default=128')
+                    default=64,
+                    help='Hidden size of LSTM. Default=64')
 
     p.add_argument('--n_layers',
                     type=int,
                     default=1,
                     help='Number of layers. Default=1')
+
+    p.add_argument('--dropout_p',
+                    type=float,
+                    default=.1,
+                    help='Dropout ratio. Default=.1')
 
     config = p.parse_args()
 
@@ -132,9 +137,9 @@ def train_model(epoch):
         
         # get loss
         output = model(qus, ans, qus_len, ans_len)
-        # |output| = (batch_size, 1)
         loss = criterion(output, labels)
         losses += loss.item()
+        # |output| = (batch_size, 1)
         # |loss| = (1)
         
         # get accuracy
@@ -144,7 +149,7 @@ def train_model(epoch):
         loss.backward()
         optimizer.step()
            
-        # if i % 250 == 0:
+        # if i % 300 == 0:
         #     print('Train Epoch: {} [{}/{} ({:.0f}%)]\tLoss: {:.6f}\tAccuracy: {:.2f}%'.format(
         #         epoch, i * len(qus), len(train_loader.dataset), 100. * i / len(train_loader), loss.item(), 100*acc))
 
@@ -159,9 +164,11 @@ def test_model():
             qus, ans, qus_len, ans_len, labels = data
             qus, ans, labels = qus.to(device), ans.to(device), labels.to(device=device, dtype=torch.float32)
 
+            # sort by sequence length in descending order
             qus, qus_len = sort_by_len(qus, qus_len)
             ans, ans_len = sort_by_len(ans, ans_len)
             
+            # get loss
             output = model(qus, ans, qus_len, ans_len)
             loss = criterion(output, labels)
             losses += loss.item()
@@ -169,20 +176,25 @@ def test_model():
             # get accuracy
             acc = (torch.round(output) == labels).sum().item()/len(qus)       
             accs += acc
+            
     print('====> Test Epoch: {} Average loss: {:.4f}\tAverage accuracy: {:.2f}%\n'.format(
             epoch, losses / len(test_loader), 100*accs/len(test_loader)))        
 
 if __name__=='__main__':
     config = argparser()
 
+    # data load
     data = loader.to_dataframe('data/'+config.filename)
+    
+    # preprocessing
     data, word_emb_matirx, tfidf_matrix, tokenizer = pproc.preprocessing(input = data,
                                                                          clean_drop = config.clean_drop)
     # |data| = (n_pairs, n_columns) = (91,517, 5)
     # |word_emb_matrix| = (tokenizer.n_words, 100)
     # |tfidf_matrix| = (tokenizer.n_words, 1)
     
-    train, test = train_test_split(data, test_size=0.1, random_state=0)    
+    # build dataset & data loader
+    train, test = train_test_split(data, test_size=0.1)    
 
     qa_train = QuestionAnswerDataset(train, tokenizer, negative_sampling=True)
     train_loader = DataLoader(dataset=qa_train, batch_size=config.batch_size, shuffle=True, num_workers=4)
@@ -191,16 +203,17 @@ if __name__=='__main__':
     test_loader = DataLoader(dataset=qa_test, batch_size=len(qa_test), shuffle=False, num_workers=4)
     print('Total batches - train: {}, test: {}'.format(len(train_loader), len(test_loader)))
     
+    # build model
     model = models.Model(input_size = tokenizer.n_words,
                          embedding_size = 100,
                          hidden_size = config.hidden_size,
                          n_layers = config.n_layers,
+                         dropout_p = config.dropout_p,
                          word_embedding_matrix = word_emb_matirx,
                          tfidf_matrix = tfidf_matrix
                          ).to(device)
     criterion = nn.BCELoss()
     optimizer = optim.Adam(model.parameters(), lr=config.learning_rate)
-    # optimizer = optim.RMSprop(model.parameters(), lr=config.learning_rate)
     print(model)
 
     # train
