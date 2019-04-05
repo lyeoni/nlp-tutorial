@@ -47,56 +47,62 @@ def sentencesFromInexes(indexes, tokenizer):
     output_words = [tokenizer.index2word[i.item()] for i in indexes if i.item() != 0]
     return ' '.join(output_words)
 
-def evaluate(sample_qus, output_qus, k=5):
-    # Compute the cosine similarity between sample question and remaining questions
+def evaluate(sample_qus, output_qus, n_topk):
+    # Compute the cosine similarity between sample question and remaining questions.
     output = torch.matmul(output_qus, sample_qus.unsqueeze(-1))
     output /= (torch.norm(output_qus, p=2, dim=1)* torch.norm(sample_qus, p=2, dim=0)).unsqueeze(-1)
     # |output| = (batch_size, 1)
     
     # Returns the k largest elements of the given input tensor.
-    topv, topi = torch.topk(output.squeeze(-1), k)
+    topv, topi = torch.topk(output.squeeze(-1), n_topk)
     
     return topv, topi
 
-def evaluateiters(data, model, tokenizer, iteration=1, rand_seed=0):
+def evaluateiters(data, model, tokenizer, n_topk=3, iteration=5, evaluation_bs=64):
     # build dataset & data loader
-    train, test = train_test_split(data, test_size=0.1, random_state=rand_seed)
-    
-    qa_train = trainer.QuestionAnswerDataset(train, tokenizer, negative_sampling=True)
-    train_loader = DataLoader(dataset=qa_train, batch_size=len(qa_train), shuffle=True, num_workers=4)
-
-    qa_test = trainer.QuestionAnswerDataset(test, tokenizer, negative_sampling=False)
-    test_loader = DataLoader(dataset=qa_test, batch_size=len(qa_test), shuffle=False, num_workers=4)
+    qa_data = trainer.QuestionAnswerDataset(data, tokenizer, negative_sampling=False)
+    data_loader = DataLoader(dataset=qa_data, batch_size=evaluation_bs, shuffle=False, num_workers=4)
     
     model.eval()
     with torch.no_grad():
-        for i, data in enumerate(test_loader, 0):
-            qus, ans, qus_len, ans_len, labels = data
-            qus, ans, labels = qus.to(device), ans.to(device), labels.to(device=device, dtype=torch.float32)
+        for iter in range(iteration):
+            # random index to extract one sample question
+            ri = random.randrange(evaluation_bs)
+            
+            max_similarity, max_similarity_qus = [0]*n_topk, [0]*n_topk
+            for i, data in enumerate(data_loader, 0):
+                qus, ans, qus_len, ans_len, labels = data
+                qus, ans, labels = qus.to(device), ans.to(device), labels.to(device=device, dtype=torch.float32)
 
-            # sort by sequence length in descending order
-            qus, qus_len = trainer.sort_by_len(qus, qus_len)
-            ans, ans_len = trainer.sort_by_len(ans, ans_len)
-            
-            output_qus = model(qus, ans, qus_len, ans_len)
-            # |output_qus| = (batch_size, num_directions*hidden_size)
-            
-            for iter in range(iteration):
-                # randomly choice one sample question
-                ri = random.randrange(len(test_loader.dataset))
-                sample_qus = output_qus[ri]
-                # |sample_qus| = (num_directions*hidden_size)
+                # sort by sequence length in descending order
+                qus, qus_len = trainer.sort_by_len(qus, qus_len)
+                ans, ans_len = trainer.sort_by_len(ans, ans_len)
                 
-                print('sample question:\n{}'.format(sentencesFromInexes(qus[ri], tokenizer)))
-                # print('sample answer:\n{}'.format(sentencesFromInexes(ans[ri], tokenizer)))
+                output_qus = model(qus, ans, qus_len, ans_len)
+                # |output_qus| = (batch_size, num_directions*hidden_size)
                 
-                topv, topi = evaluate(sample_qus, output_qus)
+                # sampling
+                if i==0:
+                    sample_output_qus = output_qus[ri]
+                    # |sample_output_qus| = (num_directions*hidden_size)
+                    sample_qus, sample_ans = qus[ri], ans[ri]
+                
+                # evaluation
+                topv, topi = evaluate(sample_output_qus, output_qus, n_topk)
 
                 for v, i in zip(topv, topi):
-                    print('==================================================================')
-                    print('Similarity(with sample question): {:.4f}'.format(v.item()))
-                    print('Question:\n{}'.format(sentencesFromInexes(qus[i.item()], tokenizer)))
-                    # print('Answer:\n{}'.format(sentencesFromInexes(ans[i.item()], tokenizer)))
+                    if v.item() >= min(max_similarity):
+                        min_i = max_similarity.index(min(max_similarity))
+                        
+                        max_similarity[min_i] = v.item()
+                        max_similarity_qus[min_i] = qus[i.item()]
+            
+            print('\nITER: #{}'.format(iter+1))
+            print('sample question: {}'.format(sentencesFromInexes(sample_qus, tokenizer)))
+            for v, qus in zip(max_similarity, max_similarity_qus):                
+                print('==================================================================')
+                print('Question: {}'.format(sentencesFromInexes(qus, tokenizer)))
+                print('Similarity(with given sample question):\t{:.4f}'.format(v))
                     
 if __name__=='__main__':
     config = argparser()
@@ -122,7 +128,7 @@ if __name__=='__main__':
                          evaluation_mode=True
                          ).to(device)
     
-    # load parameters
+    # load trained model parameters
     model.load_state_dict(torch.load(config.model))
 
     # evaluate
