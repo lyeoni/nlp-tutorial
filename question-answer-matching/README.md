@@ -1,5 +1,5 @@
 # Question Answer Matching
-This repository provides a simple PyTorch implementation of question answer matching. Here we use the corpus from Stack Exchange in English to build embeddings for entire questions. Using those embeddings, we find similar questions for a given question, and show the corresponding answers to those I found.
+This repository provides a simple PyTorch implementation of Question Answer Matching. Here we use the corpus from Stack Exchange in English to build embeddings for entire questions. Using those embeddings, we find similar questions for a given question, and show the corresponding answers to those I found.
 
 ## Model Overview
 
@@ -61,18 +61,18 @@ And to pack/unpack the sequence easily, PyTorch provides us with two useful meth
   - For instance, given data 'abc' and 'x', the PackedSequence would contain 'axbc' with batch_sizes=[2,1,1].
 
 ### CBoW (Continuous Bag of Words)
-To represent a sentence, here we used CBoW.
+To represent a sentence, here we used CBoW. CBoW can be defined as follows:
 
-- Ignore the order of the tokens:
-- Simply average the token vectors:
-  - Averaging is a differentiable operator
-  - Just one operator node in the DAG(Directed acyclic graph).
-- Generalizable to bag-of-n-grams
-  - N-gram: a phrase of N tokens
+- Ignore the order of the tokens.
+- Simply average the token vectors.
+  - Averaging is a differentiable operator.
+  - Just one operator node in the DAG(Directed Acyclic Graph).
+- Generalizable to bag-of-n-grams.
+  - N-gram: a phrase of N tokens.
 
 <p align="center"><img width= 700 src="https://github.com/lyeoni/nlp-tutorial/blob/master/question-answer-matching/data/images/cbow.png"></p>
 
-CBoW is extremely effective in text classification. for instance, if there are many positive words, the review is likely positive.
+CBoW is extremely effective in text classification. For instance, if there are many positive words, the review is likely positive.
 
 ## Usage
 
@@ -119,6 +119,7 @@ Below table shows that the first 5 lines of preprocessing results. We can see th
 ### 3. Training
 
 ```
+$ python train.py -h
 usage: train.py [-h] [--filename FILENAME] [--clean_drop CLEAN_DROP]
                 [--epochs EPOCHS] [--batch_size BATCH_SIZE]
                 [--learning_rate LEARNING_RATE] [--hidden_size HIDDEN_SIZE]
@@ -146,6 +147,62 @@ example usage:
 $ python train.py --epochs 15 --batch_size 2 --learning_rate .001 --hidden_size 64 --n_layers 1 --dropout_p .1
 ```
 You may need to change the argument parameters.
+
+### 4. Evaluation
+```
+$ python evaluate.py -h
+usage: evaluate.py [-h] --model MODEL [--filename FILENAME]
+                   [--clean_drop CLEAN_DROP] [--hidden_size HIDDEN_SIZE]
+                   [--n_layers N_LAYERS] [--dropout_p DROPOUT_P]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --model MODEL         Model file(.pth) path to load trained model's learned
+                        parameters
+  --filename FILENAME
+  --clean_drop CLEAN_DROP
+                        Drop if either title or body column is NaN
+  --hidden_size HIDDEN_SIZE
+                        Hidden size of LSTM. Default=64
+  --n_layers N_LAYERS   Number of layers. Default=1
+  --dropout_p DROPOUT_P
+                        Dropout ratio. Default=.1
+```
+
+example usage:
+```
+$ python evaluate.py --model model.pth
+```
+You may need to change the argument parameters.
+
+### Evaluation
+
+### Dataset
+ - `training-set`
+   - 60,114 question-answer pairs.
+   - With sampling, we doubled it: 30,057 pairs to 60,114 pairs.
+ - `test-set`
+   - 3,356 question-answer pairs
+
+### Models
+The models were trained with NVIDIA Tesla K80, and the number of epochs was 10.
+
+### Intrinsic Evaluation
+
+Below table shows the results from the model in question matching task. If a sample question is given, question matching model tries to find the closest question based on cosine similarity (cf. If we have corresponding answers to the closest questions given, we can answer all the questions.).
+
+|Given sample question|nearest 1|nearest 2|nearest 3|
+|------|------|------|------|
+|Can you travel on an expired passport?|How serious is an expired passport? _(similarity=.96)_|What should I do with my expired passport? _(similarity=.96)_|Can I use a study visa in an expired passport? _(similarity=.92)_|
+|Can I carry comics with me while traveling from the USA to india?|Can I take two laptops to india from united states? one bought in india and one in US. _(similarity=.86)_|Can I carry mobile phones to US from india? _(similarity=.85)_|Can I bring laptops to india from the US? _(similarity=.85)_|
+|Do I need transit visa if I have to recheck my checked in baggage for a layover in dubai?|requirements for the transit visa and baggage information for layover in dubai. _(similarity=.96)_|Do I need a transit visa to collect and re-check my luggage at istanbul ataturk airport? _(similarity=.96)_|Do I need a transit visa for an hour layover in dubai? _(similarity=.94)_|
+|What happens if I'm forced to overstay in the U.S. Because my flight is delayed or cancelled?|Returning plane ticket if delayed in the USA. _(similarity=.87)_|Is airline obliged to refund cost of flight if the passenger is unable to fly because his travel visa has been rejected? _(similarity=.88)_|What rights do I have if my flight is cancelled? _(similarity=.86)_|
+|Are campsites always free on canary islands?|Where can I find authentic areas in canary islands? _(similarity=.93)_|Safe typical dishes to order away from the tourist trail in thailand when english is not supported? _(similarity=.89)_|Is there any region island mountain or village in japan known for hot spicy local cuisine? _(similarity=.89)_|
+|Renting a car in israel when under?|Car rental in israel without additional insurance _(similarity=.86)_|What are the rules for renting a car in italy? _(similarity=.85)_|What should I be aware of when hiring a car from one of the cheaper rental firms in spain? _(similarity=.87)_|
+|What does a technical stop mean in air travel?|What does it mean when a flight is delayed due to a tail swap if anything? _(similarity=.92)_|Is there a way to check that the conditions on your plane ticket are actually what your travel agent said they are? _(similarity=.92)_|Can you earn miles with different airlines for the same one flight if they are part of the same loyalty program? _(similarity=.91)_|
+|Do I need a transit visa for paris when travelling to italy with a schengen visa?|Do I need a transit visa through italy from romania to algeria? _(similarity=.93)_|Do I need a transit visa for paris if i have a schengen visa issued by portugal? _(similarity=.92)_|Do I need a transit visa for frankfurt if i have a schengen italian visa? _(similarity=.92)_
+|Travel to italy via germany using us refugee travel document|Travel to italy with romanian travel document. _(similarity=.79)_|Do I need transit visa for germany travelling from india to poland via germany with polish d type national visa? _(similarity=.79)_|Schengen visa from italy without visiting italy. _(similarity=.77)_|
+|Need to travel to the USA by ship from europe.|Do you need visa to connect in USA from Russia? _(similarity=.74)_|Can I travel to USA from a foreign country _(similarity=.73)_|Should I convert US dollars to euros while in USA or in Europe? _(similarity=.72)_|
 
 ## References
 - [[Himanshu](https://medium.com/@sonicboom8/sentiment-analysis-with-variable-length-sequences-in-pytorch-6241635ae130)] Sentiment Analysis with Variable length sequences in Pytorch
