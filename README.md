@@ -1,5 +1,5 @@
 # NLP Tutorial
-A list of NLP(Natural Language Processing) tutorials built on PyTorch and keras.
+A list of NLP(Natural Language Processing) tutorials built on PyTorch and Keras.
 <br><br>
 <p align="center">
 <img width="400" src="https://raw.githubusercontent.com/pytorch/pytorch/master/docs/source/_static/img/pytorch-logo-dark.png"  align="middle">
