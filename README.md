@@ -22,3 +22,4 @@ A step-by-step tutorial on how to implement and adapt to the simple real-word NL
 <br>**_Keyword_:** TextCNN, Text classification, Sentiment analysis
 
 - [Question Answering for SQuAD](https://github.com/lyeoni/nlp-tutorial/tree/master/question-answering-SQuAD) (working)
+<br>**_Keyword_:** BERT, Multi-Head Attention, Machine Reading Comprehension, Question-Answering
