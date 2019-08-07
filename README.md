@@ -1,4 +1,9 @@
 # NLP Tutorial
+[![LICENSE](https://img.shields.io/github/license/lyeoni/nlp-tutorial?style=flat-square)](https://github.com/lyeoni/nlp-tutorial/blob/master/LICENSE)
+[![GitHub issues](https://img.shields.io/github/issues/lyeoni/nlp-tutorial?style=flat-square)](https://github.com/lyeoni/nlp-tutorial/issues)
+[![GitHub stars](https://img.shields.io/github/stars/lyeoni/nlp-tutorial?style=flat-square&color=important)](https://github.com/lyeoni/nlp-tutorial/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/lyeoni/nlp-tutorial?style=flat-square&color=blueviolet)](https://github.com/lyeoni/nlp-tutorial/network/members)
+
 A list of NLP(Natural Language Processing) tutorials built on PyTorch and Keras.
 <br><br>
 <p align="center">
