@@ -25,6 +25,3 @@ A step-by-step tutorial on how to implement and adapt to the simple real-word NL
 
 - [Movie Rating Classification (Korean NLP)](https://github.com/lyeoni/nlp-tutorial/tree/master/movie-rating-classification): This repo contains a simple source code for text-classification based on TextCNN. Corpus is _movie review_ dataset in the Korean language. Most open sources are a bit difficult to study & make text-classification model for beginners. So, I hope that this repo can be a good solution for people who want to have their own text-classification model.
 <br>**_Keyword_:** TextCNN, Text classification, Sentiment analysis
-
-- [Question Answering for SQuAD](https://github.com/lyeoni/nlp-tutorial/tree/master/question-answering-SQuAD) (working)
-<br>**_Keyword_:** BERT, Multi-Head Attention, Machine Reading Comprehension, Question-Answering
