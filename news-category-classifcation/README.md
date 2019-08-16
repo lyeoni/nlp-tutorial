@@ -1,5 +1,5 @@
 # News Category Classification
-This repo contains a simple source code for text-classification based on TextCNN. Corpus is news category dataset in English. Most open sources are a bit difficult to study & make text-classification model for beginners. So, I hope that this repo can be a good solution for people who want to have their own text-classification model.
+This repository provides a simple Keras implementation of TextCNN for Text Classification. Here we use Huffpost news corpus including corresponding category. The model trained on this dataset identify the category of news based on headlines or short description. 
 
 ## Data
 News category dataset contains around 200k news headlines from the year 2012 to 2018 obtained from HuffPost. You can download this dataset [here](https://www.kaggle.com/rmisra/news-category-dataset).
