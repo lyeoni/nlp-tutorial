@@ -1,5 +1,6 @@
 # Movie Rating Classification
-This repo contains a simple source code for text-classification based on TextCNN. Corpus is movie review dataset in the Korean language. Most open sources are a bit difficult to study & make text-classification model for beginners. So, I hope that this repo can be a good solution for people who want to have their own text-classification model.
+This repository provides a simple Keras implementation of TextCNN for Text Classification. Here we use the movie review corpus written in Korean. The model trained on this dataset identify the sentiment based on review text. 
+Keyword: TextCNN, Text classification, Sentiment analysis
 
 ## Data
 32,775 corpus(review)-score pairs.
