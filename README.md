@@ -24,8 +24,9 @@ Here we implement unidirectional/bidirectional language models, and pre-train la
 - [Question-Answer Matching](https://github.com/lyeoni/nlp-tutorial/tree/master/question-answer-matching): This repo provides a simple PyTorch implementation of Question-Answer matching. Here we use the corpus from _Stack Exchange_ to build embeddings for entire questions. Using those embeddings, we find similar questions for a given question, and show the corresponding answers to those I found.
 <br>**_Keyword_:** CBoW, TF-IDF, LSTM with variable-length seqeucnes, Text classification<br>
 
-- [News Category Classification](https://github.com/lyeoni/nlp-tutorial/tree/master/news-category-classifcation): This repo provides a simple Keras implementation of Text Classification using TextCNN. Corpus is _Huffpost_ news category dataset. Most open sources are a bit difficult to study & make text-classification model for beginners. So, I hope that this repo can be a good solution for people who want to have their own text-classification model.
+- [News Category Classification](https://github.com/lyeoni/nlp-tutorial/tree/master/news-category-classifcation): This repo provides a simple Keras implementation of TextCNN for Text Classification. Here we use _Huffpost_ news corpus including corresponding category. The model trained on this dataset identify the category of news based on headlines or short description.
 <br>**_Keyword_:** TextCNN, Text classification, Text cateogrization<br>
 
-- [Movie Rating Classification (Korean NLP)](https://github.com/lyeoni/nlp-tutorial/tree/master/movie-rating-classification): This repo provides a simple Keras implementation of Text Classification using TextCNN. Corpus is _movie review_ dataset in Korean. Most open sources are a bit difficult to study & make text-classification model for beginners. So, I hope that this repo can be a good solution for people who want to have their own text-classification model.
+- [Movie Rating Classification (Korean NLP)](https://github.com/lyeoni/nlp-tutorial/tree/master/movie-rating-classification): This repo provides a simple Keras implementation of TextCNN for Text Classification.
+Here we use the _movie review_ corpus written in Korean. The model trained on this dataset identify the sentiment based on review text.
 <br>**_Keyword_:** TextCNN, Text classification, Sentiment analysis<br>
