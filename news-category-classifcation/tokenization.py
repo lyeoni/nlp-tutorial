@@ -8,6 +8,7 @@ class Vocab(object):
         self.pad_token = pad_token
         self.min_freq = min_freq
         self.lower = lower
+        self.embedding_weights = None
         self.stoi, self.itos, self.freqs = {}, {}, {}
 
         # Initialize with special tokens
