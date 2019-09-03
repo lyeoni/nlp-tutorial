@@ -145,7 +145,7 @@ optional arguments:
 
 example:
 ```
-
+$ python trainer.py --train_corpus corpus/corpus.train.txt --valid_corpus corpus/corpus.valid.txt --vocab vocab.train.pkl --model_type cbow --epochs 15 --embedding_trainable
 ```
 
 ## Evaluation
