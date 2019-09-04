@@ -1,5 +1,14 @@
 $ python trainer.py --train_corpus corpus/corpus.train.txt --valid_corpus corpus/corpus.valid.txt --vocab cbow.vocab.train.pkl --model_type cbow --epochs 30 --learning_rate 5e-3 --embedding_trainable --hidden_size 128
 Namespace(batch_size=128, cuda=True, dropout_p=0.5, embedding_size=100, embedding_trainable=True, epochs=30, hidden_size=128, is_sentence=False, learning_rate=0.005, max_seq_length=64, model_type='cbow', n_layers=2, shuffle=True, tokenizer='treebank', train_corpus='corpus/corpus.train.txt', valid_corpus='corpus/corpus.valid.txt', vocab='cbow.vocab.train.pkl')=========MODEL========= CBoWClassifier(  (embedding): Embedding(42765, 100)  (fc): Linear(in_features=100, out_features=128, bias=True)  (relu): ReLU()  (dropout): Dropout(p=0.5)  (fc2): Linear(in_features=128, out_features=41, bias=True)  (softmax): LogSoftmax())
+=========MODEL=========
+ CBoWClassifier(
+  (embedding): Embedding(42765, 100)
+  (fc): Linear(in_features=100, out_features=128, bias=True)
+  (relu): ReLU()
+  (dropout): Dropout(p=0.5)
+  (fc2): Linear(in_features=128, out_features=41, bias=True)
+  (softmax): LogSoftmax()
+)
 Train Epoch: 1 [0/1256 (0%)]    Loss: 3.6997    Accuracy: 2.344%
 Train Epoch: 1 [251/1256 (20%)]         Loss: 3.3593    Accuracy: 19.531%
 Train Epoch: 1 [502/1256 (40%)]         Loss: 3.1136    Accuracy: 23.438%
