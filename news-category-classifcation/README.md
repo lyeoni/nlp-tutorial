@@ -145,7 +145,7 @@ optional arguments:
 
 example:
 ```
-$ python trainer.py --train_corpus corpus/corpus.train.txt --valid_corpus corpus/corpus.valid.txt --vocab vocab.train.pkl --model_type cbow --epochs 15 --embedding_trainable
+$ python trainer.py --train_corpus corpus/corpus.train.txt --valid_corpus corpus/corpus.valid.txt --vocab vocab.train.pkl--model_type cbow --epochs 30 --learning_rate 5e-3 --embedding_trainable
 ```
 
 ## Evaluation
@@ -173,12 +173,12 @@ Model architecture snapshots are like as below. You may increase the performance
 The models were trained with NVIDIA Tesla K80, and the number of epochs was 30. The following table shows the evaluation results for the validation set.
 
 |Model|Word representation|Loss|Accuracy|
-|-|-|-|-|
+|-|-|:-:|:-:|
 |CBoW|-|1.904|48.96%|
 ||fastText - _cbow (freeze embedding layer)_|1.836|49.22%|
 ||fastText - _cbow (fine-tune all)_|1.547|57.00%|
-||fastText - _skipgram (freeze embedding layer)_||||
-||fastText - _skipgram (fine-tune all)_|||
+||fastText - _skipgram (freeze embedding layer)_|1.733|52.02%|
+||fastText - _skipgram (fine-tune all)_|1.499|58.99%|
 ||||
 |LSTM|-|||
 ||fastText - _cbow (freeze)_|||
