@@ -1,24 +1,5 @@
-# News Category Classification
-This repository provides a simple Keras implementation of TextCNN for Text Classification. Here we use Huffpost news corpus including corresponding category. The model trained on this dataset identify the category of news based on headlines or short description. 
-
-## Data
-News category dataset contains around 200k news headlines from the year 2012 to 2018 obtained from HuffPost. You can download this dataset [here](https://www.kaggle.com/rmisra/news-category-dataset).
-
-The dataset contains 202,372 records. Each json record contains following attributes:
-
-- `category`: Category article belongs to
-- `headline`: Headline of the article
-- `authors`: Person authored the article
-- `link`: Link to the post
-- `short_description`: Short description of the article
-- `date`: Date the article was published  
-
-Below table shows that the first 5 lines from the dataset provided by [Kaggle](https://www.kaggle.com/).
-
-<p align="left">
-<img width="700" src="https://github.com/lyeoni/nlp-tutorial/blob/master/news-category-classifcation/images/data_sample.png">
-</p>
-
+# News Category Classification (Keras)
+A simple Keras implementation of TextCNN for Text Classification. 
 
 ## Usage
 ### 1. Preprocessing corpus

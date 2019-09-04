@@ -151,25 +151,36 @@ $ python trainer.py --train_corpus corpus/corpus.train.txt --valid_corpus corpus
 ## Evaluation
 
 ### Models
+
+Model architecture snapshots are like as below. You may increase the performance with hyper-parameter optimization. (cf. Among Kaggle kernels for this dataset, 65% accuracy is the highest.)
+
 #### CBoW
 ```
+ CBoWClassifier(
+  (embedding): Embedding(42765, 100)
+  (fc): Linear(in_features=100, out_features=128, bias=True)
+  (relu): ReLU()
+  (dropout): Dropout(p=0.5)
+  (fc2): Linear(in_features=128, out_features=41, bias=True)
+  (softmax): LogSoftmax()
+)
 ```
 #### LSTM
 ```
 ```
 
 ### Results
-Following table shows that the evaluation result of each architecture.
+The models were trained with NVIDIA Tesla K80, and the number of epochs was 30. The following table shows the evaluation results for the validation set.
 
-|Architecture|Word representation|Loss|Accuracy|
+|Model|Word representation|Loss|Accuracy|
 |-|-|-|-|
-|CBoW Classifier|-|||
-||fastText - _cbow (freeze)_|||
-||fastText - _cbow (fine-tune)_|||
-||fastText - _skipgram (freeze)_||||
-||fastText - _skipgram (fine-tune)_|||
+|CBoW|-|1.904|48.96%|
+||fastText - _cbow (freeze embedding layer)_|1.836|49.22%|
+||fastText - _cbow (fine-tune all)_|1.547|57.00%|
+||fastText - _skipgram (freeze embedding layer)_||||
+||fastText - _skipgram (fine-tune all)_|||
 ||||
-|LSTM Classifier|-|||
+|LSTM|-|||
 ||fastText - _cbow (freeze)_|||
 ||fastText - _cbow (fine-tune)_|||
 ||fastText - _skipgram (freeze)_||||
