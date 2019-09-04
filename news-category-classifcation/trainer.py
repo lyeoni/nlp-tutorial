@@ -34,11 +34,11 @@ def argparser():
     # Train parameters
     p.add_argument('--cuda', default=True, type=bool,
                    help='Whether CUDA is currently available')
-    p.add_argument('--epochs', default=7, type=int,
+    p.add_argument('--epochs', default=30, type=int,
                    help='Total number of training epochs to perform')
     p.add_argument('--batch_size', default=128, type=int,
                    help='Batch size for training')
-    p.add_argument('--learning_rate', default=1e-4, type=float,
+    p.add_argument('--learning_rate', default=5e-3, type=float,
                    help='Initial learning rate')
     p.add_argument('--shuffle', default=True, type=bool, 
                    help='Whether to reshuffle at every epoch')

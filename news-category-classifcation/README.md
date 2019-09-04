@@ -16,7 +16,7 @@ The dataset contains 200k records. Each json record contains following attribute
 - date: Date the article was published
 
 <p align="center">
-<img width="600" src="https://github.com/lyeoni/nlp-tutorial/blob/master/news-category-classifcation/images/data_sample.png">
+<img width="600" src="https://github.com/lyeoni/nlp-tutorial/blob/master/news-category-classifcation/data/images/sample.png">
 </p>
 
 ## Usage
