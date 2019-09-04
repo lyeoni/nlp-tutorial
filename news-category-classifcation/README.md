@@ -156,7 +156,7 @@ Model architecture snapshots are like as below. You may increase the performance
 
 #### CBoW
 ```
- CBoWClassifier(
+CBoWClassifier(
   (embedding): Embedding(42765, 100)
   (fc): Linear(in_features=100, out_features=128, bias=True)
   (relu): ReLU()
@@ -167,6 +167,12 @@ Model architecture snapshots are like as below. You may increase the performance
 ```
 #### LSTM
 ```
+LSTMClassifier(
+  (embedding): Embedding(42765, 100)
+  (lstm): LSTM(100, 128, num_layers=2, batch_first=True, dropout=0.5, bidirectional=True)
+  (fc): Linear(in_features=256, out_features=41, bias=True)
+  (softmax): LogSoftmax()
+)
 ```
 
 ### Results
@@ -180,8 +186,8 @@ The models were trained with NVIDIA Tesla K80, and the number of epochs was 30. 
 ||fastText - _skipgram (freeze embedding layer)_|1.733|52.02%|
 ||fastText - _skipgram (fine-tune all)_|1.499|58.99%|
 ||||
-|LSTM|-|||
-||fastText - _cbow (freeze)_|||
-||fastText - _cbow (fine-tune)_|||
-||fastText - _skipgram (freeze)_||||
-||fastText - _skipgram (fine-tune)_|||
+|LSTM|-|1.760|52.81%|
+||fastText - _cbow (freeze embedding layer)_|1.378|61.43%|
+||fastText - _cbow (fine-tune all)_|||
+||fastText - _skipgram (freeze embedding layer)_||||
+||fastText - _skipgram (fine-tune all)_|||
