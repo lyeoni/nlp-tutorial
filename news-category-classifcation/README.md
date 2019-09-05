@@ -41,7 +41,7 @@ In the case of an LSTM, for each element in the sequence, there is a correspondi
 Here we use bidirectional LSTM for the task of text classification.
 Model architecture can be defined as follows:
 
-<p align="center"><img width= 700 src="https://github.com/lyeoni/nlp-tutorial/blob/master/news-category-classifcation/data/images/lstm.png"></p>
+<p align="center"><img width= 600 src="https://github.com/lyeoni/nlp-tutorial/blob/master/news-category-classifcation/data/images/lstm.png"></p>
 
 ## Usage
 
