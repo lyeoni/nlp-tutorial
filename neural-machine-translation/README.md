@@ -7,7 +7,7 @@ As you already know, a Recurrent Neural Network, or RNN, is a network that opera
 A seq2seq network(model), or Encoder-Decoder network, is a model consisting of two RNNs called the encoder and decoder. The encoder reads an input sequence and outputs a single vector, and the decoder reads that vector to produce an output sequence.
 
 <p align="left">
-<img width="700" src="https://github.com/lyeoni/nlp-tutorial/blob/master/neural-machine-translation/images/readme/seq2seq.png">
+<img width="700" src="https://github.com/lyeoni/nlp-tutorial/blob/master/neural-machine-translation/data/images/readme/seq2seq.png">
 </p>
 
 Unlike sequence prediction with a single RNN, where every input corresponds to an output, the seq2seq model frees us from sequence length and order, which makes it ideal for translation between two languages.
@@ -50,7 +50,7 @@ So we train using a method called Teacher Forcing, which is the concept of using
 <img src="https://latex.codecogs.com/gif.latex?\dpi{100}&space;\fn_cm&space;\hat{y}&space;=&space;argmax_{y}P(y|X,&space;y_{<t};\theta)\;&space;where\;&space;X&space;=&space;{x_{1},...,x_{n}}\;&space;and\;&space;Y=&space;{y_{0},...,y_{n}}" title="\hat{y} = argmax_{y}P(y|X, y_{<t};\theta)\; where\; X = {x_{1},...,x_{n}}\; and\; Y= {y_{0},...,y_{n}}" />
 </p>
 <p align="center">
-<img width="600" src="https://github.com/lyeoni/nlp-tutorial/blob/master/neural-machine-translation/images/readme/teacher-forcing.png" />
+<img width="600" src="https://github.com/lyeoni/nlp-tutorial/blob/master/neural-machine-translation/data/images/readme/teacher-forcing.png" />
 </p>
 
 ### Attention
@@ -210,20 +210,20 @@ Below table shows the results from various models in French-English translation 
 ### Visualizing Attention
 
 <p align="center">
-<img src="images/sample-attention/sample-attn-1.png" height="300px">
-<img src="images/sample-attention/sample-attn-2.png" height="300px">
+<img src="data/images/sample-attention/sample-attn-1.png" height="300px">
+<img src="data/images/sample-attention/sample-attn-2.png" height="300px">
   
-<img src="images/sample-attention/sample-attn-3.png" height="300px">
-<img src="images/sample-attention/sample-attn-4.png" height="300px">
+<img src="data/images/sample-attention/sample-attn-3.png" height="300px">
+<img src="data/images/sample-attention/sample-attn-4.png" height="300px">
 
-<img src="images/sample-attention/sample-attn-5.png" height="300px">
-<img src="images/sample-attention/sample-attn-6.png" height="300px">
+<img src="data/images/sample-attention/sample-attn-5.png" height="300px">
+<img src="data/images/sample-attention/sample-attn-6.png" height="300px">
 
-<img src="images/sample-attention/sample-attn-7.png" height="300px">
-<img src="images/sample-attention/sample-attn-8.png" height="300px">
+<img src="data/images/sample-attention/sample-attn-7.png" height="300px">
+<img src="data/images/sample-attention/sample-attn-8.png" height="300px">
 
-<img src="images/sample-attention/sample-attn-9.png" height="300px">
-<img src="images/sample-attention/sample-attn-10.png" height="300px">
+<img src="data/images/sample-attention/sample-attn-9.png" height="300px">
+<img src="data/images/sample-attention/sample-attn-10.png" height="300px">
 </p>
 
 ## Acknowledgment
