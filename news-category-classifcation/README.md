@@ -19,6 +19,30 @@ The dataset contains 200k records. Each json record contains following attribute
 <img width="600" src="https://github.com/lyeoni/nlp-tutorial/blob/master/news-category-classifcation/data/images/sample.png">
 </p>
 
+## Model Overview
+
+### CBoW (Continuous Bag of Words)
+CBoW is extremely simple, and effective in text classification. For instance, if there are many positive words, the review is likely positive.
+CBoW can be defined as follows:
+- Ignore the order of the tokens.
+- Simply average the token vectors.
+  - Averaging is a differentiable operator.
+  - Just one operator node in the DAG(Directed Acyclic Graph).
+- Generalizable to bag-of-n-grams.
+  - N-gram: a phrase of N tokens.
+
+<p align="center"><img width= 700 src="https://github.com/lyeoni/nlp-tutorial/blob/master/news-category-classifcation/data/images/cbow.png"></p>
+
+### LSTM (Long-Short Term Memory Networks)
+A Recurrent Neural Network, or RNN, is a network that operates on a sequence and uses its own output as input for subsequent steps. For example, its output could be used as part of the next input, so that information can propogate along as the network passes over the sequence.
+
+In the case of an LSTM, for each element in the sequence, there is a corresponding hidden state, which in principle can contain information from arbitrary points earlier in the sequence. We can use all the hidden states to predict categories.
+
+Here we use bidirectional LSTM for the task of text classification.
+Model architecture can be defined as follows:
+
+<p align="center"><img width= 700 src="https://github.com/lyeoni/nlp-tutorial/blob/master/news-category-classifcation/data/images/lstm.png"></p>
+
 ## Usage
 
 ### 1. Build Corpus
