@@ -218,4 +218,4 @@ The models were trained with NVIDIA Tesla K80, and the number of epochs was 30. 
 ||fastText - _cbow (freeze embedding layer)_|1.378|61.43%|
 ||fastText - _cbow (fine-tune all)_|1.412|63.31%|
 ||fastText - _skipgram (freeze embedding layer)_|1.243|63.77%|
-||fastText - _skipgram (fine-tune all)_|1.419|63.57%|
+||fastText - _skipgram (fine-tune all)_|1.290|64.56%|
