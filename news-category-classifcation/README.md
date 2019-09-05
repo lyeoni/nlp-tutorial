@@ -40,6 +40,8 @@ CRIME   There Were 2 Mass Shootings In Texas Last Week, But Only 1 On TV. She le
 ENTERTAINMENT   Will Smith Joins Diplo And Nicky Jam For The 2018 World Cup's Official Song. Of course it has a song.
 ```
 
+<br>
+
 ### 2. Preprocessing
 
 #### Cleaning: remove noise
@@ -99,6 +101,8 @@ Vocabulary size:  42765
 Vocabulary saved to skipgram.vocab.train.pkl
 ```
 
+<br>
+
 ### 3. Training
 ```
 $ python trainer.py  -h
@@ -145,7 +149,7 @@ optional arguments:
 
 example:
 ```
-$ python trainer.py --train_corpus corpus/corpus.train.txt --valid_corpus corpus/corpus.valid.txt --vocab vocab.train.pkl--model_type cbow --epochs 30 --learning_rate 5e-3 --embedding_trainable
+$ python trainer.py --train_corpus corpus/corpus.train.txt --valid_corpus corpus/corpus.valid.txt --vocab vocab.train.pkl --model_type cbow --epochs 30 --learning_rate 5e-3 --embedding_trainable
 ```
 
 ## Evaluation
@@ -186,8 +190,8 @@ The models were trained with NVIDIA Tesla K80, and the number of epochs was 30. 
 ||fastText - _skipgram (freeze embedding layer)_|1.733|52.02%|
 ||fastText - _skipgram (fine-tune all)_|1.499|58.99%|
 ||||
-|LSTM|-|1.760|52.81%|
+|LSTM|-|1.665|56.17%|
 ||fastText - _cbow (freeze embedding layer)_|1.378|61.43%|
-||fastText - _cbow (fine-tune all)_|||
-||fastText - _skipgram (freeze embedding layer)_||||
-||fastText - _skipgram (fine-tune all)_|||
+||fastText - _cbow (fine-tune all)_|1.412|63.31%|
+||fastText - _skipgram (freeze embedding layer)_|1.243|63.77%|
+||fastText - _skipgram (fine-tune all)_|1.419|63.57%|
