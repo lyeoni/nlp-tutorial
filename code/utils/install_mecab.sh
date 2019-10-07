@@ -4,7 +4,7 @@ bash <(curl -s https://raw.githubusercontent.com/kh-kim/nlp_preprocessing/master
 
 # After installation, run the code below to check it works well
 # $ python
-# >>> from konly.tag import Mecab
+# >>> from konlpy.tag import Mecab
 # >>> mecab = Mecab()
 # >>> mecab.morphs('your sentence')
 
