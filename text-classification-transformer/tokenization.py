@@ -1,8 +1,14 @@
 from typing import List
 from collections import OrderedDict
 
+from prenlp.tokenizer import SentencePiece
+
 class Tokenizer:
-    def __init__(self, tokenizer, vocab_file, pad_token = '[PAD]', unk_token = '[UNK]', bos_token = '[BOS]', eos_token = '[EOS]'):
+    def __init__(self, tokenizer, vocab_file: str,
+                 pad_token: str = '[PAD]',
+                 unk_token: str = '[UNK]',
+                 bos_token: str = '[BOS]',
+                 eos_token: str = '[EOS]'):
         self.tokenizer = tokenizer
         self.pad_token = pad_token
         self.unk_token = unk_token
@@ -73,3 +79,14 @@ class Tokenizer:
         """Id of eos_token in the vocab.
         """
         return self.convert_token_to_id(self.eos_token)
+
+class PretrainedTokenizer(Tokenizer):
+    def __init__(self, pretrained_model: str, vocab_file: str,
+                 pad_token: str = '[PAD]',
+                 unk_token: str = '[UNK]',
+                 bos_token: str = '[BOS]',
+                 eos_token: str = '[EOS]'):
+        tokenizer = SentencePiece.load(pretrained_model)
+
+        super(PretrainedTokenizer, self).__init__(tokenizer, vocab_file, pad_token, unk_token, bos_token, eos_token)
+        
