@@ -106,24 +106,25 @@ class EncoderLayer(nn.Module):
         return ffn_outputs, attn_weights
 
 class TransformerEncoder(nn.Module):
+    """TransformerEncoder is a stack of N encoder layers.
+
+    Args:
+        vocab_size (int)    : vocabulary size (vocabulary: collection mapping token to numerical identifiers)
+        seq_len    (int)    : input sequence length
+        d_model    (int)    : number of expected features in the input
+        n_layers   (int)    : number of sub-encoder-layers in the encoder
+        n_heads    (int)    : number of heads in the multiheadattention models
+        p_drop     (float)  : dropout value
+        d_ff       (int)    : dimension of the feedforward network model
+        pad_id     (int)    : pad token id
+
+    Examples:
+    >>> encoder = TransformerEncoder(vocab_size=1000, seq_len=512)
+    >>> inp = torch.arange(512).repeat(2, 1)
+    >>> encoder(inp)
+    """
+    
     def __init__(self, vocab_size, seq_len, d_model=512, n_layers=6, n_heads=8, p_drop=0.1, d_ff=2048, pad_id=0):
-        """TransformerEncoder is a stack of N encoder layers.
-
-        Args:
-            vocab_size (int)    : vocabulary size (vocabulary: collection mapping token to numerical identifiers)
-            seq_len    (int)    : input sequence length
-            d_model    (int)    : number of expected features in the input
-            n_layers   (int)    : number of sub-encoder-layers in the encoder
-            n_heads    (int)    : number of heads in the multiheadattention models
-            p_drop     (float)  : dropout value
-            d_ff       (int)    : dimension of the feedforward network model
-            pad_id     (int)    : pad token id
-
-        Examples:
-        >>> encoder = TransformerEncoder(vocab_size=1000, seq_len=512)
-        >>> inp = torch.arange(512).repeat(2, 1)
-        >>> encoder(inp)
-        """
         super(TransformerEncoder, self).__init__()
         self.pad_id = pad_id
         self.sinusoid_table = self.get_sinusoid_table(seq_len+1, d_model) # (seq_len+1, d_model)
