@@ -13,19 +13,28 @@ A list of NLP(Natural Language Processing) tutorials built on PyTorch.
 ## Table of Contents
 A step-by-step tutorial on how to implement and adapt to the simple real-word NLP task.
 
+
+### Text Classification
+
 - [News Category Classification](https://github.com/lyeoni/nlp-tutorial/tree/master/news-category-classifcation): This repo provides a simple PyTorch implementation of Text Classification, with simple annotation. Here we use _Huffpost_ news corpus including corresponding category. The classification model trained on this dataset identify the category of news article based on their headlines and descriptions.
-<br>**_Keyword_:** CBoW, LSTM, fastText, Text cateogrization, Text classification<br>
+<br>**_Keyword_:** CBoW, LSTM, fastText, Text cateogrization<br>
+
+- [IMDb Movie Review Classification](https://github.com/lyeoni/nlp-tutorial/tree/master/text-classification-transformer): This text classification tutorial trains a transformer model on the IMDb movie review dataset for sentiment analysis. It provides a simple PyTorch implementation, with simple annotation.
+<br>**_Keyword_:** Transformer, Sentiment analysis<br>
 
 - [Question-Answer Matching](https://github.com/lyeoni/nlp-tutorial/tree/master/question-answer-matching): This repo provides a simple PyTorch implementation of Question-Answer matching. Here we use the corpus from _Stack Exchange_ to build embeddings for entire questions. Using those embeddings, we find similar questions for a given question, and show the corresponding answers to those I found.
-<br>**_Keyword_:** CBoW, TF-IDF, LSTM with variable-length seqeucnes, Text classification<br>
+<br>**_Keyword_:** CBoW, TF-IDF, LSTM with variable-length seqeucnes<br>
 
+- [Movie Review Classification (Korean NLP)](https://github.com/lyeoni/nlp-tutorial/tree/master/movie-rating-classification): This repo provides a simple Keras implementation of TextCNN for Text Classification.
+Here we use the _movie review_ corpus written in Korean. The model trained on this dataset identify the sentiment based on review text.
+<br>**_Keyword_:** TextCNN, Sentiment analysis<br>
+
+### Neural Machine Translation
 - [Neural Machine Translation](https://github.com/lyeoni/nlp-tutorial/tree/master/neural-machine-translation): This repo provides a simple PyTorch implementation of Neural Machine Translation, along with an intrinsic/extrinsic comparison of various sequence-to-sequence (seq2seq) models in translation.
 <br>**_Keyword_:** sequence to seqeunce network(seq2seq), Attention, Autoregressive, Teacher-forcing<br>
 
+### Natural Language Understanding
 - [Neural Language Model](https://github.com/lyeoni/pretraining-for-language-understanding): This repo provides a simple PyTorch implementation of Neural Language Model for natural language understanding.
 Here we implement unidirectional/bidirectional language models, and pre-train language representations from unlabeled text (_Wikipedia_ corpus).
-<br>**_Keyword_:** Autoregressive Language Model, Perplexity, Natural language understanding<br>
+<br>**_Keyword_:** Autoregressive Language Model, Perplexity<br>
 
-- [Movie Rating Classification (Korean NLP)](https://github.com/lyeoni/nlp-tutorial/tree/master/movie-rating-classification): This repo provides a simple Keras implementation of TextCNN for Text Classification.
-Here we use the _movie review_ corpus written in Korean. The model trained on this dataset identify the sentiment based on review text.
-<br>**_Keyword_:** TextCNN, Text classification, Sentiment analysis<br>

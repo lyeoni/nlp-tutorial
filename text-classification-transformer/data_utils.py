@@ -34,7 +34,7 @@ def convert_examples_to_features(examples: List[InputExample],
         input_ids = tokenizer.convert_tokens_to_ids(tokens)
         padding_length = max_seq_len - len(input_ids)
         input_ids = input_ids + ([pad_token_id] * padding_length)
-        label_id = label_dict.get(example.label, -1)
+        label_id = label_dict.get(example.label)
         
         feature = InputFeatures(input_ids, label_id)
         features.append(feature)
@@ -56,7 +56,7 @@ def create_examples(args,
     
     labels = sorted(list(set([example.label for example in examples])))
     label_dict = {label: i for i, label in enumerate(labels)}
-    if mode=='train':   print('Label dictionary: ', label_dict)
+    # print('[{}]\tLabel dictionary:\t{}'.format(mode, label_dict))
 
     features = convert_examples_to_features(examples, label_dict, tokenizer, args.max_seq_len)
     
