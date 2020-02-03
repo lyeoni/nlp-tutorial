@@ -89,4 +89,3 @@ class PretrainedTokenizer(Tokenizer):
         tokenizer = SentencePiece.load(pretrained_model)
 
         super(PretrainedTokenizer, self).__init__(tokenizer, vocab_file, pad_token, unk_token, bos_token, eos_token)
-        

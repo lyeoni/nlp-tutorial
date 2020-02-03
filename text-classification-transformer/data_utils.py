@@ -30,18 +30,20 @@ def convert_examples_to_features(examples: List[InputExample],
     for i, example in enumerate(examples):
         tokens = tokenizer.tokenize(example.text)
         tokens = tokens[:max_seq_len]
-        
+
         input_ids = tokenizer.convert_tokens_to_ids(tokens)
         padding_length = max_seq_len - len(input_ids)
         input_ids = input_ids + ([pad_token_id] * padding_length)
-        label_id = label_dict.get(example.label)
+        label_id = label_dict.get(example.label, -1)
         
         feature = InputFeatures(input_ids, label_id)
         features.append(feature)
 
     return features
 
-def create_examples(args, tokenizer, mode: str) -> Iterable[Union[List[InputExample], dict]]:
+def create_examples(args,
+                    tokenizer,
+                    mode: str = 'train') -> Iterable[Union[List[InputExample], dict]]:
     if mode == 'train':
         dataset = DATASETS_CLASSES[args.dataset]()[0]
     elif mode == 'test':
@@ -54,12 +56,13 @@ def create_examples(args, tokenizer, mode: str) -> Iterable[Union[List[InputExam
     
     labels = sorted(list(set([example.label for example in examples])))
     label_dict = {label: i for i, label in enumerate(labels)}
+    if mode=='train':   print('Label dictionary: ', label_dict)
 
     features = convert_examples_to_features(examples, label_dict, tokenizer, args.max_seq_len)
-
+    
     all_input_ids = torch.tensor([feature.input_ids for feature in features], dtype=torch.long)
     all_label_ids = torch.tensor([feature.label_id for feature in features], dtype=torch.long)
 
     dataset = TensorDataset(all_input_ids, all_label_ids)
 
-    return dataset, label_dict
+    return dataset
