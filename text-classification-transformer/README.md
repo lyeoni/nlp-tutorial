@@ -236,6 +236,17 @@ optional arguments:
                         the dimension of the feedforward network
 ```
 
+### 3. Inference
+```shell
+python inference.py --model .model/model.ep7
+```
+
+Out:
+```
+...
+class: tensor([1], device='cuda:0') # [0: neg, 1: pos]
+```
+
 ### References
 - [Attention Is All You Need](https://arxiv.org/abs/1706.03762)
 - [SEQUENCE-TO-SEQUENCE MODELING WITH NN.TRANSFORMER AND TORCHTEXT](https://pytorch.org/tutorials/beginner/transformer_tutorial.html)
