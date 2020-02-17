@@ -197,7 +197,7 @@ Valid Epoch: 3  >       Loss: 0.4600 / Acc: 85.5%
 
 You may need to change below argument parameters.
 ```
-python main.py -h
+$ python main.py -h
 usage: main.py [-h] [--dataset DATASET] [--vocab_file VOCAB_FILE]
                [--tokenizer TOKENIZER] [--pretrained_model PRETRAINED_MODEL]
                [--output_model_prefix OUTPUT_MODEL_PREFIX]
@@ -238,7 +238,7 @@ optional arguments:
 
 ### 3. Inference
 ```shell
-python inference.py --model .model/model.ep7
+$ python inference.py --model .model/model.ep7
 ```
 
 Out:

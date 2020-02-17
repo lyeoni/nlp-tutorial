@@ -91,4 +91,6 @@ class PretrainedTokenizer(Tokenizer):
         super(PretrainedTokenizer, self).__init__(tokenizer, vocab_file, pad_token, unk_token, bos_token, eos_token)
 
     def detokenize(self, tokens: List[str]) -> str:
+        """Detokenize given tokens.
+        """
         return self.tokenizer.detokenize(tokens)
