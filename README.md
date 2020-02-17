@@ -30,8 +30,11 @@ Here we use the _movie review_ corpus written in Korean. The model trained on th
 <br>**_Keyword_:** TextCNN, Sentiment analysis<br>
 
 ### Neural Machine Translation
-- [Neural Machine Translation](https://github.com/lyeoni/nlp-tutorial/tree/master/neural-machine-translation): This repo provides a simple PyTorch implementation of Neural Machine Translation, along with an intrinsic/extrinsic comparison of various sequence-to-sequence (seq2seq) models in translation.
+- [English to French translation - seq2seq](https://github.com/lyeoni/nlp-tutorial/tree/master/neural-machine-translation): This neural machine translation tutorial trains a seq2seq model on a set of many thousands of English to French translation pairs to translate from English to French. It provides a simple PyTorch implementation, along with an intrinsic/extrinsic comparison of various sequence-to-sequence (seq2seq) models in translation.
 <br>**_Keyword_:** sequence to seqeunce network(seq2seq), Attention, Autoregressive, Teacher-forcing<br>
+
+- [English to French translation - Transformer](https://github.com/lyeoni/nlp-tutorial/tree/master/translation-transformer): This neural machine translation tutorial trains a Transformer model on a set of many thousands of English to French translation pairs to translate from English to French. It provides a simple PyTorch implementation, with simple annotation.
+<br>**_Keyword_:** Transformer, SentencePiece<br>
 
 ### Natural Language Understanding
 - [Neural Language Model](https://github.com/lyeoni/pretraining-for-language-understanding): This repo provides a simple PyTorch implementation of Neural Language Model for natural language understanding.
