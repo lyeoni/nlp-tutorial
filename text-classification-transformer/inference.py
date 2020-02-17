@@ -44,7 +44,7 @@ def main(args):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
 
-    parser.add_argument('--model',               required=True,            type=str, help='transformer model to laod')
+    parser.add_argument('--model',               required=True,            type=str, help='transformer model to load')
 
     parser.add_argument('--dataset',             default='imdb',           type=str, help='dataset')
     parser.add_argument('--vocab_file',          default='wiki.vocab',     type=str, help='vocabulary path')
