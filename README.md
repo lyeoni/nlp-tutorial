@@ -39,8 +39,8 @@ This repo provides a simple Keras implementation of TextCNN for Text Classificat
 This neural machine translation tutorial trains a seq2seq model on a set of many thousands of English to French translation pairs to translate from English to French. It provides an intrinsic/extrinsic comparison of various sequence-to-sequence (seq2seq) models in translation.
 <br>**_Keyword_:** _sequence to seqeunce network(seq2seq), Attention, Autoregressive, Teacher-forcing_<br>
 
-#### [English to French Translation - Transformer](https://github.com/lyeoni/nlp-tutorial/tree/master/translation-transformer)
-This neural machine translation tutorial trains a Transformer model on a set of many thousands of English to French translation pairs to translate from English to French. It provides a simple PyTorch implementation, with simple annotation.
+#### [French to English Translation - Transformer](https://github.com/lyeoni/nlp-tutorial/tree/master/translation-transformer)
+This neural machine translation tutorial trains a Transformer model on a set of many thousands of French to English translation pairs to translate from French to English. It provides a simple PyTorch implementation, with simple annotation.
 <br>**_Keyword_:** _Transformer, SentencePiece_<br>
 
 <br>

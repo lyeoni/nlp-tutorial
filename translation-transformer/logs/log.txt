@@ -1,0 +1,106 @@
+$ python main.py --output_model_prefix model2 --batch_size 256 --multi_gpu
+Namespace(batch_size=256, dataset='data/eng-fra.txt', dropout=0.1, epochs=15, ffn_hidden=2048, hidden=512, lr=2, max_seq_len=80, multi_gpu=True, n_attn_heads=8, n_layers=6, no_cuda=False, output_model_prefix='model2', pretrained_model_src='fra.model', pretrained_model_tgt='eng.model', vocab_file_src='fra.vocab', vocab_file_tgt='eng.vocab')
+Iteration 95 (95/478)   Loss: 6.1785    lr: 9.486832980505139e-05
+Iteration 190 (190/478) Loss: 5.0816    lr: 0.00018874844784130018
+Iteration 285 (285/478) Loss: 4.4399    lr: 0.0002826285658775489
+Iteration 380 (380/478) Loss: 3.9879    lr: 0.00037650868391379767
+Iteration 475 (475/478) Loss: 3.6425    lr: 0.0004703888019500465
+Train Epoch: 1  >       Loss: 3.6291
+Valid Epoch: 1  >       Loss: 2.0696
+Iteration 95 (95/478)   Loss: 1.9057    lr: 0.0005672335552927031
+Iteration 190 (190/478) Loss: 1.8184    lr: 0.0006611136733289519
+Iteration 285 (285/478) Loss: 1.7465    lr: 0.0007549937913652007
+Iteration 380 (380/478) Loss: 1.6860    lr: 0.0008488739094014494
+Iteration 475 (475/478) Loss: 1.6363    lr: 0.0009427540274376982
+Train Epoch: 2  >       Loss: 1.6317
+Valid Epoch: 2  >       Loss: 1.4069
+Iteration 95 (95/478)   Loss: 1.2164    lr: 0.0010395987807803547
+Iteration 190 (190/478) Loss: 1.2336    lr: 0.0011334788988166037
+Iteration 285 (285/478) Loss: 1.2449    lr: 0.0012273590168528524
+Iteration 380 (380/478) Loss: 1.2519    lr: 0.001321239134889101
+Iteration 475 (475/478) Loss: 1.2626    lr: 0.00141511925292535
+Train Epoch: 3  >       Loss: 1.2604
+Valid Epoch: 3  >       Loss: 1.3557
+Iteration 95 (95/478)   Loss: 1.1478    lr: 0.0015119640062680065
+Iteration 190 (190/478) Loss: 1.1785    lr: 0.0016058441243042554
+Iteration 285 (285/478) Loss: 1.2101    lr: 0.0016997242423405041
+Iteration 380 (380/478) Loss: 1.2341    lr: 0.001793604360376753
+Iteration 475 (475/478) Loss: 1.2578    lr: 0.0018874844784130015
+Train Epoch: 4  >       Loss: 1.2556
+Valid Epoch: 4  >       Loss: 1.4243
+Iteration 95 (95/478)   Loss: 1.2422    lr: 0.001972482509680635
+Iteration 190 (190/478) Loss: 1.2862    lr: 0.0019274156404054878
+Iteration 285 (285/478) Loss: 1.2989    lr: 0.0018853030543961305
+Iteration 380 (380/478) Loss: 1.3063    lr: 0.0018458354724527925
+Iteration 475 (475/478) Loss: 1.3071    lr: 0.0018087471255413521
+Train Epoch: 5  >       Loss: 1.3047
+Valid Epoch: 5  >       Loss: 1.3498
+^[[FIteration 95 (95/478)       Loss: 1.1801    lr: 0.001772737586866874
+Iteration 190 (190/478) Loss: 1.1851    lr: 0.0017398067557812921
+Iteration 285 (285/478) Loss: 1.1806    lr: 0.0017086454744181506
+Iteration 380 (380/478) Loss: 1.1843    lr: 0.0016791007371377439
+Iteration 475 (475/478) Loss: 1.1804    lr: 0.0016510374416213976
+Train Epoch: 6  >       Loss: 1.1779
+Valid Epoch: 6  >       Loss: 1.2342
+Iteration 95 (95/478)   Loss: 0.9982    lr: 0.0016235135420816598
+Iteration 190 (190/478) Loss: 1.0169    lr: 0.0015981048763506187
+Iteration 285 (285/478) Loss: 1.0262    lr: 0.0015738530161433723
+Iteration 380 (380/478) Loss: 1.0261    lr: 0.0015506727657599727
+Iteration 475 (475/478) Loss: 1.0243    lr: 0.0015284874626391204
+Train Epoch: 7  >       Loss: 1.0219
+Valid Epoch: 7  >       Loss: 1.1331
+Iteration 95 (95/478)   Loss: 0.8748    lr: 0.0015065709262559225
+Iteration 190 (190/478) Loss: 0.8789    lr: 0.0014862007812633787
+Iteration 285 (285/478) Loss: 0.8899    lr: 0.001466635170199788
+Iteration 380 (380/478) Loss: 0.8878    lr: 0.0014478224908874011
+Iteration 475 (475/478) Loss: 0.8880    lr: 0.0014297156589739921
+Train Epoch: 8  >       Loss: 0.8863
+Valid Epoch: 8  >       Loss: 1.0527
+Iteration 95 (95/478)   Loss: 0.7196    lr: 0.0014117310982894552
+Iteration 190 (190/478) Loss: 0.7443    lr: 0.0013949294406737146
+Iteration 285 (285/478) Loss: 0.7562    lr: 0.00137871374168408
+Iteration 380 (380/478) Loss: 0.7746    lr: 0.0013630507155898187
+Iteration 475 (475/478) Loss: 0.7792    lr: 0.0013479096650429803
+Train Epoch: 9  >       Loss: 0.7776
+Valid Epoch: 9  >       Loss: 1.0166
+Iteration 95 (95/478)   Loss: 0.6414    lr: 0.001332807422429895
+Iteration 190 (190/478) Loss: 0.6693    lr: 0.0013186417011077306
+Iteration 285 (285/478) Loss: 0.6779    lr: 0.0013049182666551927
+Iteration 380 (380/478) Loss: 0.6844    lr: 0.0012916145725961146
+Iteration 475 (475/478) Loss: 0.6968    lr: 0.0012787096494192066
+Train Epoch: 10 >       Loss: 0.6957
+Valid Epoch: 10 >       Loss: 0.9881
+Iteration 95 (95/478)   Loss: 0.5655    lr: 0.0012657943904459095
+Iteration 190 (190/478) Loss: 0.6073    lr: 0.0012536408453544493
+Iteration 285 (285/478) Loss: 0.6057    lr: 0.0012418307868300059
+Iteration 380 (380/478) Loss: 0.6214    lr: 0.0012303483343478752
+Iteration 475 (475/478) Loss: 0.6213    lr: 0.0012191786166263602
+Train Epoch: 11 >       Loss: 0.6201
+Valid Epoch: 11 >       Loss: 0.9509
+Iteration 95 (95/478)   Loss: 0.4916    lr: 0.0012079691184419621
+Iteration 190 (190/478) Loss: 0.5141    lr: 0.0011973927141085878
+Iteration 285 (285/478) Loss: 0.5281    lr: 0.0011870893381212286
+Iteration 380 (380/478) Loss: 0.5356    lr: 0.0011770474421074978
+Iteration 475 (475/478) Loss: 0.5426    lr: 0.001167256150176801
+Train Epoch: 12 >       Loss: 0.5416
+Valid Epoch: 12 >       Loss: 0.9539
+Iteration 95 (95/478)   Loss: 0.4359    lr: 0.0011574074074074076
+Iteration 190 (190/478) Loss: 0.4548    lr: 0.0011480942756000477
+Iteration 285 (285/478) Loss: 0.4688    lr: 0.0011390024010560402
+Iteration 380 (380/478) Loss: 0.4778    lr: 0.001130123159395902
+Iteration 475 (475/478) Loss: 0.4860    lr: 0.0011214483896565335
+Train Epoch: 13 >       Loss: 0.4851
+Valid Epoch: 13 >       Loss: 0.9350
+Iteration 95 (95/478)   Loss: 0.3860    lr: 0.0011127057583188288
+Iteration 190 (190/478) Loss: 0.4051    lr: 0.0011044230145917963
+Iteration 285 (285/478) Loss: 0.4232    lr: 0.0010963225241337866
+Iteration 380 (380/478) Loss: 0.4309    lr: 0.0010883976996904363
+Iteration 475 (475/478) Loss: 0.4351    lr: 0.0010806422825800639
+Train Epoch: 14 >       Loss: 0.4346
+Valid Epoch: 14 >       Loss: 0.9324
+Iteration 95 (95/478)   Loss: 0.3543    lr: 0.0010728131749874418
+Iteration 190 (190/478) Loss: 0.3622    lr: 0.0010653839022710847
+Iteration 285 (285/478) Loss: 0.3741    lr: 0.0010581068662670076
+Iteration 380 (380/478) Loss: 0.3833    lr: 0.0010509769377496378
+Iteration 475 (475/478) Loss: 0.3903    lr: 0.0010439892262204078
+Train Epoch: 15 >       Loss: 0.3896
