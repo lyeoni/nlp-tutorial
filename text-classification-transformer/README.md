@@ -81,7 +81,7 @@ output = self.linear(attn)
 # |output| : (batch_size, q_len, d_model)
 ```
 
-you can see full multi-head attention code [here](https://github.com/lyeoni/nlp-tutorial/blob/430010c826439d03677d5498406c3477b0a4e678/text-classification-transformer/model.py#L26).
+You can see full multi-head attention code [here](https://github.com/lyeoni/nlp-tutorial/blob/430010c826439d03677d5498406c3477b0a4e678/text-classification-transformer/model.py#L26).
 
 ### Pointwise feed forward networks
 <p align="center"><img width= 300 src="https://pozalabs.github.io/assets/images/ffn.png"></p>
@@ -249,5 +249,5 @@ class: tensor([1], device='cuda:0') # [0: neg, 1: pos]
 
 ### References
 - [Attention Is All You Need](https://arxiv.org/abs/1706.03762)
-- [SEQUENCE-TO-SEQUENCE MODELING WITH NN.TRANSFORMER AND TORCHTEXT](https://pytorch.org/tutorials/beginner/transformer_tutorial.html)
+- [Sequence-to-Sequence Modeling with nn.Transformer and TorchText](https://pytorch.org/tutorials/beginner/transformer_tutorial.html)
 - [Transformer model for language understanding](https://www.tensorflow.org/tutorials/text/transformer?hl=en)

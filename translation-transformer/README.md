@@ -101,7 +101,7 @@ output = self.linear(attn)
 # |output| : (batch_size, q_len, d_model)
 ```
 
-you can see full multi-head attention code [here](https://github.com/lyeoni/nlp-tutorial/blob/56aa42908e3a7872a57b653a3db13a6e25366fc4/translation-transformer/model.py#L26).
+You can see full multi-head attention code [here](https://github.com/lyeoni/nlp-tutorial/blob/56aa42908e3a7872a57b653a3db13a6e25366fc4/translation-transformer/model.py#L26).
 
 ### Pointwise feed forward networks
 <p align="center"><img width= 300 src="https://pozalabs.github.io/assets/images/ffn.png"></p>
@@ -214,9 +214,7 @@ class DecoderLayer(nn.Module):
         return ffn_outputs, attn_weights, enc_dec_attn_weights
 ```
 
-you can see detailed code to get look-ahead mask and padding mask [here](https://github.com/lyeoni/nlp-tutorial/blob/56aa42908e3a7872a57b653a3db13a6e25366fc4/translation-transformer/model.py#L209).
-
-### Transformer
+You can see detailed code to get look-ahead mask and padding mask [here](https://github.com/lyeoni/nlp-tutorial/blob/56aa42908e3a7872a57b653a3db13a6e25366fc4/translation-transformer/model.py#L209).
 
 ## Usage
 
@@ -263,7 +261,7 @@ $ python main.py --batch_size 256 --multi_gpu
 ```
 Out:
 ```
-Namespace(batch_size=256, dataset='data/eng-fra.txt', dropout=0.1, epochs=15, ffn_hidden=2048, hidden=512, lr=2, max_seq_len=80, multi_gpu=True, n_attn_heads=8, n_layers=6, no_cuda=False, output_model_prefix='model2', pretrained_model_src='fra.model', pretrained_model_tgt='eng.model', vocab_file_src='fra.vocab', vocab_file_tgt='eng.vocab')
+Namespace(batch_size=256, dataset='data/eng-fra.txt', dropout=0.1, epochs=15, ffn_hidden=2048, hidden=512, lr=2, max_seq_len=80, multi_gpu=True, n_attn_heads=8, n_layers=6, no_cuda=False, output_model_prefix='model', pretrained_model_src='fra.model', pretrained_model_tgt='eng.model', vocab_file_src='fra.vocab', vocab_file_tgt='eng.vocab')
 Iteration 95 (95/478)   Loss: 6.1785    lr: 9.486832980505139e-05
 Iteration 190 (190/478) Loss: 5.0816    lr: 0.00018874844784130018
 Iteration 285 (285/478) Loss: 4.4399    lr: 0.0002826285658775489
@@ -358,3 +356,17 @@ tgt_ids: tensor([[2]], device='cuda:0')
 --------------------------------------------------------
 I'll do anything for him.
 ```
+
+### Visualizaing Multi-Head Attention
+As the transformer decoder translates the word "_him", attention heads are focusing most on "_lui". Actually, "_lui" means "him".
+<p align="center"><img width= 400 src="images/attention_visualize1.png"></p>
+
+As the transformer decoder translates the word "_anything", attntion heads are focusing on "_n", " ' ", "importe". Actually, "n'importe" means "anything".
+<p align="center"><img width= 398 src="images/attention_visualize2.png"></p>
+
+Be sure to check out the [notebook](assets/attention_visualize.ipynb) where you can visualize attention weights using this interactive visualization.
+
+### References
+- [Attention Is All You Need](https://arxiv.org/abs/1706.03762)
+- [Sequence-to-Sequence Modeling with nn.Transformer and TorchText](https://pytorch.org/tutorials/beginner/transformer_tutorial.html)
+- [Transformer model for language understanding](https://www.tensorflow.org/tutorials/text/transformer?hl=en)
