@@ -359,10 +359,10 @@ I'll do anything for him.
 
 ### Visualizaing Multi-Head Attention
 As the transformer decoder translates the word "_him", attention heads are focusing most on "_lui". Actually, "_lui" means "him".
-<p align="center"><img width= 400 src="images/attention_visualize1.png"></p>
+<p align="center"><img width= 500 src="images/attention_visualize1.png"></p>
 
 As the transformer decoder translates the word "_anything", attntion heads are focusing on "_n", " ' ", "importe". Actually, "n'importe" means "anything".
-<p align="center"><img width= 398 src="images/attention_visualize2.png"></p>
+<p align="center"><img width= 500 src="images/attention_visualize2.png"></p>
 
 Be sure to check out the [notebook](assets/attention_visualize.ipynb) where you can visualize attention weights using this interactive visualization.
 
