@@ -55,7 +55,9 @@ Multi-head attention consists of four parts:
 #### 1. Linear layers and split into heads
 ```python
 q_heads = self.WQ(Q).view(batch_size, -1, self.n_heads, self.d_k).transpose(1, 2)
-k_heads = self.WK(K).view(batch_size, -1, self.n_heads, self.d_k).transpose(1, 2)v_heads = self.WV(V).view(batch_size, -1, self.n_heads, self.d_v).transpose(1, 2)# |q_heads| : (batch_size, n_heads, q_len, d_k), |k_heads| : (batch_size, n_heads, k_len, d_k), |v_heads| : (batch_size, n_heads, v_len, d_v)
+k_heads = self.WK(K).view(batch_size, -1, self.n_heads, self.d_k).transpose(1, 2)
+v_heads = self.WV(V).view(batch_size, -1, self.n_heads, self.d_v).transpose(1, 2)
+# |q_heads| : (batch_size, n_heads, q_len, d_k), |k_heads| : (batch_size, n_heads, k_len, d_k), |v_heads| : (batch_size, n_heads, v_len, d_v)
 ```
 
 #### 2. Scaled dot-product attention (with padding mask)
